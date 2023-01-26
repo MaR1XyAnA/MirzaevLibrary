@@ -5,6 +5,15 @@
     xmlns:local="clr-namespace:MirzaevLibrary"
     StartupUri="\ViewFolder\WindowsFolder\AuthorizationRegistrationWindows.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="\StyleFolder\WindowStyle.xaml"/>
+                <ResourceDictionary Source="\StyleFolder\ButtonStyle.xaml"/>
+                <ResourceDictionary Source="\StyleFolder\TextBlockStyle.xaml"/>
+                <ResourceDictionary Source="\StyleFolder\TextBoxStyle.xaml"/>
+                <ResourceDictionary Source="\StyleFolder\PasswordBoxStyle.xaml"/>
+                <ResourceDictionary Source="\StyleFolder\PageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

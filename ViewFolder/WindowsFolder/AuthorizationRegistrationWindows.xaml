@@ -5,8 +5,60 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="AuthorizationRegistrationWindows" Height="450" Width="800">
+    Style="{StaticResource WindowsStyle}"
+    WindowStartupLocation="CenterScreen"
+    Height="auto" MinHeight="468" MaxHeight="613" Width="700">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="1" Background="#101010" BorderThickness="1 0 1 1" BorderBrush="#101010">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Grid.Row="0"
+                    FontSize="30"
+                    Foreground="#fff"
+                    Text="Cool Bible Library"/>
+                <Frame
+                    NavigationUIVisibility="Hidden"
+                    Grid.Row="1"
+                    x:Name="MainAuthorizationRegistrationFrame"/>
+            </Grid>
+        </Border>
+        <Grid x:Name="SpaseBarGrid" MouseDown="SpaseBarGrid_MouseDown" Background="#232323" Grid.Row="0">
+            <Grid.Effect>
+                <DropShadowEffect 
+                    Direction="-90"
+                    Color="#202020"
+                    BlurRadius="6"
+                    ShadowDepth="3"
+                    Opacity="0.8"
+                    RenderingBias="Performance"/>
+            </Grid.Effect>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Button
+                    x:Name="RollUpButton"
+                    Click="RollUpButton_Click"
+                    Style="{StaticResource RollupControlButton}"/>
+                <Button
+                    Style="{StaticResource CloseControlButton}"
+                    x:Name="CloseButton"
+                    Click="CloseButton_Click"/>
+            </StackPanel>
+            <TextBlock
+                Style="{StaticResource TextBlockStyle}"
+                Text="АВТОРИЗАЦИЯ"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="10 0 0 0"
+                FontSize="13"/>
+        </Grid>
     </Grid>
 </Window>

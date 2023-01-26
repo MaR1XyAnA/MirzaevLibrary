@@ -59,6 +59,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AppDataFolder\ClassFolder\FrameNavigationClass.cs" />
+    <Compile Include="ViewFolder\PageFolder\AuthorizationPage.xaml.cs">
+      <DependentUpon>AuthorizationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewFolder\WindowsFolder\AuthorizationRegistrationWindows.xaml.cs">
       <DependentUpon>AuthorizationRegistrationWindows.xaml</DependentUpon>
     </Compile>
@@ -90,20 +94,45 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="StyleFolder\ButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StyleFolder\PageStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StyleFolder\PasswordBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StyleFolder\TextBlockStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StyleFolder\TextBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StyleFolder\WindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewFolder\PageFolder\AuthorizationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewFolder\WindowsFolder\AuthorizationRegistrationWindows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AppDataFolder\ClassFolder\" />
     <Folder Include="AppDataFolder\ModelFolder\" />
     <Folder Include="ContentFolder\FontFolder\" />
     <Folder Include="ContentFolder\ImageFolder\" />
     <Folder Include="SQLScriptFolder\" />
-    <Folder Include="StyleFolder\" />
     <Folder Include="ViewFolder\ControlFolder\" />
-    <Folder Include="ViewFolder\PageFolder\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
