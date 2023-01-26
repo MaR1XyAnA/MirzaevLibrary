@@ -130,9 +130,15 @@
   <ItemGroup>
     <Folder Include="AppDataFolder\ModelFolder\" />
     <Folder Include="ContentFolder\FontFolder\" />
-    <Folder Include="ContentFolder\ImageFolder\" />
     <Folder Include="SQLScriptFolder\" />
     <Folder Include="ViewFolder\ControlFolder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ContentFolder\ImageFolder\NoImage.png" />
+    <Resource Include="ContentFolder\ImageFolder\VisebalFols.png" />
+    <Resource Include="ContentFolder\ImageFolder\VisebalGrayFols.png" />
+    <Resource Include="ContentFolder\ImageFolder\ViseblGrayTrue.png" />
+    <Resource Include="ContentFolder\ImageFolder\ViseblTrue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
