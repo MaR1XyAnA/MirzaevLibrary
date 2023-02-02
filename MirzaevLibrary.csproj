@@ -98,6 +98,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="StyleFolder\ImageStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StyleFolder\PageStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +143,12 @@
     <Resource Include="ContentFolder\ImageFolder\VisebalGrayFols.png" />
     <Resource Include="ContentFolder\ImageFolder\ViseblGrayTrue.png" />
     <Resource Include="ContentFolder\ImageFolder\ViseblTrue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ContentFolder\ImageFolder\UsersIcons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ContentFolder\ImageFolder\PasswordIcons.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

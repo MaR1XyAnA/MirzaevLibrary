@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="\StyleFolder\TextBoxStyle.xaml"/>
                 <ResourceDictionary Source="\StyleFolder\PasswordBoxStyle.xaml"/>
                 <ResourceDictionary Source="\StyleFolder\PageStyle.xaml"/>
+                <ResourceDictionary Source="\StyleFolder\ImageStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
