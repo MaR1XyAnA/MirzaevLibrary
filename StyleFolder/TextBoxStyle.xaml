@@ -4,25 +4,25 @@
     <Style TargetType="TextBox">
         <Setter Property="Cursor" Value="IBeam"/>
         <Setter Property="Height" Value="40"/>
-        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="FontFamily" Value="\ContentFolder\FontFolder\#Play"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="15"/>
-        <Setter Property="Foreground" Value="#dee3de"/>
-        <Setter Property="BorderBrush" Value="#808080"/>
-        <Setter Property="Background" Value="#131313"/>
-        <Setter Property="CaretBrush" Value="#ff0000"/>
+        <Setter Property="Foreground" Value="#e1e3e6"/>
+        <Setter Property="BorderBrush" Value="#3e3e3f"/>
+        <Setter Property="Background" Value="#232324"/>
+        <Setter Property="CaretBrush" Value="#e1e3e6"/>
         <Setter Property="Padding" Value="9.5 0 0 0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border 
                         x:Name="border"
-                        CornerRadius="0"
+                        CornerRadius="8"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="1px"
+                        BorderThickness="2"
                         Background="{TemplateBinding Background}">
                         <ScrollViewer 
                             x:Name="PART_ContentHost"
@@ -31,10 +31,11 @@
                             VerticalScrollBarVisibility="Hidden"/>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="#585858"/>
+                        </Trigger>
                         <Trigger Property="IsFocused" Value="true">
-                            <Setter Property="Foreground" Value="#dee3de"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="#ff0000"/>
-                            <Setter Property="Background" TargetName="border" Value="#131313"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#529ef4"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

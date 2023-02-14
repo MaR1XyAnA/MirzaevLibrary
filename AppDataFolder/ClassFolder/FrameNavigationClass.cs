@@ -4,6 +4,7 @@ namespace MirzaevLibrary.AppDataFolder.ClassFolder
 {
     internal class FrameNavigationClass
     {
-        public static Frame BodyAuthorizationRegistration;
+        public static Frame BodyAutorizationFNC;
+        public static Frame BodyRegistrationFNC;
     }
 }

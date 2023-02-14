@@ -5,14 +5,15 @@ using System.Windows.Input;
 
 namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
-    public partial class AuthorizationRegistrationWindows : Window
+    public partial class AuthorizationWindow : Window
     {
-        public AuthorizationRegistrationWindows()
+        public AuthorizationWindow()
         {
             InitializeComponent();
-            FrameNavigationClass.BodyAuthorizationRegistration = MainAuthorizationRegistrationFrame;
-            FrameNavigationClass.BodyAuthorizationRegistration.Navigate(new AuthorizationPage());
+            FrameNavigationClass.BodyAutorizationFNC = AuthorizationFrame;
+            FrameNavigationClass.BodyAutorizationFNC.Navigate(new AuthorizationPage());
         }
+
         #region Управление окном
         private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать
         {
