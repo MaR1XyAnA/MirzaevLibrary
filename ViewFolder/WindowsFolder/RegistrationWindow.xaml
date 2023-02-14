@@ -32,6 +32,7 @@
                         <StackPanel Margin="0 0 0 20" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <Grid Margin="0 0 0 5">
                                 <TextBox
+                                    MaxLength="50"
                                     TextChanged="SurnameTextBox_TextChanged"
                                     Padding="7 0 0 0"
                                     Width="460"
@@ -44,6 +45,7 @@
                             </Grid>
                             <Grid Margin="0 5 0 5">
                                 <TextBox
+                                    MaxLength="50"
                                     TextChanged="NameTextBox_TextChanged"
                                     Padding="7 0 0 0"
                                     Width="460"
@@ -56,6 +58,7 @@
                             </Grid>
                             <Grid Margin="0 5 0 5">
                                 <TextBox
+                                    MaxLength="50"
                                     TextChanged="MiddlenameTextBox_TextChanged"
                                     Padding="7 0 0 0"
                                     Width="460"
@@ -68,6 +71,7 @@
                             </Grid>
                             <Grid Margin="0 5 0 5">
                                 <TextBox
+                                    MaxLength="50"
                                     TextChanged="EmailTextBox_TextChanged"
                                     Padding="7 0 0 0"
                                     Width="460"
@@ -80,6 +84,7 @@
                             </Grid>
                             <Grid Margin="0 5 0 5">
                                 <TextBox
+                                    MaxLength="11"
                                     TextChanged="PhoneTextBox_TextChanged"
                                     Padding="7 0 0 0"
                                     Width="460"
@@ -88,10 +93,11 @@
                                     x:Name="HintPhoneTextBlock"
                                     Margin="10 0 0 0"
                                     Text="Номер телефона"
-                                    Style="{StaticResource HintTextBlock}"/>    
+                                    Style="{DynamicResource HintTextBlock}"/>    
                             </Grid>
                             <Grid Margin="0 5 0 5">
                                 <TextBox
+                                    MaxLength="50"
                                     TextChanged="NewPasswordTextBox_TextChanged"
                                     Padding="7 0 0 0"
                                     Width="460"
@@ -104,6 +110,8 @@
                             </Grid>
                             <Grid Margin="0 5 0 5">
                                 <PasswordBox
+                                    MaxLength="50"
+                                    LayoutUpdated="PasswordPaswordBox_LayoutUpdated"
                                     PasswordChanged="PasswordPaswordBox_PasswordChanged"
                                     Padding="7 0 0 0"
                                     Width="460"

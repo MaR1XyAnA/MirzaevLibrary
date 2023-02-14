@@ -4,7 +4,7 @@
     <Style TargetType="TextBox">
         <Setter Property="Cursor" Value="IBeam"/>
         <Setter Property="Height" Value="40"/>
-        <Setter Property="FontFamily" Value="\ContentFolder\FontFolder\#Play"/>
+        <Setter Property="FontFamily" Value="\ContentFolder\FontFolder\#PT Mono"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Center"/>

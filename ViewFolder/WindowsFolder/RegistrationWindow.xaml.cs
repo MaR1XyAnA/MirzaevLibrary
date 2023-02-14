@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
@@ -93,6 +95,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             {
                 HintPasswordTextBlock.Visibility = Visibility.Visible;
             }
+            
         }
 
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)
@@ -126,5 +129,39 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             WindowState = WindowState.Minimized;
         }
         #endregion
+
+        private void PasswordPaswordBox_LayoutUpdated(object sender, EventArgs e)
+        {
+            string PasswordText, PasswordPasword;
+            PasswordText = Convert.ToString(NewPasswordTextBox.Text);
+            PasswordPasword = Convert.ToString(PasswordPaswordBox.Password);
+            if (PasswordText == "")
+            {
+                PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+
+                RegistrationButton.IsEnabled = false;
+                RegistrationButton.Background = new SolidColorBrush(Color.FromRgb(153, 154, 156));
+                RegistrationButton.BorderBrush = new SolidColorBrush(Color.FromRgb(153, 154, 156));
+            }
+            else
+            {
+                if (PasswordPasword != PasswordText)
+                {
+                    PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(217, 34, 0));
+
+                    RegistrationButton.IsEnabled = false;
+                    RegistrationButton.Background = new SolidColorBrush(Color.FromRgb(153, 154, 156));
+                    RegistrationButton.BorderBrush = new SolidColorBrush(Color.FromRgb(153, 154, 156));
+                }
+                if (PasswordPasword == PasswordText)
+                {
+                    PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(133, 178, 43));
+
+                    RegistrationButton.IsEnabled = true;
+                    RegistrationButton.Background = new SolidColorBrush(Color.FromRgb(255, 227, 230));
+                    RegistrationButton.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 227, 230));
+                }
+            }
+        }
     }
 }

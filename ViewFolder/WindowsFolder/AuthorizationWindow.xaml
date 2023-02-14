@@ -30,26 +30,11 @@
                 <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0 20 0 0" VerticalAlignment="Top" HorizontalAlignment="Center">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Grid Margin="0 0 0 5">
-                            <Grid>
-                                <Border
-                                    Style="{StaticResource ShadowBorder}"
-                                    Width="460">
-                                    <Border.Effect>
-                                        <DropShadowEffect 
-                                            Direction="315"
-                                            Color="#202020"
-                                            BlurRadius="5"
-                                            ShadowDepth="1"
-                                            Opacity="0.8"
-                                            RenderingBias="Performance"/>
-                                    </Border.Effect>
-                                </Border>
-                                <TextBox
-                                    TextChanged="LoginTextBox_TextChanged"
-                                    Padding="33 0 0 0"
-                                    Width="460"
-                                    x:Name="LoginTextBox"/>
-                            </Grid>
+                            <TextBox
+                                TextChanged="LoginTextBox_TextChanged"
+                                Padding="33 0 0 0"
+                                Width="460"
+                                x:Name="LoginTextBox"/>
                             <TextBlock
                                 x:Name="HintLoginTextBlock"
                                 Margin="36 0 0 0"
@@ -63,26 +48,11 @@
                         </Grid>
                         <Grid>
                             <Grid x:Name="CollapsedPasswordGrid" Margin="0 5 0 0">
-                                <Grid>
-                                    <Border
-                                        Style="{StaticResource ShadowBorder}"
-                                        Width="460">
-                                        <Border.Effect>
-                                            <DropShadowEffect 
-                                                Direction="315"
-                                                Color="#202020"
-                                                BlurRadius="5"
-                                                ShadowDepth="1"
-                                                Opacity="0.8"
-                                                RenderingBias="Performance"/>
-                                        </Border.Effect>
-                                    </Border>
-                                    <PasswordBox
-                                        PasswordChanged="PasswordPasswordBox_PasswordChanged"
-                                        Padding="33 0 40 0"
-                                        Width="460"
-                                        x:Name="PasswordPasswordBox"/>
-                                </Grid>
+                                <PasswordBox
+                                    PasswordChanged="PasswordPasswordBox_PasswordChanged"
+                                    Padding="33 0 40 0"
+                                    Width="460"
+                                    x:Name="PasswordPasswordBox"/>
                                 <TextBlock
                                     x:Name="HintPasswordVisibilityTextBlock"
                                     Margin="36 0 0 0"
@@ -95,26 +65,11 @@
                                     Text="&#xf191;"/>
                             </Grid>
                             <Grid Margin="0 5 0 0" Visibility="Collapsed" x:Name="VisiblePasswordGrid">
-                                <Grid>
-                                    <Border
-                                        Style="{StaticResource ShadowBorder}"
-                                        Width="460">
-                                        <Border.Effect>
-                                            <DropShadowEffect 
-                                                Direction="315"
-                                                Color="#202020"
-                                                BlurRadius="5"
-                                                ShadowDepth="1"
-                                                Opacity="0.8"
-                                                RenderingBias="Performance"/>
-                                        </Border.Effect>
-                                    </Border>
-                                    <TextBox
-                                        TextChanged="PasswordTextBox_TextChanged"
-                                        Padding="33 0 40 0"
-                                        Width="460"
-                                        x:Name="PasswordTextBox"/>
-                                </Grid>
+                                <TextBox
+                                    TextChanged="PasswordTextBox_TextChanged"
+                                    Padding="33 0 40 0"
+                                    Width="460"
+                                    x:Name="PasswordTextBox"/>
                                 <TextBlock
                                     x:Name="HintPasswordCollapsedTextBlock"
                                     Margin="36 0 0 0"
@@ -157,70 +112,28 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0 15 0 0" HorizontalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Grid Margin="0 0 22.5 0">
-                                <Border
-                                    Style="{StaticResource ShadowBorder}"
-                                    Width="180">
-                                    <Border.Effect>
-                                        <DropShadowEffect 
-                                            Direction="315"
-                                            Color="#202020"
-                                            BlurRadius="5"
-                                            ShadowDepth="1"
-                                            Opacity="0.8"
-                                            RenderingBias="Performance"/>
-                                    </Border.Effect>
-                                </Border>
-                                <Button
-                                    Style="{StaticResource MainButton}"
-                                    Width="180"
-                                    x:Name="NextButton"
-                                    Click="NextButton_Click"
-                                    Content="ВОЙТИ"/>
-                            </Grid>
-                            <Grid Margin="22.5 0 0 0">
-                                <Border
-                                    Style="{StaticResource ShadowBorder}"
-                                    Width="235">
-                                    <Border.Effect>
-                                        <DropShadowEffect 
-                                            Direction="315"
-                                            Color="#202020"
-                                            BlurRadius="5"
-                                            ShadowDepth="1"
-                                            Opacity="0.8"
-                                            RenderingBias="Performance"/>
-                                    </Border.Effect>
-                                </Border>
-                                <Button
-                                    Style="{StaticResource OtherButton}"
-                                    Width="235"
-                                    x:Name="RegistrationButton"
-                                    Click="RegistrationButton_Click"
-                                    Content="ЗАРЕГИСТРИРОВАТЬСЯ"/>
-                            </Grid>
-                        </StackPanel>
-                        <Grid Margin="0 15 0 0">
-                            <Border
-                                Style="{StaticResource ShadowBorder}"
-                                Width="460">
-                                <Border.Effect>
-                                    <DropShadowEffect 
-                                        Direction="315"
-                                        Color="#202020"
-                                        BlurRadius="5"
-                                        ShadowDepth="1"
-                                        Opacity="0.8"
-                                        RenderingBias="Performance"/>
-                                </Border.Effect>
-                            </Border>
                             <Button
+                                Margin="0 0 22.5 0"
+                                Style="{StaticResource MainButton}"
+                                Width="180"
+                                x:Name="NextButton"
+                                Click="NextButton_Click"
+                                Content="ВОЙТИ"/>
+                            <Button
+                                Margin="22.5 0 0 0"
                                 Style="{StaticResource OtherButton}"
-                                Width="460"
-                                x:Name="IgnoreAutborizationButton"
-                                Click="IgnoreAutborizationButton_Click"
-                                Content="ПРОДОЛЖИТЬ БЕЗ РЕГИСТРАЦИИ\АВТОРИЗАЦИИ"/>
-                        </Grid>
+                                Width="235"
+                                x:Name="RegistrationButton"
+                                Click="RegistrationButton_Click"
+                                Content="ЗАРЕГИСТРИРОВАТЬСЯ"/>
+                        </StackPanel>
+                        <Button
+                            Margin="0 15 0 0"
+                            Style="{StaticResource OtherButton}"
+                            Width="460"
+                            x:Name="IgnoreAutborizationButton"
+                            Click="IgnoreAutborizationButton_Click"
+                            Content="ПРОДОЛЖИТЬ БЕЗ РЕГИСТРАЦИИ\АВТОРИЗАЦИИ"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
