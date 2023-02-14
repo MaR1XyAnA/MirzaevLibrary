@@ -16,9 +16,124 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <Border Style="{StaticResource BackgroundBorder}"/>
-            <Frame
-                x:Name="RegistrationFrame"
-                NavigationUIVisibility="Hidden"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock
+            VerticalAlignment="Bottom"
+            FontSize="70"
+            HorizontalAlignment="Center"
+            Text="Cool Bible Library"
+            Style="{StaticResource TextBlockStyle}"/>
+                <Grid Grid.Row="1" VerticalAlignment="Top" Margin="0 15 0 0">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel Margin="0 0 0 20" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Grid Margin="0 0 0 5">
+                                <TextBox
+                                    TextChanged="SurnameTextBox_TextChanged"
+                                    Padding="7 0 0 0"
+                                    Width="460"
+                                    x:Name="SurnameTextBox"/>
+                                <TextBlock
+                                    x:Name="HintSurnameTextBlock"
+                                    Margin="10 0 0 0"
+                                    Text="Фамилия"
+                                    Style="{StaticResource HintTextBlock}"/>
+                            </Grid>
+                            <Grid Margin="0 5 0 5">
+                                <TextBox
+                                    TextChanged="NameTextBox_TextChanged"
+                                    Padding="7 0 0 0"
+                                    Width="460"
+                                    x:Name="NameTextBox"/>
+                                <TextBlock
+                                    x:Name="HintNameTextBlock"
+                                    Margin="10 0 0 0"
+                                    Text="Имя"
+                                    Style="{StaticResource HintTextBlock}"/>
+                            </Grid>
+                            <Grid Margin="0 5 0 5">
+                                <TextBox
+                                    TextChanged="MiddlenameTextBox_TextChanged"
+                                    Padding="7 0 0 0"
+                                    Width="460"
+                                    x:Name="MiddlenameTextBox"/>
+                                <TextBlock
+                                    x:Name="HintMiddlenameTextBlock"
+                                    Margin="10 0 0 0"
+                                    Text="Отчество"
+                                    Style="{StaticResource HintTextBlock}"/>
+                            </Grid>
+                            <Grid Margin="0 5 0 5">
+                                <TextBox
+                                    TextChanged="EmailTextBox_TextChanged"
+                                    Padding="7 0 0 0"
+                                    Width="460"
+                                    x:Name="EmailTextBox"/>
+                                <TextBlock
+                                    x:Name="HintEmailTextBlock"
+                                    Margin="10 0 0 0"
+                                    Text="Электронная почта"
+                                    Style="{StaticResource HintTextBlock}"/>
+                            </Grid>
+                            <Grid Margin="0 5 0 5">
+                                <TextBox
+                                    TextChanged="PhoneTextBox_TextChanged"
+                                    Padding="7 0 0 0"
+                                    Width="460"
+                                    x:Name="PhoneTextBox"/>
+                                <TextBlock
+                                    x:Name="HintPhoneTextBlock"
+                                    Margin="10 0 0 0"
+                                    Text="Номер телефона"
+                                    Style="{StaticResource HintTextBlock}"/>    
+                            </Grid>
+                            <Grid Margin="0 5 0 5">
+                                <TextBox
+                                    TextChanged="NewPasswordTextBox_TextChanged"
+                                    Padding="7 0 0 0"
+                                    Width="460"
+                                    x:Name="NewPasswordTextBox"/>
+                                <TextBlock
+                                    x:Name="HintNewPasswordTextBlock"
+                                    Margin="10 0 0 0"
+                                    Text="Пароль"
+                                    Style="{StaticResource HintTextBlock}"/>
+                            </Grid>
+                            <Grid Margin="0 5 0 5">
+                                <PasswordBox
+                                    PasswordChanged="PasswordPaswordBox_PasswordChanged"
+                                    Padding="7 0 0 0"
+                                    Width="460"
+                                    x:Name="PasswordPaswordBox"/>
+                                <TextBlock
+                                    x:Name="HintPasswordTextBlock"
+                                    Margin="10 0 0 0"
+                                    Text="Повторите пароль"
+                                    Style="{StaticResource HintTextBlock}"/>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Margin="0 15 0 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Button
+                                Margin="0 0 26.5 0"
+                                Style="{StaticResource MainButton}"
+                                Width="227"
+                                x:Name="RegistrationButton"
+                                Click="RegistrationButton_Click"
+                                Content="ЗАРЕГИСТРИРОВАТЬСЯ"/>
+                            <Button
+                                Margin="26.5 0 0 0"
+                                Style="{StaticResource OtherButton}"
+                                Width="180"
+                                x:Name="AuthorizationButton"
+                                Click="AuthorizationButton_Click"
+                                Content="АВТОРИЗОВАТЬСЯ"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
         </Grid>
         <Grid x:Name="SpaseBarGrid" MouseDown="SpaseBarGrid_MouseDown" Background="#141414" Grid.Row="0">
             <Grid.Effect>

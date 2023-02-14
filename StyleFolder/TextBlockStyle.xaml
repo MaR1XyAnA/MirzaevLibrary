@@ -9,8 +9,8 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     <Style x:Key="HintTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
-        <Setter Property="Foreground" Value="#e1e3e6"/>
-        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="#b2b2b2"/>
+        <Setter Property="FontSize" Value="12"/>
         <Setter Property="IsHitTestVisible" Value="False"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="Margin" Value="10 0 0 0"/>

@@ -24,6 +24,15 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="2"
                         Background="{TemplateBinding Background}">
+                        <Border.Effect>
+                            <DropShadowEffect 
+                                Direction="315"
+                                Color="#202020"
+                                BlurRadius="5"
+                                ShadowDepth="1"
+                                Opacity="0.8"
+                                RenderingBias="Performance"/>
+                        </Border.Effect>
                         <ScrollViewer 
                             x:Name="PART_ContentHost"
                             Focusable="false"

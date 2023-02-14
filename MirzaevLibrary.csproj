@@ -60,12 +60,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppDataFolder\ClassFolder\FrameNavigationClass.cs" />
-    <Compile Include="ViewFolder\PageFolder\AuthorizationPage.xaml.cs">
-      <DependentUpon>AuthorizationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewFolder\PageFolder\RegistrationPage.xaml.cs">
-      <DependentUpon>RegistrationPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewFolder\WindowsFolder\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>
@@ -139,14 +133,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewFolder\PageFolder\AuthorizationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ViewFolder\PageFolder\RegistrationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ViewFolder\WindowsFolder\AuthorizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -160,6 +146,7 @@
     <Folder Include="AppDataFolder\ModelFolder\" />
     <Folder Include="SQLScriptFolder\" />
     <Folder Include="ViewFolder\ControlFolder\" />
+    <Folder Include="ViewFolder\PageFolder\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ContentFolder\ImageFolder\NoImage.png" />
