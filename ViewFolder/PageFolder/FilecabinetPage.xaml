@@ -7,6 +7,21 @@
     mc:Ignorable="d" 
     Style="{StaticResource BodyPageStyle}">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ListBox
+            Grid.Row="1"
+            MouseDoubleClick="FondListBox_MouseDoubleClick"
+            x:Name="FondListBox"
+            Margin="5"
+            ItemContainerStyle="{StaticResource ListBoxItemSelected}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

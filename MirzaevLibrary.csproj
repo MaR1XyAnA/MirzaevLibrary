@@ -60,6 +60,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppDataFolder\ClassFolder\FrameNavigationClass.cs" />
+    <Compile Include="ViewFolder\ControlFolder\BookControl.xaml.cs">
+      <DependentUpon>BookControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewFolder\PageFolder\FilecabinetPage.xaml.cs">
       <DependentUpon>FilecabinetPage.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ViewFolder\ControlFolder\BookControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewFolder\PageFolder\FilecabinetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,7 +186,6 @@
   <ItemGroup>
     <Folder Include="AppDataFolder\ModelFolder\" />
     <Folder Include="SQLScriptFolder\" />
-    <Folder Include="ViewFolder\ControlFolder\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ContentFolder\ImageFolder\NoImage.png" />
