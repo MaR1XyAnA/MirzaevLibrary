@@ -13,6 +13,7 @@
         </Setter>
     </Style>
     <Style TargetType="Slider">
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Orientation" Value="Horizontal"/>
         <Setter Property="TickFrequency" Value="1"/>

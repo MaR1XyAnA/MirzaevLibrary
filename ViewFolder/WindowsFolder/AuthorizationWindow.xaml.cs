@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
@@ -19,7 +20,9 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
         private void IgnoreAutborizationButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
 
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)
@@ -100,6 +103,25 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             WindowState = WindowState.Minimized;
         }
         #endregion
+
+        private void NextButton_LayoutUpdated(object sender, EventArgs e)
+        {
+            string LoginString, PassworPasswordString;
+            LoginString = Convert.ToString(LoginTextBox.Text);
+            PassworPasswordString = Convert.ToString(PasswordPasswordBox.Password);
+            if (PassworPasswordString == "" || LoginString == "")
+            {
+                NextButton.IsEnabled = false;
+                NextButton.Background = new SolidColorBrush(Color.FromRgb(153, 154, 156));
+                NextButton.BorderBrush = new SolidColorBrush(Color.FromRgb(153, 154, 156));
+            }
+            else
+            {
+                RegistrationButton.IsEnabled = true;
+                NextButton.Background = new SolidColorBrush(Color.FromRgb(255, 227, 230));
+                NextButton.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 227, 230));
+            }
+        }
     }
 }
 

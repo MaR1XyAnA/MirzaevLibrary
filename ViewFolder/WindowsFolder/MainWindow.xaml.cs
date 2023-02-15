@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
+using MirzaevLibrary.ViewFolder.PageFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +21,8 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         public MainWindow()
         {
             InitializeComponent();
+            FrameNavigationClass.MenuFNC = MenuFrame;
+            FrameNavigationClass.MenuFNC.Navigate(new MenuPage());
         }
 
         #region Управление окном

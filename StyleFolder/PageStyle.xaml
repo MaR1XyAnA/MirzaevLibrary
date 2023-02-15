@@ -5,4 +5,8 @@
         <Setter Property="Width" Value="700"/>
         <Setter Property="Height" Value="438"/>
     </Style>
+    <Style x:Key="BodyPageStyle" TargetType="Page">
+        <Setter Property="Width" Value="1600"/>
+        <Setter Property="Height" Value="750"/>
+    </Style>
 </ResourceDictionary>

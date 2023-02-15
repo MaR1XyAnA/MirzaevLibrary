@@ -15,6 +15,9 @@
                 <ResourceDictionary Source="\StyleFolder\PageStyle.xaml"/>
                 <ResourceDictionary Source="\StyleFolder\ImageStyle.xaml"/>
                 <ResourceDictionary Source="\StyleFolder\SliderStyle.xaml"/>
+                <ResourceDictionary Source="\StyleFolder\ToggleButtonStyle.xaml"/>
+                <ResourceDictionary Source="\StyleFolder\ScrollViewerStyle.xaml"/>
+                <ResourceDictionary Source="\StyleFolder\ListBoxStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

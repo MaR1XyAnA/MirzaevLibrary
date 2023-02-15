@@ -9,7 +9,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="ShowInTaskbar" Value="True"/>
         <Setter Property="Topmost" Value="False"/>
-        <Setter Property="Height" Value="1080"/>
-        <Setter Property="Width" Value="1920"/>
+        <Setter Property="Height" Value="900"/>
+        <Setter Property="Width" Value="1600"/>
     </Style>
 </ResourceDictionary>
