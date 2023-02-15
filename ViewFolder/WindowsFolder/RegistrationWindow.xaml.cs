@@ -110,26 +110,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             this.Close();
         }
 
-        #region Управление окном
-        private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void RollUpButton_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-        #endregion
-
         private void PasswordPaswordBox_LayoutUpdated(object sender, EventArgs e)
         {
             string PasswordText, PasswordPasword;
@@ -163,5 +143,25 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 }
             }
         }
+
+        #region Управление окном
+        private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void RollUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+        #endregion
     }
 }
