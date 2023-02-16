@@ -26,6 +26,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         private void FilecabinetToggleButton_Click(object sender, RoutedEventArgs e)
         {
             FrameNavigationClass.BodyFNC.Navigate(new FilecabinetPage());
+
             FilecabinetToggleButton.IsChecked = true;
             CategoryToggleButton.IsChecked = false;
             AuthorsToggleButton.IsChecked = false;
@@ -39,6 +40,8 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
         private void CategoryToggleButton_Click(object sender, RoutedEventArgs e)
         {
+            FrameNavigationClass.BodyFNC.Navigate(new CategoriesPage());
+
             FilecabinetToggleButton.IsChecked = false;
             CategoryToggleButton.IsChecked = true;
             AuthorsToggleButton.IsChecked = false;

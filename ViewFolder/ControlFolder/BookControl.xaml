@@ -7,7 +7,7 @@
     mc:Ignorable="d" 
     Height="426"
     Width="280">
-    <Grid Margin="5 10 5 10">
+    <Grid>
         <Border CornerRadius="7" Background="#222222" BorderBrush="#222222" BorderThickness="2">
             <Border.Effect>
                 <DropShadowEffect 
@@ -94,18 +94,22 @@
             <StackPanel Orientation="Horizontal"  Grid.Row ="2" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0 0 5 5">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 10 0">
                     <TextBlock
+                        Foreground="#39ff14"
                         Style="{StaticResource IconFont}"
                         Text="&#xf1de;"/>
                     <TextBlock
+                        Foreground="#39ff14"
                         Margin="3 0 0 0"
                         Style="{StaticResource CharacteristicBookTextBlock}"
                         Text="{Binding LikeBook}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 10 0">
                     <TextBlock
+                        Foreground="#ff073a"
                         Style="{StaticResource IconFont}"
                         Text="&#xf1dc;"/>
                     <TextBlock
+                        Foreground="#ff073a"
                         Margin="3 0 0 0"
                         Style="{StaticResource CharacteristicBookTextBlock}"
                         Text="{Binding DislikeBook}"/>

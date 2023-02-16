@@ -109,9 +109,6 @@
     <Compile Include="AppDataFolder\ModelFolder\RoleTable.cs">
       <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AppDataFolder\ModelFolder\sysdiagrams.cs">
-      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="AppDataFolder\ModelFolder\TicketTable.cs">
       <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
     </Compile>
@@ -120,6 +117,12 @@
     </Compile>
     <Compile Include="ViewFolder\ControlFolder\BookControl.xaml.cs">
       <DependentUpon>BookControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewFolder\ControlFolder\CategoriesControl.xaml.cs">
+      <DependentUpon>CategoriesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewFolder\PageFolder\CategoriesPage.xaml.cs">
+      <DependentUpon>CategoriesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewFolder\PageFolder\FilecabinetPage.xaml.cs">
       <DependentUpon>FilecabinetPage.xaml</DependentUpon>
@@ -228,6 +231,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ViewFolder\ControlFolder\CategoriesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewFolder\PageFolder\CategoriesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewFolder\PageFolder\FilecabinetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -249,9 +260,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SQLScriptFolder\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="ContentFolder\ImageFolder\NoImage.png" />
     <Resource Include="ContentFolder\ImageFolder\VisebalFols.png" />

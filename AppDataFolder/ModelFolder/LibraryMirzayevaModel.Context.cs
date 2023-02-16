@@ -33,7 +33,6 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
         public virtual DbSet<ImagebookTable> ImagebookTable { get; set; }
         public virtual DbSet<PublishingHouseTable> PublishingHouseTable { get; set; }
         public virtual DbSet<RoleTable> RoleTable { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TicketTable> TicketTable { get; set; }
         public virtual DbSet<UserTable> UserTable { get; set; }
     }

@@ -8,13 +8,30 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
-    <Style x:Key="ListBoxItemSelected" TargetType="{x:Type ListBoxItem}">
-        <Style.Triggers>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="BorderBrush" Value="Red"/>
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-            </Trigger>
-        </Style.Triggers>
+    <Style x:Key="ListBoxItemSelected" TargetType="ListBoxItem">
+        <Setter Property="Margin" Value="5 10 5 10"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border 
+                        x:Name="border"
+                        CornerRadius="7"
+                        BorderThickness="1" 
+                        BorderBrush="Transparent">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#529ef4"/>
+                            <Setter TargetName="border" Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#e1e3e6" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>
