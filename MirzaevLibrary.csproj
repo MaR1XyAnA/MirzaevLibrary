@@ -276,6 +276,7 @@
       <DependentUpon>LibraryMirzayevaModel.edmx</DependentUpon>
       <LastGenOutput>LibraryMirzayevaModel.cs</LastGenOutput>
     </Content>
+    <Content Include="AppDataFolder\SQL\ScriptDataBase.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

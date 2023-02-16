@@ -7,7 +7,18 @@
     mc:Ignorable="d" 
     Height="426"
     Width="280">
-    <Border CornerRadius="7" Background="#222222" BorderBrush="#222222" BorderThickness="2" Margin="5 10 5 10">
+    <Grid Margin="5 10 5 10">
+        <Border CornerRadius="7" Background="#222222" BorderBrush="#222222" BorderThickness="2">
+            <Border.Effect>
+                <DropShadowEffect 
+                    Direction="315"
+                    Color="#202020"
+                    BlurRadius="5"
+                    ShadowDepth="1"
+                    Opacity="0.8"
+                    RenderingBias="Performance"/>
+            </Border.Effect>
+        </Border>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
@@ -101,5 +112,5 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-    </Border>
+    </Grid>
 </UserControl>
