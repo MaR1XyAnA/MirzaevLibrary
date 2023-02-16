@@ -130,6 +130,9 @@
     <Compile Include="ViewFolder\PageFolder\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewFolder\PageFolder\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewFolder\WindowsFolder\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>
@@ -247,6 +250,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ViewFolder\PageFolder\ProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewFolder\WindowsFolder\AuthorizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -263,16 +270,6 @@
   <ItemGroup />
   <ItemGroup>
     <Resource Include="ContentFolder\ImageFolder\NoImage.png" />
-    <Resource Include="ContentFolder\ImageFolder\VisebalFols.png" />
-    <Resource Include="ContentFolder\ImageFolder\VisebalGrayFols.png" />
-    <Resource Include="ContentFolder\ImageFolder\ViseblGrayTrue.png" />
-    <Resource Include="ContentFolder\ImageFolder\ViseblTrue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ContentFolder\ImageFolder\UsersIcons.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ContentFolder\ImageFolder\PasswordIcons.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppDataFolder\ModelFolder\LibraryMirzayevaModel.Context.tt">
@@ -286,6 +283,7 @@
       <LastGenOutput>LibraryMirzayevaModel.cs</LastGenOutput>
     </Content>
     <Content Include="AppDataFolder\SQL\ScriptDataBase.sql" />
+    <Resource Include="ContentFolder\ImageFolder\MiIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

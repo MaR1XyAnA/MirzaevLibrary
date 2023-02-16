@@ -7,7 +7,7 @@
     mc:Ignorable="d" 
     Height="120" 
     Width="1600"
-    Title="MenuPage">
+    IsVisibleChanged="Page_IsVisibleChanged">
     <Grid>
         <Border 
             Margin="0 0 0 10"
@@ -34,7 +34,7 @@
             Width="1000"
             Height="90"
             CornerRadius="10"
-            Background="#141414"
+            Background="#222222"
             BorderThickness="2 0 2 2" 
             BorderBrush="#424242">
             <Grid>

@@ -31,7 +31,7 @@
                 x:Name="MenuFrame"
                 NavigationUIVisibility="Hidden"/>
         </Grid>
-        <Grid x:Name="SpaseBarGrid" MouseDown="SpaseBarGrid_MouseDown" Background="#141414" Grid.Row="0">
+        <Grid x:Name="SpaseBarGrid" MouseDown="SpaseBarGrid_MouseDown" Background="#242630" Grid.Row="0">
             <Grid.Effect>
                 <DropShadowEffect 
                     Direction="-90"
@@ -53,7 +53,7 @@
             </StackPanel>
             <TextBlock
                 Style="{StaticResource TextBlockStyle}"
-                Text="АВТОРИЗАЦИЯ"
+                Text="Cool Bible Library"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
                 Margin="10 0 0 0"

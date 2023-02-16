@@ -1,18 +1,6 @@
 ﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MirzaevLibrary.ViewFolder.PageFolder
 {
@@ -55,6 +43,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
         private void AuthorsToggleButton_Click(object sender, RoutedEventArgs e)
         {
+
             FilecabinetToggleButton.IsChecked = false;
             CategoryToggleButton.IsChecked = false;
             AuthorsToggleButton.IsChecked = true;
@@ -68,6 +57,8 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
         private void MyProfilToggleButton_Click(object sender, RoutedEventArgs e)
         {
+            FrameNavigationClass.BodyFNC.Navigate(new ProfilePage());
+
             FilecabinetToggleButton.IsChecked = false;
             CategoryToggleButton.IsChecked = false;
             AuthorsToggleButton.IsChecked = false;
@@ -77,6 +68,24 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             CategoryToggleButton.IsEnabled = true;
             AuthorsToggleButton.IsEnabled = true;
             MyProfilToggleButton.IsEnabled = false;
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility== Visibility.Visible)
+            {
+                FrameNavigationClass.BodyFNC.Navigate(new FilecabinetPage());
+
+                FilecabinetToggleButton.IsChecked = true;
+                CategoryToggleButton.IsChecked = false;
+                AuthorsToggleButton.IsChecked = false;
+                MyProfilToggleButton.IsChecked = false;
+
+                FilecabinetToggleButton.IsEnabled = false;
+                CategoryToggleButton.IsEnabled = true;
+                AuthorsToggleButton.IsEnabled = true;
+                MyProfilToggleButton.IsEnabled = true;
+            }
         }
     }
 }

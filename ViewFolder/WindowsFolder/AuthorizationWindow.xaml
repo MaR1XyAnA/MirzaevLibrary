@@ -139,7 +139,7 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Grid x:Name="SpaseBarGrid" MouseDown="SpaseBarGrid_MouseDown" Background="#141414" Grid.Row="0">
+        <Grid x:Name="SpaseBarGrid" MouseDown="SpaseBarGrid_MouseDown" Background="#242630" Grid.Row="0">
             <Grid.Effect>
                 <DropShadowEffect 
                     Direction="-90"
