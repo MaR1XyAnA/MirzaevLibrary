@@ -35,6 +35,12 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
         }
 
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            AuthorizationWindow authorizationWindow = new AuthorizationWindow();
+            authorizationWindow.Show();
+            this.Close();
+        }
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -45,5 +51,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             WindowState = WindowState.Minimized;
         }
         #endregion
+
     }
 }

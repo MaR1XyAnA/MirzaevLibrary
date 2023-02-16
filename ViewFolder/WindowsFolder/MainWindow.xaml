@@ -43,6 +43,10 @@
             </Grid.Effect>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                 <Button
+                    x:Name="ExitButton"
+                    Click="ExitButton_Click"
+                    Style="{StaticResource ExitControlButton}"/>
+                <Button
                     x:Name="RollUpButton"
                     Click="RollUpButton_Click"
                     Style="{StaticResource RollupControlButton}"/>

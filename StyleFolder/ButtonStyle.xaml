@@ -127,6 +127,11 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="ExitControlButton" TargetType="Button" BasedOn="{StaticResource RollupControlButton}">
+        <Setter Property="FontFamily" Value="\ContentFolder\FontFolder\#Material-Design-Iconic-Font"/>
+        <Setter Property="Content" Value="&#xf1cc;"/>
+        <Setter Property="ToolTip" Value="ВЫЙТИ"/>
+    </Style>
     <Style x:Key="PasswordButton" TargetType="Button" BasedOn="{StaticResource MainButton}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
