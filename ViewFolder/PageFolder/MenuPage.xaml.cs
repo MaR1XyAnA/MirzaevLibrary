@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
         private void FilecabinetToggleButton_Click(object sender, RoutedEventArgs e)
         {
+            FrameNavigationClass.BodyFNC.Navigate(new FilecabinetPage());
             FilecabinetToggleButton.IsChecked = true;
             CategoryToggleButton.IsChecked = false;
             AuthorsToggleButton.IsChecked = false;

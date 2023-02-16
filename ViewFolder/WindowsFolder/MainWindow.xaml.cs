@@ -22,6 +22,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         {
             InitializeComponent();
             FrameNavigationClass.MenuFNC = MenuFrame;
+            FrameNavigationClass.BodyFNC = BodyFrame;
             FrameNavigationClass.MenuFNC.Navigate(new MenuPage());
         }
 

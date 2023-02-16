@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -59,7 +68,56 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AppDataFolder\ClassFolder\AppConnectClass.cs" />
     <Compile Include="AppDataFolder\ClassFolder\FrameNavigationClass.cs" />
+    <Compile Include="AppDataFolder\ModelFolder\AuthorsTable.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\BookTable.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\CashTable.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\CategoryTable.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\GoTable.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\ImagebookTable.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\LibraryMirzayevaModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibraryMirzayevaModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\LibraryMirzayevaModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\LibraryMirzayevaModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibraryMirzayevaModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\PublishingHouseTable.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\RoleTable.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\sysdiagrams.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\TicketTable.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\UserTable.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewFolder\ControlFolder\BookControl.xaml.cs">
       <DependentUpon>BookControl.xaml</DependentUpon>
     </Compile>
@@ -101,6 +159,14 @@
     <Resource Include="ContentFolder\FontFolder\segmdl2.ttf" />
     <Resource Include="ContentFolder\FontFolder\PTMono-Regular.ttf" />
     <Resource Include="ContentFolder\FontFolder\Jura-Bold.ttf" />
+    <EntityDeploy Include="AppDataFolder\ModelFolder\LibraryMirzayevaModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LibraryMirzayevaModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AppDataFolder\ModelFolder\LibraryMirzayevaModel.edmx.diagram">
+      <DependentUpon>LibraryMirzayevaModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -184,7 +250,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AppDataFolder\ModelFolder\" />
     <Folder Include="SQLScriptFolder\" />
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +264,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ContentFolder\ImageFolder\PasswordIcons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppDataFolder\ModelFolder\LibraryMirzayevaModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LibraryMirzayevaModel.Context.cs</LastGenOutput>
+      <DependentUpon>LibraryMirzayevaModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="AppDataFolder\ModelFolder\LibraryMirzayevaModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LibraryMirzayevaModel.edmx</DependentUpon>
+      <LastGenOutput>LibraryMirzayevaModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

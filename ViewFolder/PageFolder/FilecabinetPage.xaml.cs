@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
+using MirzaevLibrary.AppDataFolder.ModelFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +17,18 @@ using System.Windows.Shapes;
 
 namespace MirzaevLibrary.ViewFolder.PageFolder
 {
-    /// <summary>
-    /// Логика взаимодействия для FilecabinetPage.xaml
-    /// </summary>
     public partial class FilecabinetPage : Page
     {
         public FilecabinetPage()
         {
             InitializeComponent();
+            AppConnectClass.DataBase = new LibraryMirzayevaEntities();
+            BookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.ToList();
+        }
+
+        private void BookListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

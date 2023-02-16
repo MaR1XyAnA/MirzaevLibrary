@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:uc ="clr-namespace:MirzaevLibrary.ViewFolder.ControlFolder"
     mc:Ignorable="d" 
     Style="{StaticResource BodyPageStyle}">
     <Grid>
@@ -13,13 +14,18 @@
         </Grid.RowDefinitions>
         <ListBox
             Grid.Row="1"
-            MouseDoubleClick="FondListBox_MouseDoubleClick"
-            x:Name="FondListBox"
+            MouseDoubleClick="BookListBox_MouseDoubleClick"
+            x:Name="BookListBox"
             Margin="5"
             ItemContainerStyle="{StaticResource ListBoxItemSelected}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Transparent"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    
+                    <uc:BookControl/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace MirzaevLibrary.ViewFolder.ControlFolder
 {
-    /// <summary>
-    /// Логика взаимодействия для BookControl.xaml
-    /// </summary>
     public partial class BookControl : UserControl
     {
         public BookControl()

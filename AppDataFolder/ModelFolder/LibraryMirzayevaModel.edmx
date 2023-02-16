@@ -1,0 +1,783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище LibraryMirzayevaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AuthorsTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberAuthor" />
+          </Key>
+          <Property Name="PersonalNumberAuthor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurnameAuthor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameAuthor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddlenameAuthor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateofbrichAuthor" Type="date" Nullable="false" />
+          <Property Name="DateofendAuthor" Type="date" />
+        </EntityType>
+        <EntityType Name="BookTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberBook" />
+          </Key>
+          <Property Name="PersonalNumberBook" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameBook" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InstanceBook" Type="int" Nullable="false" />
+          <Property Name="pnPublishingHouse" Type="int" Nullable="false" />
+          <Property Name="DatePublishingBook" Type="date" Nullable="false" />
+          <Property Name="QuantityPublishingBook" Type="int" Nullable="false" />
+          <Property Name="pnCategory" Type="int" Nullable="false" />
+          <Property Name="pnGo" Type="int" Nullable="false" />
+          <Property Name="pnCash" Type="int" Nullable="false" />
+          <Property Name="LikeBook" Type="int" Nullable="false" />
+          <Property Name="DislikeBook" Type="int" Nullable="false" />
+          <Property Name="pnAuthor" Type="int" Nullable="false" />
+          <Property Name="pnImage" Type="int" />
+        </EntityType>
+        <EntityType Name="CashTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberCash" />
+          </Key>
+          <Property Name="PersonalNumberCash" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TitleCash" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoryTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberCategory" />
+          </Key>
+          <Property Name="PersonalNumberCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TitleCategory" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberGo" />
+          </Key>
+          <Property Name="PersonalNumberGo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TitleGo" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistoryTable">
+          <Key>
+            <PropertyRef Name="pnTiket" />
+            <PropertyRef Name="pnBook" />
+          </Key>
+          <Property Name="pnTiket" Type="int" Nullable="false" />
+          <Property Name="pnBook" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImagebookTable">
+          <Key>
+            <PropertyRef Name="PersonalnumberImage" />
+          </Key>
+          <Property Name="PersonalnumberImage" Type="int" Nullable="false" />
+          <Property Name="ImageImage" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PublishingHouseTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberPublishingHouse" />
+          </Key>
+          <Property Name="PersonalNumberPublishingHouse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TitlePublishingHouse" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleTable">
+          <Key>
+            <PropertyRef Name="PersonalnumberRole" />
+          </Key>
+          <Property Name="PersonalnumberRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameRole" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TicketTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberTicket" />
+          </Key>
+          <Property Name="PersonalNumberTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateStartTicket" Type="date" Nullable="false" />
+          <Property Name="DateEndTicket" Type="date" />
+        </EntityType>
+        <EntityType Name="TiketBookTable">
+          <Key>
+            <PropertyRef Name="pnTicket" />
+            <PropertyRef Name="pnBook" />
+          </Key>
+          <Property Name="pnTicket" Type="int" Nullable="false" />
+          <Property Name="pnBook" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberUser" />
+          </Key>
+          <Property Name="PersonalNumberUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurnameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddlenameUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="pnTicket" Type="int" Nullable="false" />
+          <Property Name="AddressUser" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneUser" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="UserImage" Type="image" />
+          <Property Name="LoginUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswordUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pnRole" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BookTable_AuthorsTable">
+          <End Role="AuthorsTable" Type="Self.AuthorsTable" Multiplicity="1" />
+          <End Role="BookTable" Type="Self.BookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuthorsTable">
+              <PropertyRef Name="PersonalNumberAuthor" />
+            </Principal>
+            <Dependent Role="BookTable">
+              <PropertyRef Name="pnAuthor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTable_CashTable">
+          <End Role="CashTable" Type="Self.CashTable" Multiplicity="1" />
+          <End Role="BookTable" Type="Self.BookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CashTable">
+              <PropertyRef Name="PersonalNumberCash" />
+            </Principal>
+            <Dependent Role="BookTable">
+              <PropertyRef Name="pnCash" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTable_CategoryTable">
+          <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="1" />
+          <End Role="BookTable" Type="Self.BookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryTable">
+              <PropertyRef Name="PersonalNumberCategory" />
+            </Principal>
+            <Dependent Role="BookTable">
+              <PropertyRef Name="pnCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTable_GoTable">
+          <End Role="GoTable" Type="Self.GoTable" Multiplicity="1" />
+          <End Role="BookTable" Type="Self.BookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoTable">
+              <PropertyRef Name="PersonalNumberGo" />
+            </Principal>
+            <Dependent Role="BookTable">
+              <PropertyRef Name="pnGo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTable_ImagebookTable">
+          <End Role="ImagebookTable" Type="Self.ImagebookTable" Multiplicity="0..1" />
+          <End Role="BookTable" Type="Self.BookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ImagebookTable">
+              <PropertyRef Name="PersonalnumberImage" />
+            </Principal>
+            <Dependent Role="BookTable">
+              <PropertyRef Name="pnImage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTable_PublishingHouseTable">
+          <End Role="PublishingHouseTable" Type="Self.PublishingHouseTable" Multiplicity="1" />
+          <End Role="BookTable" Type="Self.BookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PublishingHouseTable">
+              <PropertyRef Name="PersonalNumberPublishingHouse" />
+            </Principal>
+            <Dependent Role="BookTable">
+              <PropertyRef Name="pnPublishingHouse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryTable_BookTable">
+          <End Role="BookTable" Type="Self.BookTable" Multiplicity="1" />
+          <End Role="HistoryTable" Type="Self.HistoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookTable">
+              <PropertyRef Name="PersonalNumberBook" />
+            </Principal>
+            <Dependent Role="HistoryTable">
+              <PropertyRef Name="pnBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryTable_TicketTable">
+          <End Role="TicketTable" Type="Self.TicketTable" Multiplicity="1" />
+          <End Role="HistoryTable" Type="Self.HistoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketTable">
+              <PropertyRef Name="PersonalNumberTicket" />
+            </Principal>
+            <Dependent Role="HistoryTable">
+              <PropertyRef Name="pnTiket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TiketBookTable_BookTable">
+          <End Role="BookTable" Type="Self.BookTable" Multiplicity="1" />
+          <End Role="TiketBookTable" Type="Self.TiketBookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookTable">
+              <PropertyRef Name="PersonalNumberBook" />
+            </Principal>
+            <Dependent Role="TiketBookTable">
+              <PropertyRef Name="pnBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TiketBookTable_TicketTable">
+          <End Role="TicketTable" Type="Self.TicketTable" Multiplicity="1" />
+          <End Role="TiketBookTable" Type="Self.TiketBookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketTable">
+              <PropertyRef Name="PersonalNumberTicket" />
+            </Principal>
+            <Dependent Role="TiketBookTable">
+              <PropertyRef Name="pnTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_RoleTable">
+          <End Role="RoleTable" Type="Self.RoleTable" Multiplicity="1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleTable">
+              <PropertyRef Name="PersonalnumberRole" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="pnRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_TicketTable">
+          <End Role="TicketTable" Type="Self.TicketTable" Multiplicity="1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketTable">
+              <PropertyRef Name="PersonalNumberTicket" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="pnTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище LibraryMirzayevaModelContainer">
+          <EntitySet Name="AuthorsTable" EntityType="Self.AuthorsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookTable" EntityType="Self.BookTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CashTable" EntityType="Self.CashTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoTable" EntityType="Self.GoTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryTable" EntityType="Self.HistoryTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImagebookTable" EntityType="Self.ImagebookTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PublishingHouseTable" EntityType="Self.PublishingHouseTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleTable" EntityType="Self.RoleTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketTable" EntityType="Self.TicketTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiketBookTable" EntityType="Self.TiketBookTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BookTable_AuthorsTable" Association="Self.FK_BookTable_AuthorsTable">
+            <End Role="AuthorsTable" EntitySet="AuthorsTable" />
+            <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTable_CashTable" Association="Self.FK_BookTable_CashTable">
+            <End Role="CashTable" EntitySet="CashTable" />
+            <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTable_CategoryTable" Association="Self.FK_BookTable_CategoryTable">
+            <End Role="CategoryTable" EntitySet="CategoryTable" />
+            <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTable_GoTable" Association="Self.FK_BookTable_GoTable">
+            <End Role="GoTable" EntitySet="GoTable" />
+            <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTable_ImagebookTable" Association="Self.FK_BookTable_ImagebookTable">
+            <End Role="ImagebookTable" EntitySet="ImagebookTable" />
+            <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTable_PublishingHouseTable" Association="Self.FK_BookTable_PublishingHouseTable">
+            <End Role="PublishingHouseTable" EntitySet="PublishingHouseTable" />
+            <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryTable_BookTable" Association="Self.FK_HistoryTable_BookTable">
+            <End Role="BookTable" EntitySet="BookTable" />
+            <End Role="HistoryTable" EntitySet="HistoryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryTable_TicketTable" Association="Self.FK_HistoryTable_TicketTable">
+            <End Role="TicketTable" EntitySet="TicketTable" />
+            <End Role="HistoryTable" EntitySet="HistoryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TiketBookTable_BookTable" Association="Self.FK_TiketBookTable_BookTable">
+            <End Role="BookTable" EntitySet="BookTable" />
+            <End Role="TiketBookTable" EntitySet="TiketBookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TiketBookTable_TicketTable" Association="Self.FK_TiketBookTable_TicketTable">
+            <End Role="TicketTable" EntitySet="TicketTable" />
+            <End Role="TiketBookTable" EntitySet="TiketBookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_RoleTable" Association="Self.FK_UserTable_RoleTable">
+            <End Role="RoleTable" EntitySet="RoleTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_TicketTable" Association="Self.FK_UserTable_TicketTable">
+            <End Role="TicketTable" EntitySet="TicketTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LibraryMirzayevaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LibraryMirzayevaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AuthorsTable" EntityType="LibraryMirzayevaModel.AuthorsTable" />
+          <EntitySet Name="BookTable" EntityType="LibraryMirzayevaModel.BookTable" />
+          <EntitySet Name="CashTable" EntityType="LibraryMirzayevaModel.CashTable" />
+          <EntitySet Name="CategoryTable" EntityType="LibraryMirzayevaModel.CategoryTable" />
+          <EntitySet Name="GoTable" EntityType="LibraryMirzayevaModel.GoTable" />
+          <EntitySet Name="ImagebookTable" EntityType="LibraryMirzayevaModel.ImagebookTable" />
+          <EntitySet Name="PublishingHouseTable" EntityType="LibraryMirzayevaModel.PublishingHouseTable" />
+          <EntitySet Name="RoleTable" EntityType="LibraryMirzayevaModel.RoleTable" />
+          <EntitySet Name="sysdiagrams" EntityType="LibraryMirzayevaModel.sysdiagrams" />
+          <EntitySet Name="TicketTable" EntityType="LibraryMirzayevaModel.TicketTable" />
+          <EntitySet Name="UserTable" EntityType="LibraryMirzayevaModel.UserTable" />
+          <AssociationSet Name="FK_BookTable_AuthorsTable" Association="LibraryMirzayevaModel.FK_BookTable_AuthorsTable">
+            <End Role="AuthorsTable" EntitySet="AuthorsTable" />
+            <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTable_CashTable" Association="LibraryMirzayevaModel.FK_BookTable_CashTable">
+            <End Role="CashTable" EntitySet="CashTable" />
+            <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTable_CategoryTable" Association="LibraryMirzayevaModel.FK_BookTable_CategoryTable">
+            <End Role="CategoryTable" EntitySet="CategoryTable" />
+            <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTable_GoTable" Association="LibraryMirzayevaModel.FK_BookTable_GoTable">
+            <End Role="GoTable" EntitySet="GoTable" />
+            <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTable_ImagebookTable" Association="LibraryMirzayevaModel.FK_BookTable_ImagebookTable">
+            <End Role="ImagebookTable" EntitySet="ImagebookTable" />
+            <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTable_PublishingHouseTable" Association="LibraryMirzayevaModel.FK_BookTable_PublishingHouseTable">
+            <End Role="PublishingHouseTable" EntitySet="PublishingHouseTable" />
+            <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_RoleTable" Association="LibraryMirzayevaModel.FK_UserTable_RoleTable">
+            <End Role="RoleTable" EntitySet="RoleTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_TicketTable" Association="LibraryMirzayevaModel.FK_UserTable_TicketTable">
+            <End Role="TicketTable" EntitySet="TicketTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+          <AssociationSet Name="HistoryTable" Association="LibraryMirzayevaModel.HistoryTable">
+            <End Role="BookTable" EntitySet="BookTable" />
+            <End Role="TicketTable" EntitySet="TicketTable" />
+          </AssociationSet>
+          <AssociationSet Name="TiketBookTable" Association="LibraryMirzayevaModel.TiketBookTable">
+            <End Role="BookTable" EntitySet="BookTable" />
+            <End Role="TicketTable" EntitySet="TicketTable" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AuthorsTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberAuthor" />
+          </Key>
+          <Property Name="PersonalNumberAuthor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurnameAuthor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameAuthor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddlenameAuthor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateofbrichAuthor" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateofendAuthor" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_AuthorsTable" FromRole="AuthorsTable" ToRole="BookTable" />
+        </EntityType>
+        <EntityType Name="BookTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberBook" />
+          </Key>
+          <Property Name="PersonalNumberBook" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameBook" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InstanceBook" Type="Int32" Nullable="false" />
+          <Property Name="pnPublishingHouse" Type="Int32" Nullable="false" />
+          <Property Name="DatePublishingBook" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="QuantityPublishingBook" Type="Int32" Nullable="false" />
+          <Property Name="pnCategory" Type="Int32" Nullable="false" />
+          <Property Name="pnGo" Type="Int32" Nullable="false" />
+          <Property Name="pnCash" Type="Int32" Nullable="false" />
+          <Property Name="LikeBook" Type="Int32" Nullable="false" />
+          <Property Name="DislikeBook" Type="Int32" Nullable="false" />
+          <Property Name="pnAuthor" Type="Int32" Nullable="false" />
+          <Property Name="pnImage" Type="Int32" />
+          <NavigationProperty Name="AuthorsTable" Relationship="LibraryMirzayevaModel.FK_BookTable_AuthorsTable" FromRole="BookTable" ToRole="AuthorsTable" />
+          <NavigationProperty Name="CashTable" Relationship="LibraryMirzayevaModel.FK_BookTable_CashTable" FromRole="BookTable" ToRole="CashTable" />
+          <NavigationProperty Name="CategoryTable" Relationship="LibraryMirzayevaModel.FK_BookTable_CategoryTable" FromRole="BookTable" ToRole="CategoryTable" />
+          <NavigationProperty Name="GoTable" Relationship="LibraryMirzayevaModel.FK_BookTable_GoTable" FromRole="BookTable" ToRole="GoTable" />
+          <NavigationProperty Name="ImagebookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_ImagebookTable" FromRole="BookTable" ToRole="ImagebookTable" />
+          <NavigationProperty Name="PublishingHouseTable" Relationship="LibraryMirzayevaModel.FK_BookTable_PublishingHouseTable" FromRole="BookTable" ToRole="PublishingHouseTable" />
+          <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.HistoryTable" FromRole="BookTable" ToRole="TicketTable" />
+          <NavigationProperty Name="TicketTable1" Relationship="LibraryMirzayevaModel.TiketBookTable" FromRole="BookTable" ToRole="TicketTable" />
+        </EntityType>
+        <EntityType Name="CashTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberCash" />
+          </Key>
+          <Property Name="PersonalNumberCash" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TitleCash" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_CashTable" FromRole="CashTable" ToRole="BookTable" />
+        </EntityType>
+        <EntityType Name="CategoryTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberCategory" />
+          </Key>
+          <Property Name="PersonalNumberCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TitleCategory" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_CategoryTable" FromRole="CategoryTable" ToRole="BookTable" />
+        </EntityType>
+        <EntityType Name="GoTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberGo" />
+          </Key>
+          <Property Name="PersonalNumberGo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TitleGo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_GoTable" FromRole="GoTable" ToRole="BookTable" />
+        </EntityType>
+        <EntityType Name="ImagebookTable">
+          <Key>
+            <PropertyRef Name="PersonalnumberImage" />
+          </Key>
+          <Property Name="PersonalnumberImage" Type="Int32" Nullable="false" />
+          <Property Name="ImageImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_ImagebookTable" FromRole="ImagebookTable" ToRole="BookTable" />
+        </EntityType>
+        <EntityType Name="PublishingHouseTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberPublishingHouse" />
+          </Key>
+          <Property Name="PersonalNumberPublishingHouse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TitlePublishingHouse" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_PublishingHouseTable" FromRole="PublishingHouseTable" ToRole="BookTable" />
+        </EntityType>
+        <EntityType Name="RoleTable">
+          <Key>
+            <PropertyRef Name="PersonalnumberRole" />
+          </Key>
+          <Property Name="PersonalnumberRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameRole" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserTable" Relationship="LibraryMirzayevaModel.FK_UserTable_RoleTable" FromRole="RoleTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TicketTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberTicket" />
+          </Key>
+          <Property Name="PersonalNumberTicket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateStartTicket" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateEndTicket" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="UserTable" Relationship="LibraryMirzayevaModel.FK_UserTable_TicketTable" FromRole="TicketTable" ToRole="UserTable" />
+          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.HistoryTable" FromRole="TicketTable" ToRole="BookTable" />
+          <NavigationProperty Name="BookTable1" Relationship="LibraryMirzayevaModel.TiketBookTable" FromRole="TicketTable" ToRole="BookTable" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="PersonalNumberUser" />
+          </Key>
+          <Property Name="PersonalNumberUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurnameUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddlenameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pnTicket" Type="Int32" Nullable="false" />
+          <Property Name="AddressUser" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneUser" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="UserImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LoginUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pnRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RoleTable" Relationship="LibraryMirzayevaModel.FK_UserTable_RoleTable" FromRole="UserTable" ToRole="RoleTable" />
+          <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.FK_UserTable_TicketTable" FromRole="UserTable" ToRole="TicketTable" />
+        </EntityType>
+        <Association Name="FK_BookTable_AuthorsTable">
+          <End Type="LibraryMirzayevaModel.AuthorsTable" Role="AuthorsTable" Multiplicity="1" />
+          <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuthorsTable">
+              <PropertyRef Name="PersonalNumberAuthor" />
+            </Principal>
+            <Dependent Role="BookTable">
+              <PropertyRef Name="pnAuthor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTable_CashTable">
+          <End Type="LibraryMirzayevaModel.CashTable" Role="CashTable" Multiplicity="1" />
+          <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CashTable">
+              <PropertyRef Name="PersonalNumberCash" />
+            </Principal>
+            <Dependent Role="BookTable">
+              <PropertyRef Name="pnCash" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTable_CategoryTable">
+          <End Type="LibraryMirzayevaModel.CategoryTable" Role="CategoryTable" Multiplicity="1" />
+          <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryTable">
+              <PropertyRef Name="PersonalNumberCategory" />
+            </Principal>
+            <Dependent Role="BookTable">
+              <PropertyRef Name="pnCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTable_GoTable">
+          <End Type="LibraryMirzayevaModel.GoTable" Role="GoTable" Multiplicity="1" />
+          <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoTable">
+              <PropertyRef Name="PersonalNumberGo" />
+            </Principal>
+            <Dependent Role="BookTable">
+              <PropertyRef Name="pnGo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTable_ImagebookTable">
+          <End Type="LibraryMirzayevaModel.ImagebookTable" Role="ImagebookTable" Multiplicity="0..1" />
+          <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ImagebookTable">
+              <PropertyRef Name="PersonalnumberImage" />
+            </Principal>
+            <Dependent Role="BookTable">
+              <PropertyRef Name="pnImage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTable_PublishingHouseTable">
+          <End Type="LibraryMirzayevaModel.PublishingHouseTable" Role="PublishingHouseTable" Multiplicity="1" />
+          <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PublishingHouseTable">
+              <PropertyRef Name="PersonalNumberPublishingHouse" />
+            </Principal>
+            <Dependent Role="BookTable">
+              <PropertyRef Name="pnPublishingHouse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_RoleTable">
+          <End Type="LibraryMirzayevaModel.RoleTable" Role="RoleTable" Multiplicity="1" />
+          <End Type="LibraryMirzayevaModel.UserTable" Role="UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleTable">
+              <PropertyRef Name="PersonalnumberRole" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="pnRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_TicketTable">
+          <End Type="LibraryMirzayevaModel.TicketTable" Role="TicketTable" Multiplicity="1" />
+          <End Type="LibraryMirzayevaModel.UserTable" Role="UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketTable">
+              <PropertyRef Name="PersonalNumberTicket" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="pnTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HistoryTable">
+          <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
+          <End Type="LibraryMirzayevaModel.TicketTable" Role="TicketTable" Multiplicity="*" />
+        </Association>
+        <Association Name="TiketBookTable">
+          <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
+          <End Type="LibraryMirzayevaModel.TicketTable" Role="TicketTable" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище LibraryMirzayevaModelContainer" CdmEntityContainer="LibraryMirzayevaEntities">
+          <EntitySetMapping Name="AuthorsTable">
+            <EntityTypeMapping TypeName="LibraryMirzayevaModel.AuthorsTable">
+              <MappingFragment StoreEntitySet="AuthorsTable">
+                <ScalarProperty Name="DateofendAuthor" ColumnName="DateofendAuthor" />
+                <ScalarProperty Name="DateofbrichAuthor" ColumnName="DateofbrichAuthor" />
+                <ScalarProperty Name="MiddlenameAuthor" ColumnName="MiddlenameAuthor" />
+                <ScalarProperty Name="NameAuthor" ColumnName="NameAuthor" />
+                <ScalarProperty Name="SurnameAuthor" ColumnName="SurnameAuthor" />
+                <ScalarProperty Name="PersonalNumberAuthor" ColumnName="PersonalNumberAuthor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookTable">
+            <EntityTypeMapping TypeName="LibraryMirzayevaModel.BookTable">
+              <MappingFragment StoreEntitySet="BookTable">
+                <ScalarProperty Name="pnImage" ColumnName="pnImage" />
+                <ScalarProperty Name="pnAuthor" ColumnName="pnAuthor" />
+                <ScalarProperty Name="DislikeBook" ColumnName="DislikeBook" />
+                <ScalarProperty Name="LikeBook" ColumnName="LikeBook" />
+                <ScalarProperty Name="pnCash" ColumnName="pnCash" />
+                <ScalarProperty Name="pnGo" ColumnName="pnGo" />
+                <ScalarProperty Name="pnCategory" ColumnName="pnCategory" />
+                <ScalarProperty Name="QuantityPublishingBook" ColumnName="QuantityPublishingBook" />
+                <ScalarProperty Name="DatePublishingBook" ColumnName="DatePublishingBook" />
+                <ScalarProperty Name="pnPublishingHouse" ColumnName="pnPublishingHouse" />
+                <ScalarProperty Name="InstanceBook" ColumnName="InstanceBook" />
+                <ScalarProperty Name="NameBook" ColumnName="NameBook" />
+                <ScalarProperty Name="PersonalNumberBook" ColumnName="PersonalNumberBook" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CashTable">
+            <EntityTypeMapping TypeName="LibraryMirzayevaModel.CashTable">
+              <MappingFragment StoreEntitySet="CashTable">
+                <ScalarProperty Name="TitleCash" ColumnName="TitleCash" />
+                <ScalarProperty Name="PersonalNumberCash" ColumnName="PersonalNumberCash" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryTable">
+            <EntityTypeMapping TypeName="LibraryMirzayevaModel.CategoryTable">
+              <MappingFragment StoreEntitySet="CategoryTable">
+                <ScalarProperty Name="TitleCategory" ColumnName="TitleCategory" />
+                <ScalarProperty Name="PersonalNumberCategory" ColumnName="PersonalNumberCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoTable">
+            <EntityTypeMapping TypeName="LibraryMirzayevaModel.GoTable">
+              <MappingFragment StoreEntitySet="GoTable">
+                <ScalarProperty Name="TitleGo" ColumnName="TitleGo" />
+                <ScalarProperty Name="PersonalNumberGo" ColumnName="PersonalNumberGo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImagebookTable">
+            <EntityTypeMapping TypeName="LibraryMirzayevaModel.ImagebookTable">
+              <MappingFragment StoreEntitySet="ImagebookTable">
+                <ScalarProperty Name="ImageImage" ColumnName="ImageImage" />
+                <ScalarProperty Name="PersonalnumberImage" ColumnName="PersonalnumberImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PublishingHouseTable">
+            <EntityTypeMapping TypeName="LibraryMirzayevaModel.PublishingHouseTable">
+              <MappingFragment StoreEntitySet="PublishingHouseTable">
+                <ScalarProperty Name="TitlePublishingHouse" ColumnName="TitlePublishingHouse" />
+                <ScalarProperty Name="PersonalNumberPublishingHouse" ColumnName="PersonalNumberPublishingHouse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleTable">
+            <EntityTypeMapping TypeName="LibraryMirzayevaModel.RoleTable">
+              <MappingFragment StoreEntitySet="RoleTable">
+                <ScalarProperty Name="NameRole" ColumnName="NameRole" />
+                <ScalarProperty Name="PersonalnumberRole" ColumnName="PersonalnumberRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LibraryMirzayevaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketTable">
+            <EntityTypeMapping TypeName="LibraryMirzayevaModel.TicketTable">
+              <MappingFragment StoreEntitySet="TicketTable">
+                <ScalarProperty Name="DateEndTicket" ColumnName="DateEndTicket" />
+                <ScalarProperty Name="DateStartTicket" ColumnName="DateStartTicket" />
+                <ScalarProperty Name="PersonalNumberTicket" ColumnName="PersonalNumberTicket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTable">
+            <EntityTypeMapping TypeName="LibraryMirzayevaModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="pnRole" ColumnName="pnRole" />
+                <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
+                <ScalarProperty Name="LoginUser" ColumnName="LoginUser" />
+                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+                <ScalarProperty Name="PhoneUser" ColumnName="PhoneUser" />
+                <ScalarProperty Name="AddressUser" ColumnName="AddressUser" />
+                <ScalarProperty Name="pnTicket" ColumnName="pnTicket" />
+                <ScalarProperty Name="MiddlenameUser" ColumnName="MiddlenameUser" />
+                <ScalarProperty Name="NameUser" ColumnName="NameUser" />
+                <ScalarProperty Name="SurnameUser" ColumnName="SurnameUser" />
+                <ScalarProperty Name="PersonalNumberUser" ColumnName="PersonalNumberUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="HistoryTable" TypeName="LibraryMirzayevaModel.HistoryTable" StoreEntitySet="HistoryTable">
+            <EndProperty Name="TicketTable">
+              <ScalarProperty Name="PersonalNumberTicket" ColumnName="pnTiket" />
+            </EndProperty>
+            <EndProperty Name="BookTable">
+              <ScalarProperty Name="PersonalNumberBook" ColumnName="pnBook" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TiketBookTable" TypeName="LibraryMirzayevaModel.TiketBookTable" StoreEntitySet="TiketBookTable">
+            <EndProperty Name="TicketTable">
+              <ScalarProperty Name="PersonalNumberTicket" ColumnName="pnTicket" />
+            </EndProperty>
+            <EndProperty Name="BookTable">
+              <ScalarProperty Name="PersonalNumberBook" ColumnName="pnBook" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

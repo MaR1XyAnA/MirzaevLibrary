@@ -18,4 +18,8 @@
     <Style x:Key="IconFont" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
         <Setter Property="FontFamily" Value="\ContentFolder\FontFolder\#Material-Design-Iconic-Font"/>
     </Style>
+    <Style x:Key="CharacteristicBookTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Margin" Value="0 1 0 1"/>
+    </Style>
 </ResourceDictionary>
