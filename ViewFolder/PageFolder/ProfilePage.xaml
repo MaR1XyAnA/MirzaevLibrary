@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:uc ="clr-namespace:MirzaevLibrary.ViewFolder.ControlFolder"
     mc:Ignorable="d" 
     Style="{StaticResource BodyPageStyle}">
     <Grid>
@@ -11,6 +12,28 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Text="МОЯ ИСТОРИЯ"
+                Style="{StaticResource TextBlockStyle}"
+                FontSize="25"/>
+            <ListBox
+                Grid.Row="1"
+                ItemContainerStyle="{StaticResource ListBoxItemSelected}"
+                x:Name="HistoryBookListBox">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <uc:HistoryBookControl/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="450"/>
@@ -31,6 +54,22 @@
                         RenderingBias="Performance"/>
                 </Border.Effect>
             </Border>
+            <Grid Margin="10 10 0 0" Grid.Column="0" Grid.Row="0">
+                <Border x:Name="MaskMorderBorder" Style="{StaticResource MaskBorder}"/>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel.OpacityMask>
+                        <VisualBrush Visual="{Binding ElementName=MaskMorderBorder}"/>
+                    </StackPanel.OpacityMask>
+                    <Image
+                        Style="{StaticResource ImageDataBase}"
+                        Source="\ContentFolder\ImageFolder\NoImage.png"/>
+                    <Image
+                        x:Name="UserImage"
+                        Visibility="Collapsed"
+                        Style="{StaticResource ImageDataBase}"
+                        Source="{Binding ImageUserTable.ImageImage}"/>
+                </StackPanel>
+            </Grid>
             <Grid Margin="10" Grid.Column="1" Grid.Row="0">
                 <StackPanel Margin="20" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right">
                     <StackPanel HorizontalAlignment="Right" Margin="0 0 0 2" Orientation="Horizontal">

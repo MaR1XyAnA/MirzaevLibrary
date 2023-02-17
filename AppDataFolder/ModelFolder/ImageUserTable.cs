@@ -12,22 +12,18 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
     using System;
     using System.Collections.Generic;
     
-    public partial class UserTable
+    public partial class ImageUserTable
     {
-        public int PersonalNumberUser { get; set; }
-        public string SurnameUser { get; set; }
-        public string NameUser { get; set; }
-        public string MiddlenameUser { get; set; }
-        public int pnTicketUser { get; set; }
-        public string AddressUser { get; set; }
-        public string PhoneUser { get; set; }
-        public string LoginUser { get; set; }
-        public string PasswordUser { get; set; }
-        public int pnRoleUser { get; set; }
-        public int pnImageUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ImageUserTable()
+        {
+            this.UserTable = new HashSet<UserTable>();
+        }
     
-        public virtual ImageUserTable ImageUserTable { get; set; }
-        public virtual RoleTable RoleTable { get; set; }
-        public virtual TicketTable TicketTable { get; set; }
+        public int PersonalnumberImage { get; set; }
+        public byte[] ImageImage { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserTable> UserTable { get; set; }
     }
 }

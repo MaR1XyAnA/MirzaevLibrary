@@ -70,6 +70,7 @@
     </Compile>
     <Compile Include="AppDataFolder\ClassFolder\AppConnectClass.cs" />
     <Compile Include="AppDataFolder\ClassFolder\FrameNavigationClass.cs" />
+    <Compile Include="AppDataFolder\ClassFolder\UserClass.cs" />
     <Compile Include="AppDataFolder\ModelFolder\AuthorsTable.cs">
       <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
     </Compile>
@@ -86,6 +87,9 @@
       <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AppDataFolder\ModelFolder\ImagebookTable.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\ImageUserTable.cs">
       <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AppDataFolder\ModelFolder\LibraryMirzayevaModel.Context.cs">
@@ -109,6 +113,9 @@
     <Compile Include="AppDataFolder\ModelFolder\RoleTable.cs">
       <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\sysdiagrams.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AppDataFolder\ModelFolder\TicketTable.cs">
       <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
     </Compile>
@@ -120,6 +127,9 @@
     </Compile>
     <Compile Include="ViewFolder\ControlFolder\CategoriesControl.xaml.cs">
       <DependentUpon>CategoriesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewFolder\ControlFolder\HistoryBookControl.xaml.cs">
+      <DependentUpon>HistoryBookControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewFolder\PageFolder\CategoriesPage.xaml.cs">
       <DependentUpon>CategoriesPage.xaml</DependentUpon>
@@ -235,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewFolder\ControlFolder\CategoriesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewFolder\ControlFolder\HistoryBookControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

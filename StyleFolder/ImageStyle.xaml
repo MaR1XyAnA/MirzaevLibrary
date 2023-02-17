@@ -9,4 +9,10 @@
         <Setter Property="IsHitTestVisible" Value="False"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
+    <Style x:Key="ImageDataBase" TargetType="Image">
+        <Setter Property="Height" Value="250"/>
+        <Setter Property="Width" Value="250"/>
+        <Setter Property="Stretch" Value="UniformToFill"/>
+        <Setter Property="Opacity" Value="1"/>
+    </Style>
 </ResourceDictionary>

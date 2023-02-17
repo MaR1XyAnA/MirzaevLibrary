@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
+using MirzaevLibrary.AppDataFolder.ModelFolder;
+using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -8,14 +11,58 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
     public partial class AuthorizationWindow : Window
     {
+        public static UserClass userClass;
         public AuthorizationWindow()
         {
             InitializeComponent();
+            try
+            {
+                AppConnectClass.DataBase = new LibraryMirzayevaEntities();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "E001", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
+        public void EnterUser()
+        {
+            try
+            {
+                var GetUser = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.LoginUser == LoginTextBox.Text && data.PasswordUser == PasswordPasswordBox.Password);
+                if (GetUser != null)
+                {
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    this.Close();
+
+                    userClass.PersonalNumberUser = GetUser.PersonalNumberUser;
+                    userClass.SurnameUser = GetUser.SurnameUser;
+                    userClass.NameUser = GetUser.NameUser;
+                    userClass.MiddlenameUser = GetUser.MiddlenameUser;
+                    userClass.pnTicketUser = GetUser.pnTicketUser;
+                    userClass.AddressUser = GetUser.AddressUser;
+                    userClass.PhoneUser = GetUser.PhoneUser;
+                    userClass.LoginUser = GetUser.LoginUser;
+                    userClass.PasswordUser = GetUser.PasswordUser;
+                    userClass.pnRoleUser = GetUser.pnRoleUser;
+                    userClass.pnImageUser = GetUser.pnImageUser;
+                }
+                else
+                {
+                    MessageBox.Show("Не правильный логин или пароль", "Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-
+            EnterUser();
         }
 
         private void IgnoreAutborizationButton_Click(object sender, RoutedEventArgs e)
@@ -117,7 +164,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
             else
             {
-                RegistrationButton.IsEnabled = true;
+                NextButton.IsEnabled = true;
                 NextButton.Background = new SolidColorBrush(Color.FromRgb(255, 227, 230));
                 NextButton.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 227, 230));
             }
