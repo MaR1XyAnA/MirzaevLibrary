@@ -19,11 +19,28 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 {
     public partial class FilecabinetPage : Page
     {
-        public FilecabinetPage()
+        public static int TypeId = 0;
+        public FilecabinetPage(CategoryTable categoryTable)
         {
-            InitializeComponent();
-            AppConnectClass.DataBase = new LibraryMirzayevaEntities();
-            BookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.ToList();
+            try
+            {
+                InitializeComponent();
+                AppConnectClass.DataBase = new LibraryMirzayevaEntities();
+                if (categoryTable != null)
+                {
+                    DataContext = categoryTable;
+                    TypeId = categoryTable.PersonalNumberCategory;
+                    BookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.Where(data => data.pnCategory == TypeId).ToList();
+                }
+                else
+                {
+                    BookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BookListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)

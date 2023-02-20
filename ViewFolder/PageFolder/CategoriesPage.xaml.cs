@@ -28,7 +28,8 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
         private void CategoriesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            CategoryTable category = (CategoryTable)CategoriesListBox.SelectedItem;
+            FrameNavigationClass.BodyFNC.Navigate(new FilecabinetPage(category));
         }
     }
 }

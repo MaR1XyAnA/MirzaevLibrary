@@ -13,7 +13,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
         private void FilecabinetToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            FrameNavigationClass.BodyFNC.Navigate(new FilecabinetPage());
+            FrameNavigationClass.BodyFNC.Navigate(new FilecabinetPage(null));
 
             FilecabinetToggleButton.IsChecked = true;
             CategoryToggleButton.IsChecked = false;
@@ -74,7 +74,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         {
             if (Visibility== Visibility.Visible)
             {
-                FrameNavigationClass.BodyFNC.Navigate(new FilecabinetPage());
+                FrameNavigationClass.BodyFNC.Navigate(new FilecabinetPage(null));
 
                 FilecabinetToggleButton.IsChecked = true;
                 CategoryToggleButton.IsChecked = false;

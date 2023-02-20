@@ -63,11 +63,11 @@
                     <Image
                         Style="{StaticResource ImageDataBase}"
                         Source="\ContentFolder\ImageFolder\NoImage.png"/>
-                    <Image
+                    <!--<Image
                         x:Name="UserImage"
                         Visibility="Collapsed"
                         Style="{StaticResource ImageDataBase}"
-                        Source="{Binding ImageUserTable.ImageImage}"/>
+                        Source="{Binding ImageUserTable.ImageImage}"/>-->
                 </StackPanel>
             </Grid>
             <Grid Margin="10" Grid.Column="1" Grid.Row="0">

@@ -37,17 +37,17 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     mainWindow.Show();
                     this.Close();
 
-                    userClass.PersonalNumberUser = GetUser.PersonalNumberUser;
-                    userClass.SurnameUser = GetUser.SurnameUser;
-                    userClass.NameUser = GetUser.NameUser;
-                    userClass.MiddlenameUser = GetUser.MiddlenameUser;
-                    userClass.pnTicketUser = GetUser.pnTicketUser;
-                    userClass.AddressUser = GetUser.AddressUser;
-                    userClass.PhoneUser = GetUser.PhoneUser;
-                    userClass.LoginUser = GetUser.LoginUser;
-                    userClass.PasswordUser = GetUser.PasswordUser;
-                    userClass.pnRoleUser = GetUser.pnRoleUser;
-                    userClass.pnImageUser = GetUser.pnImageUser;
+                    //userClass.PersonalNumberUser = GetUser.PersonalNumberUser;
+                    //userClass.SurnameUser = GetUser.SurnameUser;
+                    //userClass.NameUser = GetUser.NameUser;
+                    //userClass.MiddlenameUser = GetUser.MiddlenameUser;
+                    //userClass.pnTicketUser = GetUser.pnTicketUser;
+                    //userClass.AddressUser = GetUser.AddressUser;
+                    //userClass.PhoneUser = GetUser.PhoneUser;
+                    //userClass.LoginUser = GetUser.LoginUser;
+                    //userClass.PasswordUser = GetUser.PasswordUser;
+                    //userClass.pnRoleUser = GetUser.pnRoleUser;
+                    //userClass.pnImageUser = GetUser.pnImageUser;
                 }
                 else
                 {

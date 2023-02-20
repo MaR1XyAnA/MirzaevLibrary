@@ -26,10 +26,10 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
             AppConnectClass.DataBase = new LibraryMirzayevaEntities();
             HistoryBookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.ToList();
-            if (userClass.PersonalNumberUser != null)
-            {
-                UserImage.Visibility = Visibility.Visible;
-            }
+            //if (userClass.PersonalNumberUser != null)
+            //{
+            //    //UserImage.Visibility = Visibility.Visible;
+            //}
         }
     }
 }
