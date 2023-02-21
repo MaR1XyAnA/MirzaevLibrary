@@ -125,10 +125,10 @@
           <Property Name="SurnameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MiddlenameUser" Type="nvarchar" MaxLength="50" />
-          <Property Name="pnTicketUser" Type="int" Nullable="false" />
-          <Property Name="AddressUser" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="pnTicketUser" Type="int" />
+          <Property Name="AddressUser" Type="nvarchar" MaxLength="300" />
           <Property Name="PhoneUser" Type="nvarchar" MaxLength="11" Nullable="false" />
-          <Property Name="LoginUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LoginUser" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="PasswordUser" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="pnRoleUser" Type="int" Nullable="false" />
           <Property Name="pnImageUser" Type="int" Nullable="false" />
@@ -278,7 +278,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserTable_TicketTable">
-          <End Role="TicketTable" Type="Self.TicketTable" Multiplicity="1" />
+          <End Role="TicketTable" Type="Self.TicketTable" Multiplicity="0..1" />
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TicketTable">
@@ -542,10 +542,10 @@
           <Property Name="SurnameUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NameUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MiddlenameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="pnTicketUser" Type="Int32" Nullable="false" />
-          <Property Name="AddressUser" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pnTicketUser" Type="Int32" />
+          <Property Name="AddressUser" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="PhoneUser" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="LoginUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginUser" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="PasswordUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="pnRoleUser" Type="Int32" Nullable="false" />
           <Property Name="pnImageUser" Type="Int32" Nullable="false" />
@@ -650,7 +650,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserTable_TicketTable">
-          <End Type="LibraryMirzayevaModel.TicketTable" Role="TicketTable" Multiplicity="1" />
+          <End Type="LibraryMirzayevaModel.TicketTable" Role="TicketTable" Multiplicity="0..1" />
           <End Type="LibraryMirzayevaModel.UserTable" Role="UserTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TicketTable">
