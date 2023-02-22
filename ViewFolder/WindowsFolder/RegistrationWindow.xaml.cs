@@ -64,6 +64,8 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     AppConnectClass.DataBase.UserTable.Add(AddUser);
                     AppConnectClass.DataBase.SaveChanges();
                     MessageBox.Show("Регистрация пройдена успешно. Авторизируйтесь в приложении для работы в нём", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    AuthorizationWindow authorizationWindow = new AuthorizationWindow();
+                    authorizationWindow.Show(); this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error); }
             }

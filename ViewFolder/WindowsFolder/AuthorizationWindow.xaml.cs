@@ -11,19 +11,19 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
     public partial class AuthorizationWindow : Window
     {
-        public static UserClass userClass;
+        private static UserClass userClass;
         public AuthorizationWindow()
         {
-            InitializeComponent();
             try
             {
+                InitializeComponent();
+                userClass = new UserClass();
                 AppConnectClass.DataBase = new LibraryMirzayevaEntities();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "E001", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         public void EnterUser()
@@ -33,21 +33,22 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 var GetUser = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.LoginUser == LoginTextBox.Text && data.PasswordUser == PasswordPasswordBox.Password);
                 if (GetUser != null)
                 {
+                    UserClass.SetUser(
+                        GetUser.PersonalNumberUser,
+                        GetUser.SurnameUser,
+                        GetUser.NameUser,
+                        GetUser.MiddlenameUser,
+                        GetUser.pnTicketUser,
+                        GetUser.AddressUser,
+                        GetUser.PhoneUser,
+                        GetUser.LoginUser,
+                        GetUser.PasswordUser,
+                        GetUser.pnRoleUser,
+                        GetUser.pnImageUser);
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
                     this.Close();
-
-                    //userClass.PersonalNumberUser = GetUser.PersonalNumberUser;
-                    //userClass.SurnameUser = GetUser.SurnameUser;
-                    //userClass.NameUser = GetUser.NameUser;
-                    //userClass.MiddlenameUser = GetUser.MiddlenameUser;
-                    //userClass.pnTicketUser = GetUser.pnTicketUser;
-                    //userClass.AddressUser = GetUser.AddressUser;
-                    //userClass.PhoneUser = GetUser.PhoneUser;
-                    //userClass.LoginUser = GetUser.LoginUser;
-                    //userClass.PasswordUser = GetUser.PasswordUser;
-                    //userClass.pnRoleUser = GetUser.pnRoleUser;
-                    //userClass.pnImageUser = GetUser.pnImageUser;
+                    MessageBox.Show(UserClass.MiddlenameUser);
                 }
                 else
                 {

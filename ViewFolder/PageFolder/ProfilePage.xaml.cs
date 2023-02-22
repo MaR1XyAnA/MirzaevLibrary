@@ -1,5 +1,6 @@
 ﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
 using MirzaevLibrary.AppDataFolder.ModelFolder;
+using MirzaevLibrary.ViewFolder.WindowsFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,17 +20,23 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 {
     public partial class ProfilePage : Page
     {
-        public static UserClass userClass;
+        private UserClass userClass;
         public ProfilePage()
         {
-            InitializeComponent();
-
+            InitializeComponent(); 
+            userClass = new UserClass();
             AppConnectClass.DataBase = new LibraryMirzayevaEntities();
             HistoryBookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.ToList();
-            //if (userClass.PersonalNumberUser != null)
-            //{
-            //    //UserImage.Visibility = Visibility.Visible;
-            //}
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                SurnameTextBox.Text = UserClass.SurnameUser;
+                NameTextBox.Text = UserClass.NameUser;
+                MiddlenameTextBox.Text = UserClass.MiddlenameUser;
+            }
         }
     }
 }
