@@ -20,22 +20,27 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 {
     public partial class ProfilePage : Page
     {
-        private UserClass userClass;
-        public ProfilePage()
+        public ProfilePage(UserTable GetUserTable)
         {
-            InitializeComponent(); 
-            userClass = new UserClass();
-            AppConnectClass.DataBase = new LibraryMirzayevaEntities();
-            HistoryBookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.ToList();
+            try
+            {
+                InitializeComponent();
+                if (GetUserTable != null)
+                {
+                    DataContext = GetUserTable;
+                    HintHistoryTextBlock.Visibility = Visibility.Collapsed;
+                    AppConnectClass.DataBase = new LibraryMirzayevaEntities();
+                    HistoryBookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.ToList();
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR001 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
             {
-                SurnameTextBox.Text = UserClass.SurnameUser;
-                NameTextBox.Text = UserClass.NameUser;
-                MiddlenameTextBox.Text = UserClass.MiddlenameUser;
+                
             }
         }
     }

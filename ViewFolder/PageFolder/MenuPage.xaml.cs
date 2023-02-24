@@ -1,4 +1,6 @@
 ﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
+using MirzaevLibrary.ViewFolder.WindowsFolder;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -57,7 +59,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
         private void MyProfilToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            FrameNavigationClass.BodyFNC.Navigate(new ProfilePage());
+            FrameNavigationClass.BodyFNC.Navigate(new ProfilePage(UserClass.GetUserTable));
 
             FilecabinetToggleButton.IsChecked = false;
             CategoryToggleButton.IsChecked = false;

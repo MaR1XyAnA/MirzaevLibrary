@@ -1,18 +1,8 @@
 ﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
 using MirzaevLibrary.ViewFolder.PageFolder;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
@@ -20,37 +10,19 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
     {
         public MainWindow()
         {
-            InitializeComponent();
-            FrameNavigationClass.MenuFNC = MenuFrame;
-            FrameNavigationClass.BodyFNC = BodyFrame;
-            FrameNavigationClass.MenuFNC.Navigate(new MenuPage());
-        }
-
-        #region Управление окном
-        private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать
-        {
-            if (e.ChangedButton == MouseButton.Left)
+            try
             {
-                this.DragMove();
+                InitializeComponent();
+                FrameNavigationClass.MenuFNC = MenuFrame; FrameNavigationClass.BodyFNC = BodyFrame;
+                FrameNavigationClass.MenuFNC.Navigate(new MenuPage());
             }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "MA001 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
-
-        private void ExitButton_Click(object sender, RoutedEventArgs e)
-        {
-            AuthorizationWindow authorizationWindow = new AuthorizationWindow();
-            authorizationWindow.Show();
-            this.Close();
-        }
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void RollUpButton_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
+        #region Управление окном
+        private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) { if (e.ChangedButton == MouseButton.Left) { this.DragMove(); }} // Для того, что бы окно перетаскивать 
+        private void ExitButton_Click(object sender, RoutedEventArgs e) { AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); this.Close(); }
+        private void CloseButton_Click(object sender, RoutedEventArgs e) { Application.Current.Shutdown(); }
+        private void RollUpButton_Click(object sender, RoutedEventArgs e) { WindowState = WindowState.Minimized; }
         #endregion
-
     }
 }

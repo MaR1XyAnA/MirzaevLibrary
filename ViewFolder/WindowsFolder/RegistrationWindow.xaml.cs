@@ -14,11 +14,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
     {
         public RegistrationWindow()
         {
-            try
-            {
-                InitializeComponent();
-                AppConnectClass.DataBase = new LibraryMirzayevaEntities();
-            }
+            try { InitializeComponent(); AppConnectClass.DataBase = new LibraryMirzayevaEntities(); }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
@@ -61,11 +57,9 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 };
                 try
                 {
-                    AppConnectClass.DataBase.UserTable.Add(AddUser);
-                    AppConnectClass.DataBase.SaveChanges();
+                    AppConnectClass.DataBase.UserTable.Add(AddUser); AppConnectClass.DataBase.SaveChanges();
                     MessageBox.Show("Регистрация пройдена успешно. Авторизируйтесь в приложении для работы в нём", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                    AuthorizationWindow authorizationWindow = new AuthorizationWindow();
-                    authorizationWindow.Show(); this.Close();
+                    AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); this.Close();
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
@@ -107,10 +101,8 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 if (string.IsNullOrWhiteSpace(PhoneTextBox.Text)) MessageNull += "Поле с НОМЕРОМ ТЕЛЕФОНА не должно быть пустым \n";
                 if (string.IsNullOrWhiteSpace(NewPasswordTextBox.Text)) MessageNull += "Поле с ПАРОЛЕМ не должно быть пустым \n";
                 if (string.IsNullOrWhiteSpace(PasswordPaswordBox.Password)) MessageNull += "Поле с ПОВТОРНОМ ПАРОЛЕМ не должно быть пустым.";
-                if (MessageNull != "")
-                {
-                    MessageBox.Show(MessageNull, "Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); MessageNull = null;
-                }
+
+                if (MessageNull != "") { MessageBox.Show(MessageNull, "Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); MessageNull = null; }
                 else
                 {
                     string MessageLack = "";
@@ -118,81 +110,38 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     if (NameTextBox.Text.Length <= 1) MessageLack += "Имя не может быть меньше 1 символов\n";
                     if (PhoneTextBox.Text.Length < 11) MessageLack += "Номер телефона должен быть из 11 символов\n";
                     if (NewPasswordTextBox.Text.Length <= 3) MessageLack += "Пароль не может быть меньше 3 символов, придумайте более длинный пароль";
-                    if (MessageLack != "")
-                    {
-                        MessageBox.Show(MessageLack, "Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); MessageLack = null;
-                    }
-                    else
-                    {
-                        EnterUser();
-                    }
+
+                    if (MessageLack != "") { MessageBox.Show(MessageLack, "Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); MessageLack = null; }
+                    else { EnterUser(); }
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
-        private void AuthorizationButton_Click(object sender, RoutedEventArgs e)
-        {
-            AuthorizationWindow authorizationWindow = new AuthorizationWindow();
-            authorizationWindow.Show(); this.Close();
-        }
+        private void AuthorizationButton_Click(object sender, RoutedEventArgs e) { AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); this.Close(); }
 
         private void PasswordPaswordBox_LayoutUpdated(object sender, EventArgs e)
         {
             string PasswordText, PasswordPasword;
-            PasswordText = Convert.ToString(NewPasswordTextBox.Text);
-            PasswordPasword = Convert.ToString(PasswordPaswordBox.Password);
+            PasswordText = Convert.ToString(NewPasswordTextBox.Text); PasswordPasword = Convert.ToString(PasswordPaswordBox.Password);
             if (PasswordText == "")
             {
                 PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
-
                 RegistrationButton.IsEnabled = false;
-                RegistrationButton.Background = new SolidColorBrush(Color.FromRgb(153, 154, 156));
-                RegistrationButton.BorderBrush = new SolidColorBrush(Color.FromRgb(153, 154, 156));
             }
             else
             {
-                if (PasswordPasword != PasswordText)
-                {
-                    PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(217, 34, 0));
-
-                    RegistrationButton.IsEnabled = false;
-                    RegistrationButton.Background = new SolidColorBrush(Color.FromRgb(153, 154, 156));
-                    RegistrationButton.BorderBrush = new SolidColorBrush(Color.FromRgb(153, 154, 156));
-                }
-                if (PasswordPasword == PasswordText)
-                {
-                    PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(133, 178, 43));
-
-                    RegistrationButton.IsEnabled = true;
-                    RegistrationButton.Background = new SolidColorBrush(Color.FromRgb(255, 227, 230));
-                    RegistrationButton.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 227, 230));
-                }
+                if (PasswordPasword != PasswordText) { RegistrationButton.IsEnabled = false; }
+                if (PasswordPasword == PasswordText) { RegistrationButton.IsEnabled = true; }
             }
         }
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]");
-            e.Handled = regex.IsMatch(e.Text);
-        }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) { Regex regex = new Regex("[^0-9]"); e.Handled = regex.IsMatch(e.Text); }
         #region Управление окном
-        private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-        }
+        private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) { if (e.ChangedButton == MouseButton.Left) { this.DragMove(); }} // Для того, что бы окно перетаскивать 
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
+        private void CloseButton_Click(object sender, RoutedEventArgs e) { Application.Current.Shutdown(); }
 
-        private void RollUpButton_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
+        private void RollUpButton_Click(object sender, RoutedEventArgs e) { WindowState = WindowState.Minimized; }
         #endregion
     }
 }
