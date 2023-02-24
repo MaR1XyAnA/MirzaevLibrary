@@ -49,6 +49,7 @@
                         <Grid>
                             <Grid x:Name="CollapsedPasswordGrid" Margin="0 5 0 0">
                                 <PasswordBox
+                                    KeyDown="PasswordPasswordBox_KeyDown"
                                     PasswordChanged="PasswordPasswordBox_PasswordChanged"
                                     Padding="33 0 40 0"
                                     Width="460"

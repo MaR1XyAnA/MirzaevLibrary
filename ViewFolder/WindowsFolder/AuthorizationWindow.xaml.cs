@@ -39,6 +39,8 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
         private void IgnoreAutborizationButton_Click(object sender, RoutedEventArgs e) { MainWindow mainWindow = new MainWindow(); mainWindow.Show(); this.Close(); }
 
+        private void PasswordPasswordBox_KeyDown(object sender, KeyEventArgs e) { if (e.Key == Key.Enter) { EnterUser(); } }
+
         private void RegistrationButton_Click(object sender, RoutedEventArgs e) { RegistrationWindow registrationWindow = new RegistrationWindow(); registrationWindow.Show(); this.Close(); }
 
         private void VisiblePasswordUserButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)

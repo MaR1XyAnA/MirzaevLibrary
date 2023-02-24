@@ -133,17 +133,6 @@
                             Margin="2 0 0 0"
                             Width="550"/>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Margin="0 10 0 10" Orientation="Horizontal">
-                        <TextBlock
-                            Margin="0 0 2 0"
-                            Text="Passwprd"
-                            Style="{StaticResource TextBlockStyle}"/>
-                        <TextBox
-                            Text="{Binding PasswordUser}"
-                            x:Name="PasswordTextBox"
-                            Margin="2 0 0 0"
-                            Width="550"/>
-                    </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Margin="0 7 0 0" Orientation="Horizontal">
                         <Button
                             Width="200"
