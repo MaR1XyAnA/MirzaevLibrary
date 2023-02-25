@@ -19,7 +19,7 @@
         <Setter Property="Width" Value="250"/>
         <Setter Property="CornerRadius" Value="125"/>
         <Setter Property="Opacity" Value="1"/>
-        <Setter Property="BorderBrush" Value="#232324"/>
+        <Setter Property="BorderBrush" Value="#222222"/>
         <Setter Property="BorderThickness" Value="125"/>
     </Style>
 </ResourceDictionary>

@@ -32,6 +32,14 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     AppConnectClass.DataBase = new LibraryMirzayevaEntities();
                     HistoryBookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.ToList();
                 }
+                else
+                {
+                    ImageSource userImage = new BitmapImage(new Uri("/ContentFolder/ImageFolder/NoImage.png", UriKind.RelativeOrAbsolute));
+                    UserImage.Source = userImage;
+                    HintInfoTicketTextBlock.Visibility = Visibility.Visible;
+                    InfoTicketOneTextBlock.Visibility = Visibility.Collapsed;
+                    InfoTicketThoTextBlock.Visibility = Visibility.Collapsed;
+                }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR001 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
@@ -42,6 +50,30 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             {
                 
             }
+        }
+
+        private void EditProfilButton_Click(object sender, RoutedEventArgs e)
+        {
+            SurnameTextBox.IsEnabled = true;
+            NameTextBox.IsEnabled = true;
+            MiddlenameTextBox.IsEnabled = true;
+            AddresTextBox.IsEnabled = true;
+            PhoneTextBox.IsEnabled = true;
+            EditPasswordButton.Visibility = Visibility.Visible;
+            EditProfilButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void EditPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            SurnameStackPanel.Visibility = Visibility.Collapsed;
+            NameStackPanel.Visibility = Visibility.Collapsed;
+            MiddlenameStackPanel.Visibility = Visibility.Collapsed;
+            AddresStackPanel.Visibility = Visibility.Collapsed;
+            PhoneStackPanel.Visibility = Visibility.Collapsed;
+
+            OldPasswordStackPanel.Visibility = Visibility.Visible;
+            NewPasswordStackPanel.Visibility = Visibility.Visible;
+            PasswordStackPanel.Visibility = Visibility.Visible;
         }
     }
 }

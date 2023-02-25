@@ -18,12 +18,6 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                Text="МОЯ ИСТОРИЯ"
-                Style="{StaticResource TextBlockStyle}"
-                FontSize="25"/>
             <ListBox
                 Grid.Row="1"
                 ItemContainerStyle="{StaticResource ListBoxItemSelected}"
@@ -35,11 +29,16 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             <TextBlock
+                Style="{StaticResource TextBlockStyle}"
+                Grid.Row="0"
+                FontSize="20"
+                Text="МОЯ ИСТОРИЯ"
+                HorizontalAlignment="Center"/>
+            <TextBlock
                 Style="{StaticResource HintTextBlock}"
                 Grid.Row="0"
                 Grid.RowSpan="2"
                 Text="Авторизируйтесь, что бы посмотреть свою историю"
-                FontSize="20"
                 x:Name="HintHistoryTextBlock"
                 HorizontalAlignment="Center"/>
         </Grid>
@@ -76,66 +75,133 @@
                         Source="{Binding ImageUserTable.ImageImage}"/>
                 </StackPanel>
             </Grid>
+            <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Margin="20 0 0 20" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <TextBlock
+                    Style="{StaticResource HintTextBlock}"
+                    Text="Авторизируйтесь, чтобы посмотреть номер своего читательского билета"
+                    TextWrapping="Wrap"
+                    Visibility="Collapsed"
+                    x:Name="HintInfoTicketTextBlock"
+                    HorizontalAlignment="Center"/>
+                <TextBlock
+                    FontSize="20"
+                    x:Name="InfoTicketOneTextBlock"
+                    Margin="0 0 0 0"
+                    Text="ВАШ ЧИТАТЕЛЬСКИЙ БИЛЕТ №"
+                    Style="{StaticResource TextBlockStyle}"/>
+                <TextBlock
+                    FontSize="20"
+                    x:Name="InfoTicketThoTextBlock"
+                    Margin="0 0 0 0"
+                    Text="{Binding pnTicketUser}"
+                    Style="{StaticResource TextBlockStyle}"/>
+            </StackPanel>
             <Grid Margin="10" Grid.Column="1" Grid.Row="0">
                 <StackPanel Margin="20" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right">
-                    <StackPanel HorizontalAlignment="Right" Margin="0 0 0 2" Orientation="Horizontal">
+                    <StackPanel x:Name="SurnameStackPanel" HorizontalAlignment="Right" Margin="0 0 0 2" Orientation="Horizontal">
                         <TextBlock
                             Margin="0 0 2 0"
                             Text="Фамилия"
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
+                            IsEnabled="False"
                             Text="{Binding SurnameUser}"
                             x:Name="SurnameTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Margin="0 2 0 2" Orientation="Horizontal">
+                    <StackPanel x:Name="NameStackPanel" HorizontalAlignment="Right" Margin="0 2 0 2" Orientation="Horizontal">
                         <TextBlock
                             Margin="0 0 2 0"
                             Text="Имя"
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
+                            IsEnabled="False"
                             Text="{Binding NameUser}"
                             x:Name="NameTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Margin="0 2 0 10" Orientation="Horizontal">
+                    <StackPanel x:Name="MiddlenameStackPanel" HorizontalAlignment="Right" Margin="0 2 0 10" Orientation="Horizontal">
                         <TextBlock
                             Margin="0 0 2 0"
                             Text="Отчество"
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
+                            IsEnabled="False"
                             Text="{Binding MiddlenameUser}"
                             x:Name="MiddlenameTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Margin="0 10 0 2" Orientation="Horizontal">
+                    <StackPanel x:Name="AddresStackPanel" HorizontalAlignment="Right" Margin="0 10 0 2" Orientation="Horizontal">
                         <TextBlock
                             Margin="0 0 2 0"
                             Text="Адресс проживания"
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
+                            IsEnabled="False"
                             Text="{Binding AddressUser}"
-                            x:Name="EmailTextBox"
+                            x:Name="AddresTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Margin="0 2 0 7" Orientation="Horizontal">
+                    <StackPanel x:Name="PhoneStackPanel" HorizontalAlignment="Right" Margin="0 2 0 7" Orientation="Horizontal">
                         <TextBlock
                             Margin="0 0 2 0"
                             Text="Номер телефона"
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
+                            IsEnabled="False"
                             Text="{Binding PhoneUser}"
                             x:Name="PhoneTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>
                     </StackPanel>
+                    <StackPanel Visibility="Collapsed" x:Name="OldPasswordStackPanel" HorizontalAlignment="Right" Margin="0 0 0 2" Orientation="Horizontal">
+                        <TextBlock
+                            Margin="0 0 2 0"
+                            Text="Старый пароль"
+                            Style="{StaticResource TextBlockStyle}"/>
+                        <TextBox
+                            x:Name="OldPasswordTextBox"
+                            Margin="2 0 0 0"
+                            Width="550"/>
+                    </StackPanel>
+                    <StackPanel Visibility="Collapsed" x:Name="NewPasswordStackPanel" HorizontalAlignment="Right" Margin="0 2 0 2" Orientation="Horizontal">
+                        <TextBlock
+                            Margin="0 0 2 0"
+                            Text="Новый пароль"
+                            Style="{StaticResource TextBlockStyle}"/>
+                        <TextBox
+                            x:Name="NewPasswordTextBox"
+                            Margin="2 0 0 0"
+                            Width="550"/>
+                    </StackPanel>
+                    <StackPanel Visibility="Collapsed" x:Name="PasswordStackPanel" HorizontalAlignment="Right" Margin="0 2 0 0" Orientation="Horizontal">
+                        <TextBlock
+                            Margin="0 0 2 0"
+                            Text="Повторите пароль"
+                            Style="{StaticResource TextBlockStyle}"/>
+                        <PasswordBox
+                            x:Name="PasswordPasswordBox"
+                            Margin="2 0 0 0"
+                            Width="550"/>
+                    </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Margin="0 7 0 0" Orientation="Horizontal">
                         <Button
-                            Width="200"
+                            x:Name="EditProfilButton"
+                            Click="EditProfilButton_Click"
+                            Width="250"
+                            Margin="0 0 5 0"
+                            Content="РЕДАКТИРОВАТЬ ПРОФИЛЬ"
+                            Style="{StaticResource OtherButton}"/>
+                        <Button
+                            Visibility="Collapsed"
+                            x:Name="EditPasswordButton"
+                            Click="EditPasswordButton_Click"
+                            Width="250"
+                            Margin="5 0 0 0"
                             Content="СМЕНИТЬ ПАРОЛЬ"
                             Style="{StaticResource OtherButton}"/>
                     </StackPanel>
