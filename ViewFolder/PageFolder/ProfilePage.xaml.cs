@@ -39,6 +39,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     HintInfoTicketTextBlock.Visibility = Visibility.Visible;
                     InfoTicketOneTextBlock.Visibility = Visibility.Collapsed;
                     InfoTicketThoTextBlock.Visibility = Visibility.Collapsed;
+                    EditProfilButton.IsEnabled = false;
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR001 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -59,7 +60,9 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             MiddlenameTextBox.IsEnabled = true;
             AddresTextBox.IsEnabled = true;
             PhoneTextBox.IsEnabled = true;
+
             EditPasswordButton.Visibility = Visibility.Visible;
+            SaveProfilButton.Visibility = Visibility.Visible;
             EditProfilButton.Visibility = Visibility.Collapsed;
         }
 
@@ -74,6 +77,52 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             OldPasswordStackPanel.Visibility = Visibility.Visible;
             NewPasswordStackPanel.Visibility = Visibility.Visible;
             PasswordStackPanel.Visibility = Visibility.Visible;
+
+            EditPasswordButton.Visibility = Visibility.Collapsed;
+            SaveProfilButton.Visibility = Visibility.Collapsed;
+            SavePasswordButton.Visibility = Visibility.Visible;
+        }
+
+        private void PasswordPasswordBox_LayoutUpdated(object sender, EventArgs e)
+        {
+            string PasswordText, PasswordPasword;
+            PasswordText = Convert.ToString(NewPasswordTextBox.Text); PasswordPasword = Convert.ToString(PasswordPasswordBox.Password);
+            if (PasswordPasword == "" && PasswordText != "") 
+            { 
+                PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+                SavePasswordButton.IsEnabled = false;
+            }
+            else
+            {
+                if (PasswordText == "") 
+                {
+                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                    SavePasswordButton.IsEnabled = false; 
+                }
+                else
+                {
+                    if (PasswordPasword != PasswordText)
+                    {
+                        PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+                        SavePasswordButton.IsEnabled = false;
+                    }
+                    if (PasswordPasword == PasswordText)
+                    {
+                        PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+                        SavePasswordButton.IsEnabled = true;
+                    }
+                }
+            }
+        }
+
+        private void SavePasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveProfilButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

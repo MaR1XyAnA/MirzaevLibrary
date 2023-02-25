@@ -124,15 +124,31 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         {
             string PasswordText, PasswordPasword;
             PasswordText = Convert.ToString(NewPasswordTextBox.Text); PasswordPasword = Convert.ToString(PasswordPaswordBox.Password);
-            if (PasswordText == "")
+            if (PasswordPasword == "" && PasswordText != "")
             {
-                PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
                 RegistrationButton.IsEnabled = false;
             }
             else
             {
-                if (PasswordPasword != PasswordText) { RegistrationButton.IsEnabled = false; }
-                if (PasswordPasword == PasswordText) { RegistrationButton.IsEnabled = true; }
+                if (PasswordText == "")
+                {
+                    PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                    RegistrationButton.IsEnabled = false;
+                }
+                else
+                {
+                    if (PasswordPasword != PasswordText)
+                    {
+                        PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+                        RegistrationButton.IsEnabled = false;
+                    }
+                    if (PasswordPasword == PasswordText)
+                    {
+                        PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+                        RegistrationButton.IsEnabled = true;
+                    }
+                }
             }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) { Regex regex = new Regex("[^0-9]"); e.Handled = regex.IsMatch(e.Text); }

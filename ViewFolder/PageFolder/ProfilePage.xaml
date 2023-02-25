@@ -164,6 +164,7 @@
                             Text="Старый пароль"
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
+                            MaxLength="50"
                             x:Name="OldPasswordTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>
@@ -174,6 +175,7 @@
                             Text="Новый пароль"
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
+                            MaxLength="50"
                             x:Name="NewPasswordTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>
@@ -184,25 +186,43 @@
                             Text="Повторите пароль"
                             Style="{StaticResource TextBlockStyle}"/>
                         <PasswordBox
+                            LayoutUpdated="PasswordPasswordBox_LayoutUpdated"
+                            MaxLength="50"
                             x:Name="PasswordPasswordBox"
                             Margin="2 0 0 0"
                             Width="550"/>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Margin="0 7 0 0" Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Right" Margin="0 7 0 0" Orientation="Vertical">
                         <Button
                             x:Name="EditProfilButton"
                             Click="EditProfilButton_Click"
                             Width="250"
-                            Margin="0 0 5 0"
+                            Margin="0 0 0 0"
                             Content="РЕДАКТИРОВАТЬ ПРОФИЛЬ"
+                            Style="{StaticResource OtherButton}"/>
+                        <Button
+                            Visibility="Collapsed"
+                            x:Name="SaveProfilButton"
+                            Click="SaveProfilButton_Click"
+                            Width="250"
+                            Margin="0 0 0 10"
+                            Content="СОХРАНИТЬ НАСТРОЙКИ"
                             Style="{StaticResource OtherButton}"/>
                         <Button
                             Visibility="Collapsed"
                             x:Name="EditPasswordButton"
                             Click="EditPasswordButton_Click"
                             Width="250"
-                            Margin="5 0 0 0"
+                            Margin="0 0 0 0"
                             Content="СМЕНИТЬ ПАРОЛЬ"
+                            Style="{StaticResource OtherButton}"/>
+                        <Button
+                            Visibility="Collapsed"
+                            x:Name="SavePasswordButton"
+                            Click="SavePasswordButton_Click"
+                            Width="250"
+                            Margin="0 0 0 0"
+                            Content="СОХРАНИТЬ ПАРОЛЬ"
                             Style="{StaticResource OtherButton}"/>
                     </StackPanel>
                 </StackPanel>

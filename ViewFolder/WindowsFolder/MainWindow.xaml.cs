@@ -20,7 +20,11 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         }
         #region Управление окном
         private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) { if (e.ChangedButton == MouseButton.Left) { this.DragMove(); }} // Для того, что бы окно перетаскивать 
-        private void ExitButton_Click(object sender, RoutedEventArgs e) { AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); this.Close(); }
+        private void ExitButton_Click(object sender, RoutedEventArgs e) 
+        { 
+            UserClass.GetUserTable = null; 
+            AuthorizationWindow authorizationWindow = new AuthorizationWindow();  authorizationWindow.Show(); this.Close(); 
+        }
         private void CloseButton_Click(object sender, RoutedEventArgs e) { Application.Current.Shutdown(); }
         private void RollUpButton_Click(object sender, RoutedEventArgs e) { WindowState = WindowState.Minimized; }
         #endregion
