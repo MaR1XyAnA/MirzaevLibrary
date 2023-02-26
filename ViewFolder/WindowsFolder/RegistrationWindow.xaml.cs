@@ -1,96 +1,90 @@
-﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
-using MirzaevLibrary.AppDataFolder.ModelFolder;
-using System;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
+﻿#region Подключенные ссылки
+    using MirzaevLibrary.AppDataFolder.ClassFolder;
+    using MirzaevLibrary.AppDataFolder.ModelFolder;
+    using System;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Mail;
+    using System.Text.RegularExpressions;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
+    using System.Windows.Input;
+    using System.Windows.Media;
+#endregion
 
 namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
     public partial class RegistrationWindow : Window
     {
+        string CodeString = null; // Создаём переменную для дальнейшей записи в неё и для получения из неё рандомного кода для регистрации пользователя
         public RegistrationWindow()
         {
             try { InitializeComponent(); AppConnectClass.DataBase = new LibraryMirzayevaEntities(); }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "RE001 - Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
+        public void EnterUser() // Метод который сохраняет данные пользователя в таблицу
+        {
+            var AddUser = new UserTable()
+            {
+                SurnameUser = SurnameTextBox.Text,
+                NameUser = NameTextBox.Text,
+                MiddlenameUser = MiddlenameTextBox.Text,
+                PhoneUser = PhoneTextBox.Text,
+                LoginUser = EmailTextBox.Text,
+                PasswordUser = PhoneTextBox.Text,
+                pnRoleUser = 1,
+                pnImageUser = 1
+            };
+            try
+            {
+                AppConnectClass.DataBase.UserTable.Add(AddUser); AppConnectClass.DataBase.SaveChanges();
+                MessageBox.Show("Регистрация пройдена успешно. Авторизируйтесь в приложении для работы в нём", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); this.Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "RE002 - Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        #region Текстовая подсказка
         private void SurnameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (SurnameTextBox.Text.Length > 0) { HintSurnameTextBlock.Visibility = Visibility.Collapsed; }
             else { HintSurnameTextBlock.Visibility = Visibility.Visible; }
         }
-
         private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (NameTextBox.Text.Length > 0) { HintNameTextBlock.Visibility = Visibility.Collapsed; }
             else { HintNameTextBlock.Visibility = Visibility.Visible; }
         }
-
         private void MiddlenameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (MiddlenameTextBox.Text.Length > 0) { HintMiddlenameTextBlock.Visibility = Visibility.Collapsed;}
+            if (MiddlenameTextBox.Text.Length > 0) { HintMiddlenameTextBlock.Visibility = Visibility.Collapsed; }
             else { HintMiddlenameTextBlock.Visibility = Visibility.Visible; }
         }
-
-        public void  EnterUser()
-        {
-            if (AppConnectClass.DataBase.UserTable.Count(DataUser => DataUser.LoginUser == EmailTextBox.Text || DataUser.PhoneUser == PhoneTextBox.Text) > 0)
-            {
-                MessageBox.Show("Данный номер телефона или login уже используется", "Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
-            {
-                var AddUser = new UserTable()
-                {
-                    SurnameUser = SurnameTextBox.Text,
-                    NameUser = NameTextBox.Text,
-                    MiddlenameUser = MiddlenameTextBox.Text,
-                    PhoneUser = PhoneTextBox.Text,
-                    LoginUser = EmailTextBox.Text,
-                    PasswordUser = PhoneTextBox.Text,
-                    pnRoleUser = 1,
-                    pnImageUser = 1
-                };
-                try
-                {
-                    AppConnectClass.DataBase.UserTable.Add(AddUser); AppConnectClass.DataBase.SaveChanges();
-                    MessageBox.Show("Регистрация пройдена успешно. Авторизируйтесь в приложении для работы в нём", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                    AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); this.Close();
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error); }
-            }
-
-        }
-
         private void EmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (EmailTextBox.Text.Length > 0) { HintEmailTextBlock.Visibility = Visibility.Collapsed; }
             else { HintEmailTextBlock.Visibility = Visibility.Visible; }
         }
-
         private void PhoneTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (PhoneTextBox.Text.Length > 0) { HintPhoneTextBlock.Visibility = Visibility.Collapsed; }
             else { HintPhoneTextBlock.Visibility = Visibility.Visible; }
         }
-
         private void NewPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (NewPasswordTextBox.Text.Length > 0) { HintNewPasswordTextBlock.Visibility = Visibility.Collapsed; }
             else { HintNewPasswordTextBlock.Visibility = Visibility.Visible; }
         }
-
         private void PasswordPaswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (PasswordPaswordBox.Password.Length > 0) { HintPasswordTextBlock.Visibility = Visibility.Collapsed; }
             else { HintPasswordTextBlock.Visibility = Visibility.Visible; }
         }
+        #endregion
 
-        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e) // Метож для проверки на "пустышки"
         {
             try
             {
@@ -112,52 +106,95 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     if (NewPasswordTextBox.Text.Length <= 3) MessageLack += "Пароль не может быть меньше 3 символов, придумайте более длинный пароль";
 
                     if (MessageLack != "") { MessageBox.Show(MessageLack, "Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); MessageLack = null; }
-                    else { EnterUser(); }
+                    else
+                    {
+                        if (AppConnectClass.DataBase.UserTable.Count(DataUser => DataUser.LoginUser == EmailTextBox.Text || DataUser.PhoneUser == PhoneTextBox.Text) > 0)
+                        {
+                            MessageBox.Show("Данный номер телефона или login уже используется", "RE003 - Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        else
+                        {
+                            InformationUserStackPanel.Visibility = Visibility.Collapsed; ConfirmEmailUserStackPanel.Visibility = Visibility.Visible;
+                            RegistrationEmail();
+                        }
+                    }
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "RE004 - Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         private void AuthorizationButton_Click(object sender, RoutedEventArgs e) { AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); this.Close(); }
 
-        private void PasswordPaswordBox_LayoutUpdated(object sender, EventArgs e)
+        private void PasswordPaswordBox_LayoutUpdated(object sender, EventArgs e) // Постоянная проверка PasswordBox на соответствии контента
         {
             string PasswordText, PasswordPasword;
             PasswordText = Convert.ToString(NewPasswordTextBox.Text); PasswordPasword = Convert.ToString(PasswordPaswordBox.Password);
-            if (PasswordPasword == "" && PasswordText != "")
-            {
-                PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
-                RegistrationButton.IsEnabled = false;
-            }
+
+            if (PasswordPasword == "" && PasswordText != "") { PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); RegistrationButton.IsEnabled = false; }
             else
             {
-                if (PasswordText == "")
-                {
-                    PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
-                    RegistrationButton.IsEnabled = false;
-                }
+                if (PasswordText == "") { PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); RegistrationButton.IsEnabled = false; }
                 else
                 {
-                    if (PasswordPasword != PasswordText)
-                    {
-                        PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
-                        RegistrationButton.IsEnabled = false;
-                    }
-                    if (PasswordPasword == PasswordText)
-                    {
-                        PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
-                        RegistrationButton.IsEnabled = true;
-                    }
+                    if (PasswordPasword != PasswordText) { PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); RegistrationButton.IsEnabled = false; }
+                    if (PasswordPasword == PasswordText) { PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); RegistrationButton.IsEnabled = true; }
                 }
             }
         }
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) { Regex regex = new Regex("[^0-9]"); e.Handled = regex.IsMatch(e.Text); }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) { Regex regex = new Regex("[^0-9]"); e.Handled = regex.IsMatch(e.Text); } // метод который позволит вводить только цифры от 0 до 9
+
         #region Управление окном
-        private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) { if (e.ChangedButton == MouseButton.Left) { this.DragMove(); }} // Для того, что бы окно перетаскивать 
+        private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) { if (e.ChangedButton == MouseButton.Left) { this.DragMove(); } } // Для того, что бы окно перетаскивать 
 
         private void CloseButton_Click(object sender, RoutedEventArgs e) { Application.Current.Shutdown(); }
 
         private void RollUpButton_Click(object sender, RoutedEventArgs e) { WindowState = WindowState.Minimized; }
         #endregion
+
+        private void ConfirmButton_Click(object sender, RoutedEventArgs e) // Метод для проверки кода и конец регистрации пользователя
+        {
+            if (ConfirmTextBox.Text != CodeString) { MessageBox.Show("Не верный код"); }
+            else { EnterUser(); }
+        }
+
+        private void RegistrationEmail() // Метод для отправки сообщение - подтверждение для регистрации (на указанную почту приходит код)
+        {
+            CodeString = RandomTextSender().ToString("D6"); // в переменную засунули случайное число для подтверждения регистрации
+
+            string EmailUser = Convert.ToString(EmailTextBox.Text); // почта жертвы
+            string LoginMail = "orangeblood@rambler.ru"; // электронная почта приложения
+            string PasswordMail = "OrangeBlood123"; // пароль почты приложения
+            string smtpMail = "smtp.rambler.ru"; // smtp адресс почты приложения
+            string FromWhom = "Автоматизированная информационная система 'Cool Bible Library'";
+            string TopicLetters = "Подтверждение регистрации";
+            string ToSend = CodeString;
+            try
+            {
+                SmtpClient mySmtpClient = new SmtpClient(smtpMail);
+
+                mySmtpClient.UseDefaultCredentials = false;
+                NetworkCredential basicAuthenticationInfo = new NetworkCredential(LoginMail, PasswordMail);
+                mySmtpClient.Credentials = basicAuthenticationInfo;
+
+                MailAddress from = new MailAddress(LoginMail, FromWhom);
+                MailAddress to = new MailAddress(EmailUser, TopicLetters);
+                MailMessage myMail = new MailMessage(from, to);
+
+                MailAddress replyTo = new MailAddress(LoginMail);
+                myMail.ReplyToList.Add(replyTo);
+
+                myMail.Subject = TopicLetters;
+                myMail.Body = ToSend;
+
+                myMail.SubjectEncoding = System.Text.Encoding.UTF8;
+                myMail.BodyEncoding = System.Text.Encoding.UTF8;
+
+                mySmtpClient.Send(myMail);
+            }
+            catch (SmtpException ex) { throw new ApplicationException("SmtpException has occured: " + ex.Message); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "RE005 - Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        private int RandomTextSender() { Random random = new Random(); return random.Next(1000000); } // Метод, который генерирует рандомное число для подтверждения регистрации
     }
 }
