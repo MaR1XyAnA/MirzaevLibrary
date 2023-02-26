@@ -18,7 +18,6 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
         public BookTable()
         {
             this.TicketTable = new HashSet<TicketTable>();
-            this.TicketTable1 = new HashSet<TicketTable>();
         }
     
         public int PersonalNumberBook { get; set; }
@@ -43,7 +42,5 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
         public virtual PublishingHouseTable PublishingHouseTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TicketTable> TicketTable { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TicketTable> TicketTable1 { get; set; }
     }
 }

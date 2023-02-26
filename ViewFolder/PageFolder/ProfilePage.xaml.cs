@@ -1,20 +1,12 @@
 ﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
 using MirzaevLibrary.AppDataFolder.ModelFolder;
-using MirzaevLibrary.ViewFolder.WindowsFolder;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+using System.Data.Entity;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MirzaevLibrary.ViewFolder.PageFolder
 {
@@ -27,11 +19,18 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 InitializeComponent();
                 if (GetUserTable != null)
                 {
-                    DataContext = GetUserTable;
-                    HintHistoryTextBlock.Visibility = Visibility.Collapsed;
                     AppConnectClass.DataBase = new LibraryMirzayevaEntities();
-                    HistoryBookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.ToList();
-                    if (UserClass.GetUserTable.pnTicketUser == null || UserClass.GetUserTable.pnTicketUser == 1)
+                    DataContext = GetUserTable;
+
+                    int IdTicket = UserClass.GetUserTable.pnTicketUser;
+                    AppConnectClass.DataBase.TicketTable.Include(Data => Data.BookTable).Load();
+                    var Ticket = AppConnectClass.DataBase.TicketTable.Find(IdTicket);
+
+                    HistoryBookListBox.ItemsSource = Ticket.BookTable.ToList();
+
+                    HintHistoryTextBlock.Visibility = Visibility.Collapsed;
+
+                    if (UserClass.GetUserTable.pnTicketUser == 1)
                     {
                         InfoTicketThoTextBlock.Text = "У вас нет читательского билета, но вы можите его преобрести";
                         InfoTicketOneTextBlock.Visibility= Visibility.Collapsed;

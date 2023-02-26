@@ -55,14 +55,6 @@
           <Property Name="PersonalNumberGo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TitleGo" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="HistoryTable">
-          <Key>
-            <PropertyRef Name="pnTiket" />
-            <PropertyRef Name="pnBook" />
-          </Key>
-          <Property Name="pnTiket" Type="int" Nullable="false" />
-          <Property Name="pnBook" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="ImagebookTable">
           <Key>
             <PropertyRef Name="PersonalnumberImage" />
@@ -125,7 +117,7 @@
           <Property Name="SurnameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MiddlenameUser" Type="nvarchar" MaxLength="50" />
-          <Property Name="pnTicketUser" Type="int" />
+          <Property Name="pnTicketUser" Type="int" Nullable="false" />
           <Property Name="AddressUser" Type="nvarchar" MaxLength="300" />
           <Property Name="PhoneUser" Type="nvarchar" MaxLength="11" Nullable="false" />
           <Property Name="LoginUser" Type="nvarchar" MaxLength="150" Nullable="false" />
@@ -205,30 +197,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HistoryTable_BookTable">
-          <End Role="BookTable" Type="Self.BookTable" Multiplicity="1" />
-          <End Role="HistoryTable" Type="Self.HistoryTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BookTable">
-              <PropertyRef Name="PersonalNumberBook" />
-            </Principal>
-            <Dependent Role="HistoryTable">
-              <PropertyRef Name="pnBook" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HistoryTable_TicketTable">
-          <End Role="TicketTable" Type="Self.TicketTable" Multiplicity="1" />
-          <End Role="HistoryTable" Type="Self.HistoryTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TicketTable">
-              <PropertyRef Name="PersonalNumberTicket" />
-            </Principal>
-            <Dependent Role="HistoryTable">
-              <PropertyRef Name="pnTiket" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TiketBookTable_BookTable">
           <End Role="BookTable" Type="Self.BookTable" Multiplicity="1" />
           <End Role="TiketBookTable" Type="Self.TiketBookTable" Multiplicity="*" />
@@ -278,7 +246,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserTable_TicketTable">
-          <End Role="TicketTable" Type="Self.TicketTable" Multiplicity="0..1" />
+          <End Role="TicketTable" Type="Self.TicketTable" Multiplicity="1" />
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TicketTable">
@@ -295,7 +263,6 @@
           <EntitySet Name="CashTable" EntityType="Self.CashTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoTable" EntityType="Self.GoTable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HistoryTable" EntityType="Self.HistoryTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImagebookTable" EntityType="Self.ImagebookTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImageUserTable" EntityType="Self.ImageUserTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PublishingHouseTable" EntityType="Self.PublishingHouseTable" Schema="dbo" store:Type="Tables" />
@@ -327,14 +294,6 @@
           <AssociationSet Name="FK_BookTable_PublishingHouseTable" Association="Self.FK_BookTable_PublishingHouseTable">
             <End Role="PublishingHouseTable" EntitySet="PublishingHouseTable" />
             <End Role="BookTable" EntitySet="BookTable" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HistoryTable_BookTable" Association="Self.FK_HistoryTable_BookTable">
-            <End Role="BookTable" EntitySet="BookTable" />
-            <End Role="HistoryTable" EntitySet="HistoryTable" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HistoryTable_TicketTable" Association="Self.FK_HistoryTable_TicketTable">
-            <End Role="TicketTable" EntitySet="TicketTable" />
-            <End Role="HistoryTable" EntitySet="HistoryTable" />
           </AssociationSet>
           <AssociationSet Name="FK_TiketBookTable_BookTable" Association="Self.FK_TiketBookTable_BookTable">
             <End Role="BookTable" EntitySet="BookTable" />
@@ -410,10 +369,6 @@
             <End Role="TicketTable" EntitySet="TicketTable" />
             <End Role="UserTable" EntitySet="UserTable" />
           </AssociationSet>
-          <AssociationSet Name="HistoryTable" Association="LibraryMirzayevaModel.HistoryTable">
-            <End Role="BookTable" EntitySet="BookTable" />
-            <End Role="TicketTable" EntitySet="TicketTable" />
-          </AssociationSet>
           <AssociationSet Name="TiketBookTable" Association="LibraryMirzayevaModel.TiketBookTable">
             <End Role="BookTable" EntitySet="BookTable" />
             <End Role="TicketTable" EntitySet="TicketTable" />
@@ -454,8 +409,7 @@
           <NavigationProperty Name="GoTable" Relationship="LibraryMirzayevaModel.FK_BookTable_GoTable" FromRole="BookTable" ToRole="GoTable" />
           <NavigationProperty Name="ImagebookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_ImagebookTable" FromRole="BookTable" ToRole="ImagebookTable" />
           <NavigationProperty Name="PublishingHouseTable" Relationship="LibraryMirzayevaModel.FK_BookTable_PublishingHouseTable" FromRole="BookTable" ToRole="PublishingHouseTable" />
-          <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.HistoryTable" FromRole="BookTable" ToRole="TicketTable" />
-          <NavigationProperty Name="TicketTable1" Relationship="LibraryMirzayevaModel.TiketBookTable" FromRole="BookTable" ToRole="TicketTable" />
+          <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.TiketBookTable" FromRole="BookTable" ToRole="TicketTable" />
         </EntityType>
         <EntityType Name="CashTable">
           <Key>
@@ -531,8 +485,7 @@
           <Property Name="DateStartTicket" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateEndTicket" Type="DateTime" Precision="0" />
           <NavigationProperty Name="UserTable" Relationship="LibraryMirzayevaModel.FK_UserTable_TicketTable" FromRole="TicketTable" ToRole="UserTable" />
-          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.HistoryTable" FromRole="TicketTable" ToRole="BookTable" />
-          <NavigationProperty Name="BookTable1" Relationship="LibraryMirzayevaModel.TiketBookTable" FromRole="TicketTable" ToRole="BookTable" />
+          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.TiketBookTable" FromRole="TicketTable" ToRole="BookTable" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -542,7 +495,7 @@
           <Property Name="SurnameUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NameUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MiddlenameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="pnTicketUser" Type="Int32" />
+          <Property Name="pnTicketUser" Type="Int32" Nullable="false" />
           <Property Name="AddressUser" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="PhoneUser" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="LoginUser" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
@@ -650,7 +603,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserTable_TicketTable">
-          <End Type="LibraryMirzayevaModel.TicketTable" Role="TicketTable" Multiplicity="0..1" />
+          <End Type="LibraryMirzayevaModel.TicketTable" Role="TicketTable" Multiplicity="1" />
           <End Type="LibraryMirzayevaModel.UserTable" Role="UserTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TicketTable">
@@ -660,10 +613,6 @@
               <PropertyRef Name="pnTicketUser" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="HistoryTable">
-          <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
-          <End Type="LibraryMirzayevaModel.TicketTable" Role="TicketTable" Multiplicity="*" />
         </Association>
         <Association Name="TiketBookTable">
           <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
@@ -799,14 +748,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="HistoryTable" TypeName="LibraryMirzayevaModel.HistoryTable" StoreEntitySet="HistoryTable">
-            <EndProperty Name="TicketTable">
-              <ScalarProperty Name="PersonalNumberTicket" ColumnName="pnTiket" />
-            </EndProperty>
-            <EndProperty Name="BookTable">
-              <ScalarProperty Name="PersonalNumberBook" ColumnName="pnBook" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="TiketBookTable" TypeName="LibraryMirzayevaModel.TiketBookTable" StoreEntitySet="TiketBookTable">
             <EndProperty Name="TicketTable">
               <ScalarProperty Name="PersonalNumberTicket" ColumnName="pnTicket" />

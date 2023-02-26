@@ -18,7 +18,7 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
         public string SurnameUser { get; set; }
         public string NameUser { get; set; }
         public string MiddlenameUser { get; set; }
-        public Nullable<int> pnTicketUser { get; set; }
+        public int pnTicketUser { get; set; }
         public string AddressUser { get; set; }
         public string PhoneUser { get; set; }
         public string LoginUser { get; set; }
