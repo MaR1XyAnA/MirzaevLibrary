@@ -18,15 +18,34 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "MA001 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
+
         #region Управление окном
-        private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) { if (e.ChangedButton == MouseButton.Left) { this.DragMove(); }} // Для того, что бы окно перетаскивать 
         private void ExitButton_Click(object sender, RoutedEventArgs e) 
-        { 
-            UserClass.GetUserTable = null; 
-            AuthorizationWindow authorizationWindow = new AuthorizationWindow();  authorizationWindow.Show(); this.Close(); 
+        {
+            try
+            {
+                UserClass.GetUserTable = null;
+                AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); this.Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "MABU004 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
-        private void CloseButton_Click(object sender, RoutedEventArgs e) { Application.Current.Shutdown(); }
-        private void RollUpButton_Click(object sender, RoutedEventArgs e) { WindowState = WindowState.Minimized; }
+        private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать 
+        {
+            try { if (e.ChangedButton == MouseButton.Left) { this.DragMove(); } }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "MABU001 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            try { Application.Current.Shutdown(); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "MABU002 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        private void RollUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            try { WindowState = WindowState.Minimized; }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "MABU003 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
         #endregion
     }
 }

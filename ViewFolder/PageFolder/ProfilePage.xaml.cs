@@ -31,6 +31,11 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     HintHistoryTextBlock.Visibility = Visibility.Collapsed;
                     AppConnectClass.DataBase = new LibraryMirzayevaEntities();
                     HistoryBookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.ToList();
+                    if (UserClass.GetUserTable.pnTicketUser == null || UserClass.GetUserTable.pnTicketUser == 1)
+                    {
+                        InfoTicketThoTextBlock.Text = "У вас нет читательского билета, но вы можите его преобрести";
+                        InfoTicketOneTextBlock.Visibility= Visibility.Collapsed;
+                    }
                 }
                 else
                 {
