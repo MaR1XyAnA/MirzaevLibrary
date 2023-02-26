@@ -7,42 +7,41 @@ using System.Windows.Controls;
 using System.Data.Entity;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using MirzaevLibrary.ViewFolder.WindowsFolder;
 
 namespace MirzaevLibrary.ViewFolder.PageFolder
 {
     public partial class ProfilePage : Page
     {
+        AuthorizationWindow authorizationWindow = new AuthorizationWindow(); RegistrationWindow registrationWindow = new RegistrationWindow();
         public ProfilePage(UserTable GetUserTable)
         {
             try
             {
-                InitializeComponent();
-                if (GetUserTable != null)
+                InitializeComponent(); AppConnectClass.DataBase = new LibraryMirzayevaEntities(); DataContext = GetUserTable;
+                if (GetUserTable != null) // Если передоваемое значение не пустое
                 {
-                    AppConnectClass.DataBase = new LibraryMirzayevaEntities();
-                    DataContext = GetUserTable;
-
-                    int IdTicket = UserClass.GetUserTable.pnTicketUser;
-                    AppConnectClass.DataBase.TicketTable.Include(Data => Data.BookTable).Load();
-                    var Ticket = AppConnectClass.DataBase.TicketTable.Find(IdTicket);
-
-                    HistoryBookListBox.ItemsSource = Ticket.BookTable.ToList();
-
-                    HintHistoryTextBlock.Visibility = Visibility.Collapsed;
-
-                    if (UserClass.GetUserTable.pnTicketUser == 1)
+                    if (UserClass.GetUserTable.pnTicketUser == 1) // Если у пользователя стандартный номер читательского билеиа
                     {
                         InfoTicketThoTextBlock.Text = "У вас нет читательского билета, но вы можите его преобрести";
                         InfoTicketOneTextBlock.Visibility= Visibility.Collapsed;
                         HistoryBookListBox.Visibility = Visibility.Collapsed;
                         HintHistoryTextBlock.Visibility= Visibility.Visible;
                         HintHistoryTextBlock.Text = "У вас нет читательского билета";
+                    }
+                    else // Если у пользователя не стандартный читательский билет
+                    {
+                        int IdTicket = UserClass.GetUserTable.pnTicketUser; // Получаем номер читательского билета
+                        AppConnectClass.DataBase.TicketTable.Include(Data => Data.BookTable).Load(); //Реализовываем связь многие ко многим между таблицей TicketTable и таблицей BookTable
+                        var Ticket = AppConnectClass.DataBase.TicketTable.Find(IdTicket); // Ищем в таблице TicketTable читательский билет по номеру
 
+                        HistoryBookListBox.ItemsSource = Ticket.BookTable.ToList();
+                        HintHistoryTextBlock.Visibility = Visibility.Collapsed;
                     }
                 }
-                else
+                else // Если зашёл не авторизированный пользователь
                 {
-                    ImageSource userImage = new BitmapImage(new Uri("/ContentFolder/ImageFolder/NoImage.png", UriKind.RelativeOrAbsolute));
+                    ImageSource userImage = new BitmapImage(new Uri("/ContentFolder/ImageFolder/NoImage.png", UriKind.RelativeOrAbsolute)); // Вывод стандартного фото
                     UserImage.Source = userImage;
                     HintInfoTicketTextBlock.Visibility = Visibility.Visible;
                     InfoTicketOneTextBlock.Visibility = Visibility.Collapsed;
@@ -53,14 +52,6 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR001 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
-        }
-
-        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (Visibility == Visibility.Visible)
-            {
-                
-            }
         }
 
         private void EditProfilButton_Click(object sender, RoutedEventArgs e)
@@ -93,7 +84,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             SavePasswordButton.Visibility = Visibility.Visible;
         }
 
-        private void PasswordPasswordBox_LayoutUpdated(object sender, EventArgs e)
+        private void PasswordPasswordBox_LayoutUpdated(object sender, EventArgs e) // Постоянная проверка PasswordBox на соответствии контента
         {
             string PasswordText, PasswordPasword;
             PasswordText = Convert.ToString(NewPasswordTextBox.Text); PasswordPasword = Convert.ToString(PasswordPasswordBox.Password);
@@ -135,14 +126,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
         }
 
-        private void AuthorizationButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void AuthorizationButton_Click(object sender, RoutedEventArgs e) { authorizationWindow.Show(); }
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e) { registrationWindow.Show(); }
     }
 }

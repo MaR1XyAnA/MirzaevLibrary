@@ -13,7 +13,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             try
             {
                 InitializeComponent();
-                FrameNavigationClass.MenuFNC = MenuFrame; FrameNavigationClass.BodyFNC = BodyFrame;
+                FrameNavigationClass.MenuFNC = MenuFrame; FrameNavigationClass.BodyFNC = BodyFrame; 
                 FrameNavigationClass.MenuFNC.Navigate(new MenuPage());
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "MA001 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }

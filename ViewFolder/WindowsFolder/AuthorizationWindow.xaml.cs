@@ -16,7 +16,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         public AuthorizationWindow()
         {
             try { InitializeComponent(); AppConnectClass.DataBase = new LibraryMirzayevaEntities(); }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AU001 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AU001 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); } 
         }
 
         public void EnterUser() // Метод для входа пользователя
