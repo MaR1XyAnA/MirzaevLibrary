@@ -33,7 +33,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 MiddlenameUser = MiddlenameTextBox.Text,
                 PhoneUser = PhoneTextBox.Text,
                 LoginUser = EmailTextBox.Text,
-                PasswordUser = PhoneTextBox.Text,
+                PasswordUser = NewPasswordTextBox.Text,
                 pnRoleUser = 1,
                 pnImageUser = 1
             };
