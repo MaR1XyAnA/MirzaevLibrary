@@ -194,6 +194,22 @@
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Margin="0 7 0 0" Orientation="Vertical">
                         <Button
+                            Visibility="Collapsed"
+                            x:Name="AuthorizationButton"
+                            Click="AuthorizationButton_Click"
+                            Width="250"
+                            Margin="0 0 0 5"
+                            Content="АВТОРИЗОВАТЬСЯ"
+                            Style="{StaticResource OtherButton}"/>
+                        <Button
+                            Visibility="Collapsed"
+                            x:Name="RegistrationButton"
+                            Click="RegistrationButton_Click"
+                            Width="250"
+                            Margin="0 5 0 0"
+                            Content="ЗАРЕГИСТРИРОВАТЬСЯ"
+                            Style="{StaticResource OtherButton}"/>
+                        <Button
                             x:Name="EditProfilButton"
                             Click="EditProfilButton_Click"
                             Width="250"

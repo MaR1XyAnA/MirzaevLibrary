@@ -35,6 +35,10 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     {
                         InfoTicketThoTextBlock.Text = "У вас нет читательского билета, но вы можите его преобрести";
                         InfoTicketOneTextBlock.Visibility= Visibility.Collapsed;
+                        HistoryBookListBox.Visibility = Visibility.Collapsed;
+                        HintHistoryTextBlock.Visibility= Visibility.Visible;
+                        HintHistoryTextBlock.Text = "У вас нет читательского билета";
+
                     }
                 }
                 else
@@ -44,7 +48,9 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     HintInfoTicketTextBlock.Visibility = Visibility.Visible;
                     InfoTicketOneTextBlock.Visibility = Visibility.Collapsed;
                     InfoTicketThoTextBlock.Visibility = Visibility.Collapsed;
-                    EditProfilButton.IsEnabled = false;
+                    EditProfilButton.Visibility = Visibility.Collapsed;
+                    AuthorizationButton.Visibility = Visibility.Visible;
+                    RegistrationButton.Visibility = Visibility.Visible;
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR001 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -126,6 +132,16 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         }
 
         private void SaveProfilButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AuthorizationButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
