@@ -83,7 +83,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         }
         #endregion
 
-        private void RegistrationButton_Click(object sender, RoutedEventArgs e) // Метож для проверки на "пустышки"
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e) // Метод для проверки на "пустышки"
         {
             try
             {
@@ -218,7 +218,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             catch (SmtpException ex) { throw new ApplicationException("SmtpException has occured: " + ex.Message); }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "RE008 - Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
-
         private int RandomTextSender() { Random random = new Random(); return random.Next(1000000); } // Метод, который генерирует рандомное число для подтверждения регистрации
     }
 }
