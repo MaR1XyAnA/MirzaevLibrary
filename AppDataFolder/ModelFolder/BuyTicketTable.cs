@@ -12,24 +12,19 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
     using System;
     using System.Collections.Generic;
     
-    public partial class TicketTable
+    public partial class BuyTicketTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TicketTable()
+        public BuyTicketTable()
         {
-            this.UserTable = new HashSet<UserTable>();
-            this.BookTable = new HashSet<BookTable>();
+            this.TicketTable = new HashSet<TicketTable>();
         }
     
-        public int PersonalNumberTicket { get; set; }
-        public System.DateTime DateStartTicket { get; set; }
-        public Nullable<System.DateTime> DateEndTicket { get; set; }
-        public Nullable<int> pnBuy { get; set; }
+        public int PersonalnumberBuy { get; set; }
+        public string NameBuy { get; set; }
+        public decimal PriseBuy { get; set; }
     
-        public virtual BuyTicketTable BuyTicketTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserTable> UserTable { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookTable> BookTable { get; set; }
+        public virtual ICollection<TicketTable> TicketTable { get; set; }
     }
 }

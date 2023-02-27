@@ -77,6 +77,9 @@
     <Compile Include="AppDataFolder\ModelFolder\BookTable.cs">
       <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AppDataFolder\ModelFolder\BuyTicketTable.cs">
+      <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AppDataFolder\ModelFolder\CashTable.cs">
       <DependentUpon>LibraryMirzayevaModel.tt</DependentUpon>
     </Compile>
@@ -130,6 +133,12 @@
     </Compile>
     <Compile Include="ViewFolder\ControlFolder\HistoryBookControl.xaml.cs">
       <DependentUpon>HistoryBookControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewFolder\ControlFolder\PriseTicketControl.xaml.cs">
+      <DependentUpon>PriseTicketControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewFolder\PageFolder\BuyTicketPage.xaml.cs">
+      <DependentUpon>BuyTicketPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewFolder\PageFolder\CategoriesPage.xaml.cs">
       <DependentUpon>CategoriesPage.xaml</DependentUpon>
@@ -249,6 +258,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewFolder\ControlFolder\HistoryBookControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewFolder\ControlFolder\PriseTicketControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewFolder\PageFolder\BuyTicketPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

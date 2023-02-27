@@ -34,6 +34,14 @@
           <Property Name="pnAuthor" Type="int" Nullable="false" />
           <Property Name="pnImage" Type="int" />
         </EntityType>
+        <EntityType Name="BuyTicketTable">
+          <Key>
+            <PropertyRef Name="PersonalnumberBuy" />
+          </Key>
+          <Property Name="PersonalnumberBuy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameBuy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PriseBuy" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
         <EntityType Name="CashTable">
           <Key>
             <PropertyRef Name="PersonalNumberCash" />
@@ -100,6 +108,7 @@
           <Property Name="PersonalNumberTicket" Type="int" Nullable="false" />
           <Property Name="DateStartTicket" Type="date" Nullable="false" />
           <Property Name="DateEndTicket" Type="date" />
+          <Property Name="pnBuy" Type="int" />
         </EntityType>
         <EntityType Name="TiketBookTable">
           <Key>
@@ -197,6 +206,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TicketTable_BuyTicketTable">
+          <End Role="BuyTicketTable" Type="Self.BuyTicketTable" Multiplicity="0..1" />
+          <End Role="TicketTable" Type="Self.TicketTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuyTicketTable">
+              <PropertyRef Name="PersonalnumberBuy" />
+            </Principal>
+            <Dependent Role="TicketTable">
+              <PropertyRef Name="pnBuy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TiketBookTable_BookTable">
           <End Role="BookTable" Type="Self.BookTable" Multiplicity="1" />
           <End Role="TiketBookTable" Type="Self.TiketBookTable" Multiplicity="*" />
@@ -260,6 +281,7 @@
         <EntityContainer Name="Хранилище LibraryMirzayevaModelContainer">
           <EntitySet Name="AuthorsTable" EntityType="Self.AuthorsTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookTable" EntityType="Self.BookTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuyTicketTable" EntityType="Self.BuyTicketTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CashTable" EntityType="Self.CashTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoTable" EntityType="Self.GoTable" Schema="dbo" store:Type="Tables" />
@@ -295,6 +317,10 @@
             <End Role="PublishingHouseTable" EntitySet="PublishingHouseTable" />
             <End Role="BookTable" EntitySet="BookTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_TicketTable_BuyTicketTable" Association="Self.FK_TicketTable_BuyTicketTable">
+            <End Role="BuyTicketTable" EntitySet="BuyTicketTable" />
+            <End Role="TicketTable" EntitySet="TicketTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_TiketBookTable_BookTable" Association="Self.FK_TiketBookTable_BookTable">
             <End Role="BookTable" EntitySet="BookTable" />
             <End Role="TiketBookTable" EntitySet="TiketBookTable" />
@@ -323,6 +349,7 @@
         <EntityContainer Name="LibraryMirzayevaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AuthorsTable" EntityType="LibraryMirzayevaModel.AuthorsTable" />
           <EntitySet Name="BookTable" EntityType="LibraryMirzayevaModel.BookTable" />
+          <EntitySet Name="BuyTicketTable" EntityType="LibraryMirzayevaModel.BuyTicketTable" />
           <EntitySet Name="CashTable" EntityType="LibraryMirzayevaModel.CashTable" />
           <EntitySet Name="CategoryTable" EntityType="LibraryMirzayevaModel.CategoryTable" />
           <EntitySet Name="GoTable" EntityType="LibraryMirzayevaModel.GoTable" />
@@ -356,6 +383,10 @@
           <AssociationSet Name="FK_BookTable_PublishingHouseTable" Association="LibraryMirzayevaModel.FK_BookTable_PublishingHouseTable">
             <End Role="PublishingHouseTable" EntitySet="PublishingHouseTable" />
             <End Role="BookTable" EntitySet="BookTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketTable_BuyTicketTable" Association="LibraryMirzayevaModel.FK_TicketTable_BuyTicketTable">
+            <End Role="BuyTicketTable" EntitySet="BuyTicketTable" />
+            <End Role="TicketTable" EntitySet="TicketTable" />
           </AssociationSet>
           <AssociationSet Name="FK_UserTable_ImageUserTable" Association="LibraryMirzayevaModel.FK_UserTable_ImageUserTable">
             <End Role="ImageUserTable" EntitySet="ImageUserTable" />
@@ -410,6 +441,15 @@
           <NavigationProperty Name="ImagebookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_ImagebookTable" FromRole="BookTable" ToRole="ImagebookTable" />
           <NavigationProperty Name="PublishingHouseTable" Relationship="LibraryMirzayevaModel.FK_BookTable_PublishingHouseTable" FromRole="BookTable" ToRole="PublishingHouseTable" />
           <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.TiketBookTable" FromRole="BookTable" ToRole="TicketTable" />
+        </EntityType>
+        <EntityType Name="BuyTicketTable">
+          <Key>
+            <PropertyRef Name="PersonalnumberBuy" />
+          </Key>
+          <Property Name="PersonalnumberBuy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameBuy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PriseBuy" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.FK_TicketTable_BuyTicketTable" FromRole="BuyTicketTable" ToRole="TicketTable" />
         </EntityType>
         <EntityType Name="CashTable">
           <Key>
@@ -484,6 +524,8 @@
           <Property Name="PersonalNumberTicket" Type="Int32" Nullable="false" />
           <Property Name="DateStartTicket" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateEndTicket" Type="DateTime" Precision="0" />
+          <Property Name="pnBuy" Type="Int32" />
+          <NavigationProperty Name="BuyTicketTable" Relationship="LibraryMirzayevaModel.FK_TicketTable_BuyTicketTable" FromRole="TicketTable" ToRole="BuyTicketTable" />
           <NavigationProperty Name="UserTable" Relationship="LibraryMirzayevaModel.FK_UserTable_TicketTable" FromRole="TicketTable" ToRole="UserTable" />
           <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.TiketBookTable" FromRole="TicketTable" ToRole="BookTable" />
         </EntityType>
@@ -578,6 +620,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TicketTable_BuyTicketTable">
+          <End Type="LibraryMirzayevaModel.BuyTicketTable" Role="BuyTicketTable" Multiplicity="0..1" />
+          <End Type="LibraryMirzayevaModel.TicketTable" Role="TicketTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuyTicketTable">
+              <PropertyRef Name="PersonalnumberBuy" />
+            </Principal>
+            <Dependent Role="TicketTable">
+              <PropertyRef Name="pnBuy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserTable_ImageUserTable">
           <End Type="LibraryMirzayevaModel.ImageUserTable" Role="ImageUserTable" Multiplicity="1" />
           <End Type="LibraryMirzayevaModel.UserTable" Role="UserTable" Multiplicity="*" />
@@ -655,6 +709,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BuyTicketTable">
+            <EntityTypeMapping TypeName="LibraryMirzayevaModel.BuyTicketTable">
+              <MappingFragment StoreEntitySet="BuyTicketTable">
+                <ScalarProperty Name="PriseBuy" ColumnName="PriseBuy" />
+                <ScalarProperty Name="NameBuy" ColumnName="NameBuy" />
+                <ScalarProperty Name="PersonalnumberBuy" ColumnName="PersonalnumberBuy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CashTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.CashTable">
               <MappingFragment StoreEntitySet="CashTable">
@@ -725,6 +788,7 @@
           <EntitySetMapping Name="TicketTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.TicketTable">
               <MappingFragment StoreEntitySet="TicketTable">
+                <ScalarProperty Name="pnBuy" ColumnName="pnBuy" />
                 <ScalarProperty Name="DateEndTicket" ColumnName="DateEndTicket" />
                 <ScalarProperty Name="DateStartTicket" ColumnName="DateStartTicket" />
                 <ScalarProperty Name="PersonalNumberTicket" ColumnName="PersonalNumberTicket" />

@@ -21,12 +21,12 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
                 FilecabinetToggleButton.IsChecked = true;
                 CategoryToggleButton.IsChecked = false;
-                AuthorsToggleButton.IsChecked = false;
+                BuyTicketButton.IsChecked = false;
                 MyProfilToggleButton.IsChecked = false;
 
                 FilecabinetToggleButton.IsEnabled = false;
                 CategoryToggleButton.IsEnabled = true;
-                AuthorsToggleButton.IsEnabled = true;
+                BuyTicketButton.IsEnabled = true;
                 MyProfilToggleButton.IsEnabled = true;
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME002 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -40,32 +40,15 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
                 FilecabinetToggleButton.IsChecked = false;
                 CategoryToggleButton.IsChecked = true;
-                AuthorsToggleButton.IsChecked = false;
+                BuyTicketButton.IsChecked = false;
                 MyProfilToggleButton.IsChecked = false;
 
                 FilecabinetToggleButton.IsEnabled = true;
                 CategoryToggleButton.IsEnabled = false;
-                AuthorsToggleButton.IsEnabled = true;
+                BuyTicketButton.IsEnabled = true;
                 MyProfilToggleButton.IsEnabled = true;
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME003 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
-        }
-
-        private void AuthorsToggleButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                FilecabinetToggleButton.IsChecked = false;
-                CategoryToggleButton.IsChecked = false;
-                AuthorsToggleButton.IsChecked = true;
-                MyProfilToggleButton.IsChecked = false;
-
-                FilecabinetToggleButton.IsEnabled = true;
-                CategoryToggleButton.IsEnabled = true;
-                AuthorsToggleButton.IsEnabled = false;
-                MyProfilToggleButton.IsEnabled = true;
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME004 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         private void MyProfilToggleButton_Click(object sender, RoutedEventArgs e)
@@ -76,12 +59,12 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
                 FilecabinetToggleButton.IsChecked = false;
                 CategoryToggleButton.IsChecked = false;
-                AuthorsToggleButton.IsChecked = false;
+                BuyTicketButton.IsChecked = false;
                 MyProfilToggleButton.IsChecked = true;
 
                 FilecabinetToggleButton.IsEnabled = true;
                 CategoryToggleButton.IsEnabled = true;
-                AuthorsToggleButton.IsEnabled = true;
+                BuyTicketButton.IsEnabled = true;
                 MyProfilToggleButton.IsEnabled = false;
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME005 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -97,16 +80,33 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
                     FilecabinetToggleButton.IsChecked = true;
                     CategoryToggleButton.IsChecked = false;
-                    AuthorsToggleButton.IsChecked = false;
+                    BuyTicketButton.IsChecked = false;
                     MyProfilToggleButton.IsChecked = false;
 
                     FilecabinetToggleButton.IsEnabled = false;
                     CategoryToggleButton.IsEnabled = true;
-                    AuthorsToggleButton.IsEnabled = true;
+                    BuyTicketButton.IsEnabled = true;
                     MyProfilToggleButton.IsEnabled = true;
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME006 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
+        }
+
+        private void BuyTicketButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                FilecabinetToggleButton.IsChecked = false;
+                CategoryToggleButton.IsChecked = false;
+                BuyTicketButton.IsChecked = true;
+                MyProfilToggleButton.IsChecked = false;
+
+                FilecabinetToggleButton.IsEnabled = true;
+                CategoryToggleButton.IsEnabled = true;
+                BuyTicketButton.IsEnabled = false;
+                MyProfilToggleButton.IsEnabled = true;
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME004 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
     }
 }

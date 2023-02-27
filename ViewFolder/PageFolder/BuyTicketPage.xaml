@@ -1,0 +1,26 @@
+﻿<Page 
+    x:Class="MirzaevLibrary.ViewFolder.PageFolder.BuyTicketPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:uc ="clr-namespace:MirzaevLibrary.ViewFolder.ControlFolder"
+    mc:Ignorable="d" 
+    Style="{StaticResource BodyPageStyle}">
+    <ListBox
+        MouseDoubleClick="PriseTicketListBox_MouseDoubleClick"
+        x:Name="PriseTicketListBox"
+        Margin="5"
+        ItemContainerStyle="{StaticResource ListBoxItemSelected}">
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel IsItemsHost="True" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Transparent"/>
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <uc:PriseTicketControl/>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+</Page>

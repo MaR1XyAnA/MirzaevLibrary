@@ -27,6 +27,7 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
     
         public virtual DbSet<AuthorsTable> AuthorsTable { get; set; }
         public virtual DbSet<BookTable> BookTable { get; set; }
+        public virtual DbSet<BuyTicketTable> BuyTicketTable { get; set; }
         public virtual DbSet<CashTable> CashTable { get; set; }
         public virtual DbSet<CategoryTable> CategoryTable { get; set; }
         public virtual DbSet<GoTable> GoTable { get; set; }

@@ -50,9 +50,10 @@
                         Content="КАТЕГОРИИ"
                         Style="{StaticResource ToggleButtonMenu}"/>
                     <ToggleButton
-                        x:Name="AuthorsToggleButton"
-                        Click="AuthorsToggleButton_Click"
-                        Content="АВТОРЫ"
+                        Width="250"
+                        x:Name="BuyTicketButton"
+                        Click="BuyTicketButton_Click"
+                        Content="ПОКУПКА БИЛЕТА"
                         Style="{StaticResource ToggleButtonMenu}"/>
                     <ToggleButton
                         x:Name="MyProfilToggleButton"
