@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MirzaevLibrary.ViewFolder.WindowsFolder;
+using System.Data.Entity.Migrations;
 
 namespace MirzaevLibrary.ViewFolder.PageFolder
 {
@@ -118,12 +119,42 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
         private void SavePasswordButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void SaveProfilButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                UserTable userTable = new UserTable()
+                {
+                    PersonalNumberUser = UserClass.GetUserTable.PersonalNumberUser,
+                    SurnameUser = SurnameTextBox.Text,
+                    NameUser = NameTextBox.Text,
+                    MiddlenameUser = MiddlenameTextBox.Text,
+                    AddressUser = AddresTextBox.Text,
+                    PhoneUser = PhoneTextBox.Text,
+                    pnTicketUser = UserClass.GetUserTable.pnTicketUser,
+                    LoginUser = UserClass.GetUserTable.LoginUser,
+                    PasswordUser = UserClass.GetUserTable.PasswordUser,
+                    pnRoleUser = UserClass.GetUserTable.pnRoleUser,
+                    pnImageUser = UserClass.GetUserTable.pnImageUser
+                };
 
+                AppConnectClass.DataBase.UserTable.AddOrUpdate(userTable); AppConnectClass.DataBase.SaveChanges();
+                MessageBox.Show("Данные сохранены успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                SurnameTextBox.IsEnabled = false;
+                NameTextBox.IsEnabled = false;
+                MiddlenameTextBox.IsEnabled = false;
+                AddresTextBox.IsEnabled = false;
+                PhoneTextBox.IsEnabled = false;
+
+                EditPasswordButton.Visibility = Visibility.Collapsed;
+                SaveProfilButton.Visibility = Visibility.Collapsed;
+                EditProfilButton.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "SA001 - Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         private void AuthorizationButton_Click(object sender, RoutedEventArgs e) { authorizationWindow.Show(); }
