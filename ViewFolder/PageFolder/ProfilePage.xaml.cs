@@ -22,9 +22,9 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 if (GetUserTable != null) // Если передоваемое значение не пустое
                 {
                     AppConnectClass.DataBase = new LibraryMirzayevaEntities(); DataContext = GetUserTable;
-                    if (UserClass.GetUserTable.pnTicketUser == 1) // Если у пользователя стандартный номер читательского билеиа
+                    if (UserClass.GetUserTable.pnTicketUser == 1) // Если у пользователя стандартный номер читательского билета
                     {
-                        InfoTicketThoTextBlock.Text = "У вас нет читательского билета, но вы можите его преобрести";
+                        InfoTicketThoTextBlock.Text = "У вас нет читательского билета, но вы можете его преобрести";
                         InfoTicketOneTextBlock.Visibility = Visibility.Collapsed;
                         HistoryBookListBox.Visibility = Visibility.Collapsed;
                         HintHistoryTextBlock.Visibility = Visibility.Visible;
@@ -52,7 +52,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     RegistrationButton.Visibility = Visibility.Visible;
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR001 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR001 - Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         private void EditProfilButton_Click(object sender, RoutedEventArgs e)
