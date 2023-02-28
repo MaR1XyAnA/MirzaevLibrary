@@ -27,7 +27,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 if (GetUser != null)
                 {
                     UserClass.GetUserTable = GetUser;
-                    FrameNavigationClass.BodyFNC.Navigate(new ProfilePage(UserClass.GetUserTable));
                     mainWindow.Show(); this.Close();
                 }
                 else { MessageBox.Show("Не правильный логин или пароль", "Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
