@@ -14,21 +14,20 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 {
     public partial class ProfilePage : Page
     {
-        AuthorizationWindow authorizationWindow = new AuthorizationWindow(); RegistrationWindow registrationWindow = new RegistrationWindow();
         public ProfilePage(UserTable GetUserTable)
         {
             try
             {
-                InitializeComponent(); 
+                InitializeComponent();
                 if (GetUserTable != null) // Если передоваемое значение не пустое
                 {
                     AppConnectClass.DataBase = new LibraryMirzayevaEntities(); DataContext = GetUserTable;
                     if (UserClass.GetUserTable.pnTicketUser == 1) // Если у пользователя стандартный номер читательского билеиа
                     {
                         InfoTicketThoTextBlock.Text = "У вас нет читательского билета, но вы можите его преобрести";
-                        InfoTicketOneTextBlock.Visibility= Visibility.Collapsed;
+                        InfoTicketOneTextBlock.Visibility = Visibility.Collapsed;
                         HistoryBookListBox.Visibility = Visibility.Collapsed;
-                        HintHistoryTextBlock.Visibility= Visibility.Visible;
+                        HintHistoryTextBlock.Visibility = Visibility.Visible;
                         HintHistoryTextBlock.Text = "У вас нет читательского билета";
                     }
                     else // Если у пользователя не стандартный читательский билет
@@ -127,38 +126,46 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         {
             try
             {
-                UserTable userTable = new UserTable()
+                if (UserClass.GetUserTable == null)
                 {
-                    PersonalNumberUser = UserClass.GetUserTable.PersonalNumberUser,
-                    SurnameUser = SurnameTextBox.Text,
-                    NameUser = NameTextBox.Text,
-                    MiddlenameUser = MiddlenameTextBox.Text,
-                    AddressUser = AddresTextBox.Text,
-                    PhoneUser = PhoneTextBox.Text,
-                    pnTicketUser = UserClass.GetUserTable.pnTicketUser,
-                    LoginUser = UserClass.GetUserTable.LoginUser,
-                    PasswordUser = UserClass.GetUserTable.PasswordUser,
-                    pnRoleUser = UserClass.GetUserTable.pnRoleUser,
-                    pnImageUser = UserClass.GetUserTable.pnImageUser
-                };
+                    MessageBox.Show("Вам нужно сначала авторизоваться", "SA001 - Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    UserTable userTable = new UserTable()
+                    {
+                        PersonalNumberUser = UserClass.GetUserTable.PersonalNumberUser,
+                        SurnameUser = SurnameTextBox.Text,
+                        NameUser = NameTextBox.Text,
+                        MiddlenameUser = MiddlenameTextBox.Text,
+                        AddressUser = AddresTextBox.Text,
+                        PhoneUser = PhoneTextBox.Text,
+                        pnTicketUser = UserClass.GetUserTable.pnTicketUser,
+                        LoginUser = UserClass.GetUserTable.LoginUser,
+                        PasswordUser = UserClass.GetUserTable.PasswordUser,
+                        pnRoleUser = UserClass.GetUserTable.pnRoleUser,
+                        pnImageUser = UserClass.GetUserTable.pnImageUser
+                    };
 
-                AppConnectClass.DataBase.UserTable.AddOrUpdate(userTable); AppConnectClass.DataBase.SaveChanges();
-                MessageBox.Show("Данные сохранены успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    AppConnectClass.DataBase.UserTable.AddOrUpdate(userTable); AppConnectClass.DataBase.SaveChanges();
+                    MessageBox.Show("Данные сохранены успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                SurnameTextBox.IsEnabled = false;
-                NameTextBox.IsEnabled = false;
-                MiddlenameTextBox.IsEnabled = false;
-                AddresTextBox.IsEnabled = false;
-                PhoneTextBox.IsEnabled = false;
+                    SurnameTextBox.IsEnabled = false;
+                    NameTextBox.IsEnabled = false;
+                    MiddlenameTextBox.IsEnabled = false;
+                    AddresTextBox.IsEnabled = false;
+                    PhoneTextBox.IsEnabled = false;
 
-                EditPasswordButton.Visibility = Visibility.Collapsed;
-                SaveProfilButton.Visibility = Visibility.Collapsed;
-                EditProfilButton.Visibility = Visibility.Visible;
+                    EditPasswordButton.Visibility = Visibility.Collapsed;
+                    SaveProfilButton.Visibility = Visibility.Collapsed;
+                    EditProfilButton.Visibility = Visibility.Visible;
+                }
+
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "SA001 - Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "SA002 - Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
-        private void AuthorizationButton_Click(object sender, RoutedEventArgs e) { authorizationWindow.Show(); }
-        private void RegistrationButton_Click(object sender, RoutedEventArgs e) { registrationWindow.Show(); }
+        private void AuthorizationButton_Click(object sender, RoutedEventArgs e) { AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); }
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e) { RegistrationWindow registrationWindow = new RegistrationWindow(); registrationWindow.Show(); }
     }
 }
