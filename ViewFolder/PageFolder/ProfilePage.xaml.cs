@@ -19,9 +19,10 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         {
             try
             {
-                InitializeComponent(); AppConnectClass.DataBase = new LibraryMirzayevaEntities(); DataContext = GetUserTable;
+                InitializeComponent(); 
                 if (GetUserTable != null) // Если передоваемое значение не пустое
                 {
+                    AppConnectClass.DataBase = new LibraryMirzayevaEntities(); DataContext = GetUserTable;
                     if (UserClass.GetUserTable.pnTicketUser == 1) // Если у пользователя стандартный номер читательского билеиа
                     {
                         InfoTicketThoTextBlock.Text = "У вас нет читательского билета, но вы можите его преобрести";
