@@ -135,7 +135,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 string PasswordText, PasswordPasword;
                 PasswordText = Convert.ToString(NewPasswordTextBox.Text); PasswordPasword = Convert.ToString(PasswordPaswordBox.Password);
 
-                if (PasswordPasword == "" && PasswordText != "") { PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); RegistrationButton.IsEnabled = false; }
+                if (PasswordPasword == "" && PasswordText != "") { PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); RegistrationButton.IsEnabled = false; }
                 else
                 {
                     if (PasswordText == "") { PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); RegistrationButton.IsEnabled = false; }

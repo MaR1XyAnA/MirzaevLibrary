@@ -164,6 +164,7 @@
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
                             MaxLength="50"
+                            TextChanged="OldPasswordTextBox_TextChanged"
                             x:Name="OldPasswordTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>
@@ -174,6 +175,8 @@
                             Text="Новый пароль"
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
+                            IsEnabled="False"
+                            TextChanged="NewPasswordTextBox_TextChanged"
                             MaxLength="50"
                             x:Name="NewPasswordTextBox"
                             Margin="2 0 0 0"
@@ -185,7 +188,8 @@
                             Text="Повторите пароль"
                             Style="{StaticResource TextBlockStyle}"/>
                         <PasswordBox
-                            LayoutUpdated="PasswordPasswordBox_LayoutUpdated"
+                            IsEnabled="False"
+                            PasswordChanged="PasswordPasswordBox_PasswordChanged"
                             MaxLength="50"
                             x:Name="PasswordPasswordBox"
                             Margin="2 0 0 0"
@@ -233,6 +237,7 @@
                             Style="{StaticResource OtherButton}"/>
                         <Button
                             Visibility="Collapsed"
+                            IsEnabled="False"
                             x:Name="SavePasswordButton"
                             Click="SavePasswordButton_Click"
                             Width="250"
