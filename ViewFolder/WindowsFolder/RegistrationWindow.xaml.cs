@@ -15,6 +15,8 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
     public partial class RegistrationWindow : Window
     {
         string CodeString = null; // Создаём переменную для дальнейшей записи в неё и для получения из неё рандомного кода для регистрации пользователя
+        private int RandomTextSender() { Random random = new Random(); return random.Next(1000000); } // Метод, который генерирует рандомное число для подтверждения регистрации
+
         public RegistrationWindow()
         {
             try { InitializeComponent(); AppConnectClass.DataBase = new LibraryMirzayevaEntities(); }
@@ -218,6 +220,5 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             catch (SmtpException ex) { throw new ApplicationException("SmtpException has occured: " + ex.Message); }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "RE008 - Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
-        private int RandomTextSender() { Random random = new Random(); return random.Next(1000000); } // Метод, который генерирует рандомное число для подтверждения регистрации
     }
 }

@@ -15,12 +15,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.Entity.Migrations;
 
 namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
     public partial class ForgetWindow : Window
     {
         string RandomCodeString = null; // Создаём переменную для дальнейшей записи в неё и для получения из неё рандомного кода для регистрации пользователя
+        int ErrorInt = 0; // Создаём переменную для подсчёта ошибок
+        string LoginUserString = null;
 
         private int RandomTextSender() { Random random = new Random(); return random.Next(1000000); } // Метод, который генерирует рандомное число для подтверждения регистрации
 
@@ -32,8 +35,43 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
         private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (LoginTextBox.Text.Length > 0) { NextCodeButton.IsEnabled = false; HintLoginTextBlock.Visibility = Visibility.Collapsed; }
-            else { NextCodeButton.IsEnabled = true; HintLoginTextBlock.Visibility = Visibility.Visible; }
+            if (LoginTextBox.Text.Length > 0) { NextCodeButton.IsEnabled = true; HintLoginTextBlock.Visibility = Visibility.Collapsed; }
+            else { NextCodeButton.IsEnabled = false; HintLoginTextBlock.Visibility = Visibility.Visible; }
+        }
+
+        private void CodeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (CodeTextBox.Text.Length > 0) { CheckCodeButton.IsEnabled = true; HintCodeTextBlock.Visibility = Visibility.Collapsed; }
+            else { CheckCodeButton.IsEnabled = false; HintCodeTextBlock.Visibility = Visibility.Visible; }
+        }
+
+        private void NewPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (NewPasswordTextBox.Text.Length > 0) { ReplayPasswordPasswordBox.IsEnabled = true; HintNewPasswordTextBlock.Visibility = Visibility.Collapsed; }
+            else { ReplayPasswordPasswordBox.IsEnabled = false; HintNewPasswordTextBlock.Visibility = Visibility.Visible; }
+        }
+
+        private void ReplayPasswordPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (ReplayPasswordPasswordBox.Password.Length > 0)
+            {
+                HintReplayPasswordTextBlock.Visibility = Visibility.Collapsed;
+
+                string PasswordText, PasswordPasword;
+                PasswordText = Convert.ToString(NewPasswordTextBox.Text); PasswordPasword = Convert.ToString(ReplayPasswordPasswordBox.Password);
+
+                if (PasswordPasword == "" && PasswordText != "") { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); SavePasswordButton.IsEnabled = false; }
+                else
+                {
+                    if (PasswordText == "") { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); SavePasswordButton.IsEnabled = false; }
+                    else
+                    {
+                        if (PasswordPasword != PasswordText) { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); SavePasswordButton.IsEnabled = false; }
+                        if (PasswordPasword == PasswordText) { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); SavePasswordButton.IsEnabled = true; }
+                    }
+                }
+            }
+            else { ReplayPasswordPasswordBox.IsEnabled = false; HintNewPasswordTextBlock.Visibility = Visibility.Visible; }
         }
 
         #region Управление окном
@@ -56,23 +94,20 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         }
         #endregion
 
-        private void NextCodeButton_Click(object sender, RoutedEventArgs e)
+        private void NextCodeButton_Click(object sender, RoutedEventArgs e) // Отправка кода
         {
             try
             {
                 if (LoginTextBox.Text != "")
                 {
                     var SearthUser = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.LoginUser == LoginTextBox.Text);
-                    string LoginUserString = Convert.ToString(LoginTextBox.Text);
+                    LoginUserString = Convert.ToString(LoginTextBox.Text);
                     if (SearthUser == null)
                     {
                         MessageBox.Show("Пользователь с логином (" + LoginUserString + ") не найден, попробуйте другой логин", "FO002 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
-                        CodeGrid.Visibility = Visibility.Visible;
-                        NextCodeButton.Visibility = Visibility.Collapsed;
-                        CheckCodeButton.Visibility = Visibility.Visible;
                         try
                         {
                             RandomCodeString = RandomTextSender().ToString("D6"); // в переменную засунули случайное число для подтверждения регистрации
@@ -106,15 +141,22 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                             mySmtpClient.Send(myMail);
                         }
                         catch (SmtpException ex) { throw new ApplicationException("SmtpException has occured: " + ex.Message); }
-                        catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FO004 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Error); }
+                        catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FO004 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Error); ErrorInt++; }
 
+                        if (ErrorInt == 0) // Если ошибок нет
+                        {
+                            CodeGrid.Visibility = Visibility.Visible;
+                            NextCodeButton.Visibility = Visibility.Collapsed;
+                            LoginTextBox.IsEnabled = false;
+                            CheckCodeButton.Visibility = Visibility.Visible;
+                        }
                     }
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FO003 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
-        private void CheckCodeButton_Click(object sender, RoutedEventArgs e)
+        private void CheckCodeButton_Click(object sender, RoutedEventArgs e) // Проверка, совподает ли код который ввел пользователь, с тем, что отправленно
         {
             try
             {
@@ -124,15 +166,61 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 }
                 else
                 {
+                    CodeGrid.Visibility = Visibility.Collapsed;
+                    LoginGrid.Visibility = Visibility.Collapsed;
+                    NextCodeButton.Visibility = Visibility.Collapsed;
+                    CheckCodeButton.Visibility = Visibility.Collapsed;
 
+                    NewPasswordGrid.Visibility = Visibility.Visible;
+                    ReplayPasswordGrid.Visibility = Visibility.Visible;
+                    SavePasswordButton.Visibility = Visibility.Visible;
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FO005 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
-        private void CodeTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        private void BackHyperlink_Click(object sender, RoutedEventArgs e) { AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); this.Close(); } // Переход по нажатию на ссылку
 
+        private void SavePasswordButton_Click(object sender, RoutedEventArgs e) // Сохранение пароля
+        {
+            try
+            {
+                if (NewPasswordTextBox.Text != "" && ReplayPasswordPasswordBox.Password != "")
+                {
+                    var UserVar = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.LoginUser == LoginUserString);
+                    if (UserVar != null)
+                    {
+                        var userTable = new UserTable()
+                        {
+                            PersonalNumberUser = UserVar.PersonalNumberUser,
+                            SurnameUser = UserVar.SurnameUser,
+                            NameUser = UserVar.NameUser,
+                            MiddlenameUser = UserVar.MiddlenameUser,
+                            pnTicketUser = UserVar.pnTicketUser,
+                            AddressUser = UserVar.AddressUser,
+                            PhoneUser = UserVar.PhoneUser,
+                            LoginUser = UserVar.LoginUser,
+                            PasswordUser = NewPasswordTextBox.Text,
+                            pnRoleUser = UserVar.pnRoleUser,
+                            pnImageUser = UserVar.pnImageUser
+                        };
+
+                        try
+                        {
+                            AppConnectClass.DataBase.UserTable.AddOrUpdate(userTable);
+                            AppConnectClass.DataBase.SaveChanges();
+                            MessageBox.Show("Пароль был успешно сменён. Авторизируйтесь в приложении для работы в нём.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); this.Close();
+                        }
+                        catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FO007 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Error); }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Пользователь не найден", "FO008 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FO009 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
     }
 }

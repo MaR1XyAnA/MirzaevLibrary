@@ -101,15 +101,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             else { NextButton.IsEnabled = true; }
         }
 
-        private void ForgetPasswordHyperlink_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ForgetPasswordHyperlink_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void ForgetPasswordHyperlink_Click(object sender, RoutedEventArgs e) { ForgetWindow forgetWindow = new ForgetWindow(); forgetWindow.Show(); this.Close(); }
     }
 }
 

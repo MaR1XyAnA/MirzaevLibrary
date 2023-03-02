@@ -38,7 +38,7 @@
                             <TextBlock
                                 x:Name="HintLoginTextBlock"
                                 Margin="36 0 0 0"
-                                Text="LOGIN"
+                                Text="Электронная почта"
                                 Style="{StaticResource HintTextBlock}"/>
                             <TextBlock
                                 Margin="10 0 0 0"
@@ -57,7 +57,7 @@
                                 <TextBlock
                                     x:Name="HintPasswordVisibilityTextBlock"
                                     Margin="36 0 0 0"
-                                    Text="PASSWORD"
+                                    Text="Пароль"
                                     Style="{StaticResource HintTextBlock}"/>
                                 <TextBlock
                                     Margin="10 0 0 0"

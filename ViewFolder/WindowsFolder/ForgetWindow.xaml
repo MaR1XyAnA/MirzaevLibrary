@@ -16,8 +16,11 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <Border Style="{StaticResource BackgroundBorder}"/>
+            <TextBlock Margin="10 10 0 0">
+                <Hyperlink x:Name="BackHyperlink" Click="BackHyperlink_Click">Вернуться назад</Hyperlink>
+            </TextBlock>
             <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Grid Margin="0 0 0 5">
+                <Grid Visibility="Visible" x:Name="LoginGrid" Margin="0 0 0 5">
                     <TextBox
                         TextChanged="LoginTextBox_TextChanged"
                         Padding="33 0 0 0"
@@ -26,7 +29,7 @@
                     <TextBlock
                         x:Name="HintLoginTextBlock"
                         Margin="36 0 0 0"
-                        Text="LOGIN"
+                        Text="Электронная почта"
                         Style="{StaticResource HintTextBlock}"/>
                     <TextBlock
                         Margin="10 0 0 0"
@@ -34,9 +37,9 @@
                         Style="{StaticResource IconFont}"
                         Text="&#xf207;"/>
                 </Grid>
-                <Grid Margin="0 0 0 5">
+                <Grid x:Name="CodeGrid" Visibility="Collapsed" Margin="0 0 0 5">
                     <TextBox
-                        TextChanged="LoginTextBox_TextChanged"
+                        TextChanged="CodeTextBox_TextChanged"
                         Padding="33 0 0 0"
                         Width="460"
                         x:Name="CodeTextBox"/>
@@ -51,6 +54,62 @@
                         Style="{StaticResource IconFont}"
                         Text="&#xf13a;"/>
                 </Grid>
+                <Grid Visibility="Collapsed" x:Name="NewPasswordGrid" Margin="0 0 0 5">
+                    <TextBox
+                        TextChanged="NewPasswordTextBox_TextChanged"
+                        Width="460"
+                        x:Name="NewPasswordTextBox"/>
+                    <TextBlock
+                        x:Name="HintNewPasswordTextBlock"
+                        Margin="12 0 0 0"
+                        Text="Новый пароль"
+                        Style="{StaticResource HintTextBlock}"/>
+                </Grid>
+                <Grid Visibility="Collapsed" x:Name="ReplayPasswordGrid" Margin="0 0 0 5">
+                    <PasswordBox
+                        IsEnabled="False"
+                        PasswordChanged="ReplayPasswordPasswordBox_PasswordChanged"
+                        Width="460"
+                        x:Name="ReplayPasswordPasswordBox"/>
+                    <TextBlock
+                        x:Name="HintReplayPasswordTextBlock"
+                        Margin="12 0 0 0"
+                        Text="Повторите пароль"
+                        Style="{StaticResource HintTextBlock}"/>
+                </Grid>
+                <Button
+                    Visibility="Visible"
+                    IsEnabled="False"
+                    x:Name="NextCodeButton"
+                    Click="NextCodeButton_Click"
+                    Width="220"
+                    Margin="0 10 0 10"
+                    Content="ОТПРАВИТЬ КОД"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource MainButton}"/>
+                <Button
+                    IsEnabled="False"
+                    Visibility="Collapsed"
+                    x:Name="CheckCodeButton"
+                    Click="CheckCodeButton_Click"
+                    Width="220"
+                    Margin="0 10 0 10"
+                    Content="СБРОСИТЬ ПАРОЛЬ"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource MainButton}"/>
+                <Button
+                    IsEnabled="False"
+                    Visibility="Collapsed"
+                    x:Name="SavePasswordButton"
+                    Click="SavePasswordButton_Click"
+                    Width="220"
+                    Margin="0 10 0 10"
+                    Content="СОХРАНИТЬ"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource MainButton}"/>
             </StackPanel>
         </Grid>
         <Grid x:Name="SpaseBarGrid" MouseDown="SpaseBarGrid_MouseDown" Background="#242630" Grid.Row="0">
@@ -75,7 +134,7 @@
             </StackPanel>
             <TextBlock
                 Style="{StaticResource TextBlockStyle}"
-                Text="АВТОРИЗАЦИЯ"
+                Text="СБРОС ПАРОЛЯ"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
                 Margin="10 0 0 0"
