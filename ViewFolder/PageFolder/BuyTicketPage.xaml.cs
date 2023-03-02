@@ -136,6 +136,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                                     AppConnectClass.DataBase.TicketTable.AddOrUpdate(GetTicket); // Обновляем читательский билет
                                     AppConnectClass.DataBase.SaveChanges();
                                     MessageBox.Show("Читательский билет успешно приобретён", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    
 
                                     //TODO: Нужно как то обновлять данные на странице (перезагрузка страницы не работает, нужно как то перезагружать массиф данных UserClass)
                                 }
