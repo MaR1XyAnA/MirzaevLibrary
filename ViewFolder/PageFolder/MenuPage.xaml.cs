@@ -51,6 +51,25 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME003 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
+        private void BuyTicketButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                FrameNavigationClass.BodyFNC.Navigate(new BuyTicketPage(UserClass.GetUserTable));
+
+                FilecabinetToggleButton.IsChecked = false;
+                CategoryToggleButton.IsChecked = false;
+                BuyTicketButton.IsChecked = true;
+                MyProfilToggleButton.IsChecked = false;
+
+                FilecabinetToggleButton.IsEnabled = true;
+                CategoryToggleButton.IsEnabled = true;
+                BuyTicketButton.IsEnabled = false;
+                MyProfilToggleButton.IsEnabled = true;
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME004 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
         private void MyProfilToggleButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -90,23 +109,6 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME006 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
-        }
-
-        private void BuyTicketButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                FilecabinetToggleButton.IsChecked = false;
-                CategoryToggleButton.IsChecked = false;
-                BuyTicketButton.IsChecked = true;
-                MyProfilToggleButton.IsChecked = false;
-
-                FilecabinetToggleButton.IsEnabled = true;
-                CategoryToggleButton.IsEnabled = true;
-                BuyTicketButton.IsEnabled = false;
-                MyProfilToggleButton.IsEnabled = true;
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME004 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
     }
 }

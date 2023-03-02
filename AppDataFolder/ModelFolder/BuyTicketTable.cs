@@ -23,6 +23,7 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
         public int PersonalnumberBuy { get; set; }
         public string NameBuy { get; set; }
         public decimal PriseBuy { get; set; }
+        public int QwentyYearBuy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TicketTable> TicketTable { get; set; }

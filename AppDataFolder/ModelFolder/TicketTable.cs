@@ -23,7 +23,7 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
     
         public int PersonalNumberTicket { get; set; }
         public System.DateTime DateStartTicket { get; set; }
-        public Nullable<System.DateTime> DateEndTicket { get; set; }
+        public System.DateTime DateEndTicket { get; set; }
         public Nullable<int> pnBuy { get; set; }
     
         public virtual BuyTicketTable BuyTicketTable { get; set; }

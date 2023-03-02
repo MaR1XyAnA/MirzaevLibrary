@@ -30,7 +30,7 @@
                 FontSize="25"/>
             <TextBlock
                 Style="{StaticResource TextBlockStyle}"
-                Text="{Binding PriseBuy}"
+                Text="{Binding PriseBuy, StringFormat={}{0:#.00}₽}"
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Right"
                 TextWrapping="Wrap"

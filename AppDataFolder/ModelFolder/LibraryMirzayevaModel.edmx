@@ -41,6 +41,7 @@
           <Property Name="PersonalnumberBuy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameBuy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PriseBuy" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="QwentyYearBuy" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CashTable">
           <Key>
@@ -105,9 +106,9 @@
           <Key>
             <PropertyRef Name="PersonalNumberTicket" />
           </Key>
-          <Property Name="PersonalNumberTicket" Type="int" Nullable="false" />
+          <Property Name="PersonalNumberTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DateStartTicket" Type="date" Nullable="false" />
-          <Property Name="DateEndTicket" Type="date" />
+          <Property Name="DateEndTicket" Type="date" Nullable="false" />
           <Property Name="pnBuy" Type="int" />
         </EntityType>
         <EntityType Name="TiketBookTable">
@@ -449,6 +450,7 @@
           <Property Name="PersonalnumberBuy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameBuy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PriseBuy" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="QwentyYearBuy" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.FK_TicketTable_BuyTicketTable" FromRole="BuyTicketTable" ToRole="TicketTable" />
         </EntityType>
         <EntityType Name="CashTable">
@@ -521,9 +523,9 @@
           <Key>
             <PropertyRef Name="PersonalNumberTicket" />
           </Key>
-          <Property Name="PersonalNumberTicket" Type="Int32" Nullable="false" />
+          <Property Name="PersonalNumberTicket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DateStartTicket" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DateEndTicket" Type="DateTime" Precision="0" />
+          <Property Name="DateEndTicket" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="pnBuy" Type="Int32" />
           <NavigationProperty Name="BuyTicketTable" Relationship="LibraryMirzayevaModel.FK_TicketTable_BuyTicketTable" FromRole="TicketTable" ToRole="BuyTicketTable" />
           <NavigationProperty Name="UserTable" Relationship="LibraryMirzayevaModel.FK_UserTable_TicketTable" FromRole="TicketTable" ToRole="UserTable" />
@@ -712,6 +714,7 @@
           <EntitySetMapping Name="BuyTicketTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.BuyTicketTable">
               <MappingFragment StoreEntitySet="BuyTicketTable">
+                <ScalarProperty Name="QwentyYearBuy" ColumnName="QwentyYearBuy" />
                 <ScalarProperty Name="PriseBuy" ColumnName="PriseBuy" />
                 <ScalarProperty Name="NameBuy" ColumnName="NameBuy" />
                 <ScalarProperty Name="PersonalnumberBuy" ColumnName="PersonalnumberBuy" />
