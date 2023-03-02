@@ -100,6 +100,16 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             if (PassworPasswordString == "" || LoginString == "") { NextButton.IsEnabled = false; }
             else { NextButton.IsEnabled = true; }
         }
+
+        private void ForgetPasswordHyperlink_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ForgetPasswordHyperlink_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
 

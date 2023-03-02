@@ -155,6 +155,9 @@
     <Compile Include="ViewFolder\WindowsFolder\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewFolder\WindowsFolder\ForgetWindow.xaml.cs">
+      <DependentUpon>ForgetWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewFolder\WindowsFolder\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -286,6 +289,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewFolder\WindowsFolder\AuthorizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewFolder\WindowsFolder\ForgetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
