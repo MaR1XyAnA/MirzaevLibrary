@@ -1,0 +1,16 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <Style TargetType="Hyperlink">
+        <Setter Property="FontFamily" Value="\ContentFolder\FontFolder\#Jura"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="TextDecorations" Value="None"/>
+        <Setter Property="Foreground" Value="#e1e3e6"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="TextDecorations" Value="Underline"/>
+                <Setter Property="Foreground" Value="#999a9c"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

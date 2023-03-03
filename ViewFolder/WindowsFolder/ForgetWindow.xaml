@@ -22,6 +22,7 @@
             <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Grid Visibility="Visible" x:Name="LoginGrid" Margin="0 0 0 5">
                     <TextBox
+                        KeyDown="LoginTextBox_KeyDown"
                         TextChanged="LoginTextBox_TextChanged"
                         Padding="33 0 0 0"
                         Width="460"
@@ -39,6 +40,7 @@
                 </Grid>
                 <Grid x:Name="CodeGrid" Visibility="Collapsed" Margin="0 0 0 5">
                     <TextBox
+                        KeyDown="CodeTextBox_KeyDown"
                         TextChanged="CodeTextBox_TextChanged"
                         Padding="33 0 0 0"
                         Width="460"
@@ -67,6 +69,7 @@
                 </Grid>
                 <Grid Visibility="Collapsed" x:Name="ReplayPasswordGrid" Margin="0 0 0 5">
                     <PasswordBox
+                        KeyDown="ReplayPasswordPasswordBox_KeyDown"
                         IsEnabled="False"
                         PasswordChanged="ReplayPasswordPasswordBox_PasswordChanged"
                         Width="460"

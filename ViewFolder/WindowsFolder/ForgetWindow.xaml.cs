@@ -1,29 +1,24 @@
 ﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
 using MirzaevLibrary.AppDataFolder.ModelFolder;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Data.Entity.Migrations;
 
 namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
     public partial class ForgetWindow : Window
     {
+        #region CommonVariables
         string RandomCodeString = null; // Создаём переменную для дальнейшей записи в неё и для получения из неё рандомного кода для регистрации пользователя
         int ErrorInt = 0; // Создаём переменную для подсчёта ошибок
-        string LoginUserString = null;
+        string LoginUserString = null; // Создаём переменную для записи Email пользователя
+        #endregion
 
         private int RandomTextSender() { Random random = new Random(); return random.Next(1000000); } // Метод, который генерирует рандомное число для подтверждения регистрации
 
@@ -31,47 +26,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         {
             try { InitializeComponent(); AppConnectClass.DataBase = new LibraryMirzayevaEntities(); }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FO001 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Error); }
-        }
-
-        private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (LoginTextBox.Text.Length > 0) { NextCodeButton.IsEnabled = true; HintLoginTextBlock.Visibility = Visibility.Collapsed; }
-            else { NextCodeButton.IsEnabled = false; HintLoginTextBlock.Visibility = Visibility.Visible; }
-        }
-
-        private void CodeTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (CodeTextBox.Text.Length > 0) { CheckCodeButton.IsEnabled = true; HintCodeTextBlock.Visibility = Visibility.Collapsed; }
-            else { CheckCodeButton.IsEnabled = false; HintCodeTextBlock.Visibility = Visibility.Visible; }
-        }
-
-        private void NewPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (NewPasswordTextBox.Text.Length > 0) { ReplayPasswordPasswordBox.IsEnabled = true; HintNewPasswordTextBlock.Visibility = Visibility.Collapsed; }
-            else { ReplayPasswordPasswordBox.IsEnabled = false; HintNewPasswordTextBlock.Visibility = Visibility.Visible; }
-        }
-
-        private void ReplayPasswordPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (ReplayPasswordPasswordBox.Password.Length > 0)
-            {
-                HintReplayPasswordTextBlock.Visibility = Visibility.Collapsed;
-
-                string PasswordText, PasswordPasword;
-                PasswordText = Convert.ToString(NewPasswordTextBox.Text); PasswordPasword = Convert.ToString(ReplayPasswordPasswordBox.Password);
-
-                if (PasswordPasword == "" && PasswordText != "") { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); SavePasswordButton.IsEnabled = false; }
-                else
-                {
-                    if (PasswordText == "") { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); SavePasswordButton.IsEnabled = false; }
-                    else
-                    {
-                        if (PasswordPasword != PasswordText) { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); SavePasswordButton.IsEnabled = false; }
-                        if (PasswordPasword == PasswordText) { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); SavePasswordButton.IsEnabled = true; }
-                    }
-                }
-            }
-            else { ReplayPasswordPasswordBox.IsEnabled = false; HintNewPasswordTextBlock.Visibility = Visibility.Visible; }
         }
 
         #region Управление окном
@@ -94,7 +48,26 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         }
         #endregion
 
-        private void NextCodeButton_Click(object sender, RoutedEventArgs e) // Отправка кода
+        #region События кнопок
+        private void BackHyperlink_Click(object sender, RoutedEventArgs e) { AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); this.Close(); } // Переход по нажатию на ссылку
+
+        private void SavePasswordButton_Click(object sender, RoutedEventArgs e) { SaveNewPassword(); }
+
+        private void NextCodeButton_Click(object sender, RoutedEventArgs e) { SendTheCode(); }
+
+        private void CheckCodeButton_Click(object sender, RoutedEventArgs e) { CheckЕheСode(); } 
+        #endregion
+
+        #region События при нажатии на Enter
+        private void LoginTextBox_KeyDown(object sender, KeyEventArgs e) { if (e.Key == Key.Enter) { SendTheCode(); } }
+
+        private void CodeTextBox_KeyDown(object sender, KeyEventArgs e) { if (e.Key == Key.Enter) { CheckЕheСode(); } }
+
+        private void ReplayPasswordPasswordBox_KeyDown(object sender, KeyEventArgs e) { if (e.Key == Key.Enter) { SaveNewPassword(); } }
+        #endregion
+
+        #region Действие
+        private void SendTheCode() // Отправка кода
         {
             try
             {
@@ -156,32 +129,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FO003 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
-        private void CheckCodeButton_Click(object sender, RoutedEventArgs e) // Проверка, совподает ли код который ввел пользователь, с тем, что отправленно
-        {
-            try
-            {
-                if (CodeTextBox.Text != RandomCodeString)
-                {
-                    MessageBox.Show("Код введён не правильно", "FO006 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    CodeGrid.Visibility = Visibility.Collapsed;
-                    LoginGrid.Visibility = Visibility.Collapsed;
-                    NextCodeButton.Visibility = Visibility.Collapsed;
-                    CheckCodeButton.Visibility = Visibility.Collapsed;
-
-                    NewPasswordGrid.Visibility = Visibility.Visible;
-                    ReplayPasswordGrid.Visibility = Visibility.Visible;
-                    SavePasswordButton.Visibility = Visibility.Visible;
-                }
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FO005 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Error); }
-        }
-
-        private void BackHyperlink_Click(object sender, RoutedEventArgs e) { AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); this.Close(); } // Переход по нажатию на ссылку
-
-        private void SavePasswordButton_Click(object sender, RoutedEventArgs e) // Сохранение пароля
+        private void SaveNewPassword() // Сохранение пароля
         {
             try
             {
@@ -222,5 +170,72 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FO009 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
+
+        private void CheckЕheСode() // Проверка, совподает ли код который ввел пользователь, с тем, что отправленно
+        {
+            try
+            {
+                if (CodeTextBox.Text != RandomCodeString)
+                {
+                    MessageBox.Show("Код введён не правильно", "FO006 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    CodeGrid.Visibility = Visibility.Collapsed;
+                    LoginGrid.Visibility = Visibility.Collapsed;
+                    NextCodeButton.Visibility = Visibility.Collapsed;
+                    CheckCodeButton.Visibility = Visibility.Collapsed;
+
+                    NewPasswordGrid.Visibility = Visibility.Visible;
+                    ReplayPasswordGrid.Visibility = Visibility.Visible;
+                    SavePasswordButton.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FO005 - Ошибка сброса пароля", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+        #endregion
+
+        #region Changed
+        private void ReplayPasswordPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (ReplayPasswordPasswordBox.Password.Length > 0)
+            {
+                HintReplayPasswordTextBlock.Visibility = Visibility.Collapsed;
+
+                string PasswordText, PasswordPasword;
+                PasswordText = Convert.ToString(NewPasswordTextBox.Text); PasswordPasword = Convert.ToString(ReplayPasswordPasswordBox.Password);
+
+                if (PasswordPasword == "" && PasswordText != "") { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); SavePasswordButton.IsEnabled = false; }
+                else
+                {
+                    if (PasswordText == "") { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); SavePasswordButton.IsEnabled = false; }
+                    else
+                    {
+                        if (PasswordPasword != PasswordText) { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); SavePasswordButton.IsEnabled = false; }
+                        if (PasswordPasword == PasswordText) { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); SavePasswordButton.IsEnabled = true; }
+                    }
+                }
+            }
+            else { ReplayPasswordPasswordBox.IsEnabled = false; HintNewPasswordTextBlock.Visibility = Visibility.Visible; }
+        }
+
+        private void NewPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (NewPasswordTextBox.Text.Length > 0) { ReplayPasswordPasswordBox.IsEnabled = true; HintNewPasswordTextBlock.Visibility = Visibility.Collapsed; }
+            else { ReplayPasswordPasswordBox.IsEnabled = false; HintNewPasswordTextBlock.Visibility = Visibility.Visible; }
+        }
+
+        private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (LoginTextBox.Text.Length > 0) { NextCodeButton.IsEnabled = true; HintLoginTextBlock.Visibility = Visibility.Collapsed; }
+            else { NextCodeButton.IsEnabled = false; HintLoginTextBlock.Visibility = Visibility.Visible; }
+        }
+
+        private void CodeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (CodeTextBox.Text.Length > 0) { CheckCodeButton.IsEnabled = true; HintCodeTextBlock.Visibility = Visibility.Collapsed; }
+            else { CheckCodeButton.IsEnabled = false; HintCodeTextBlock.Visibility = Visibility.Visible; }
+        }
+        #endregion
     }
 }
