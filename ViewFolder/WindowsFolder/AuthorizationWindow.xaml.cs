@@ -10,6 +10,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
     public partial class AuthorizationWindow : Window
     {
+        int NumberIncorrectAttempts = 0;
         MainWindow mainWindow = new MainWindow();
 
         public AuthorizationWindow()
@@ -23,17 +24,26 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         {
             try
             {
-                var GetUser = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.LoginUser == LoginTextBox.Text && data.PasswordUser == PasswordPasswordBox.Password);
-                if (GetUser != null)
-                {
-                    UserClass.GetUserTable = GetUser;
-                    mainWindow.Show(); this.Close();
-                }
-                else { MessageBox.Show("Не правильный логин или пароль", "Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AU002 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
-        }
+                var GetUser = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.LoginUser == LoginTextBox.Text); // Переменная которая ищет пользователя по Login
 
+                if (GetUser != null) // Если пользователь существует
+                {
+                    if (PasswordPasswordBox.Password != GetUser.PasswordUser) // Если пароль не правильный
+                    { 
+                        NumberIncorrectAttempts++; // +1 к переменной
+                        MessageBox.Show("Не правильный логин или пароль", "AU002 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+                        if (NumberIncorrectAttempts >= 5) { ResetPasswordTextBlock.Visibility = Visibility.Visible; } // Если переменная = или > 5
+                    }
+                    else // Если пользователь существует и пароль введён правильно
+                    {
+                        UserClass.GetUserTable = GetUser; // В переменную в классе отпровляем "Ссылку" на пользователя
+                        mainWindow.Show(); this.Close();
+                    }
+                }
+                else { MessageBox.Show("Данного пользователя не существует", "Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); } // Если пользователя не существует
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AU003 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
         #endregion
 
         #region Click

@@ -112,7 +112,11 @@
                         </StackPanel>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock 
+                            Visibility="Collapsed" 
+                            x:Name="ResetPasswordTextBlock" 
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Center">
                             <Hyperlink x:Name="ForgetPasswordHyperlink" Click="ForgetPasswordHyperlink_Click">СБРОСИТЬ ПАРОЛЬ</Hyperlink>
                         </TextBlock>
                     </StackPanel>

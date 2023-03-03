@@ -251,19 +251,19 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать 
         {
             try { if (e.ChangedButton == MouseButton.Left) { this.DragMove(); } }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AUBU001 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FOBU001 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             try { Application.Current.Shutdown(); }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AUBU002 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FOBU002 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         private void RollUpButton_Click(object sender, RoutedEventArgs e)
         {
             try { WindowState = WindowState.Minimized; }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AUBU003 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "FOBU003 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
         #endregion
     }
