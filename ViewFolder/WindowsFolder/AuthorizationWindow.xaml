@@ -147,6 +147,14 @@
                             Content="ПРОДОЛЖИТЬ БЕЗ РЕГИСТРАЦИИ\АВТОРИЗАЦИИ"/>
                     </StackPanel>
                 </StackPanel>
+                <ProgressBar
+                    x:Name="LoadingApplicationProgressBar"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Grid.Row="1"
+                    Height="20"
+                    Width="600"
+                    Margin="0 0 0 10"/>
             </Grid>
         </Grid>
         <Grid x:Name="SpaseBarGrid" MouseDown="SpaseBarGrid_MouseDown" Background="#242630" Grid.Row="0">

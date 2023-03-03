@@ -19,6 +19,7 @@
                 <ResourceDictionary Source="\StyleFolder\ScrollViewerStyle.xaml"/>
                 <ResourceDictionary Source="\StyleFolder\ListBoxStyle.xaml"/>
                 <ResourceDictionary Source="\StyleFolder\HyperlinkStyle.xaml"/>
+                <ResourceDictionary Source="\StyleFolder\ProgressBarStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
