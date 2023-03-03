@@ -85,12 +85,26 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                         {
                             RandomCodeString = RandomTextSender().ToString("D6"); // в переменную засунули случайное число для подтверждения регистрации
 
+                            string SurnameUserString = SearthUser.SurnameUser;
+                            string NameUserString = SearthUser.NameUser;
+                            string MiddlrnameUserString = SearthUser.MiddlenameUser;
+
+                            string SNMUser = SurnameUserString + " " + NameUserString + " " + MiddlrnameUserString;
+
                             string LoginMail = "orangeblood@rambler.ru"; // электронная почта приложения
                             string PasswordMail = "OrangeBlood123"; // пароль почты приложения
                             string smtpMail = "smtp.rambler.ru"; // smtp адресс почты приложения
                             string FromWhom = "Автоматизированная информационная система 'Cool Bible Library'";
-                            string TopicLetters = "Подтверждение регистрации";
-                            string ToSend = RandomCodeString;
+                            string TopicLetters = "Сброс пароля";
+                            string ToSend =
+                                "<div style=\"position: relative; width:1120; height: 630; border:1px solid #fff; background-color: #fff;\">\r\n" +
+                                    "<div style=\"border-radius: 10px; position: relative; width: 780; left: 50%; right: 50%; top: 50%; bottom: 50%; height: 340; transform: translate(-50%, -50%); background-color: #232324;\">\r\n" +
+                                        "<p style=\"color: #e1e3e6; font-size: 40; text-align: center; font-weight:bold; padding-top: 20;\">СБРОС ПАРОЛЯ</p>\r\n" +
+                                        "<p style=\"color: #e1e3e6; font-size: 20; padding-top: 10; padding-left: 10px; padding-right: 10px;\">Здравствуйте " + SNMUser + "! Вы запросили сброс пароля для своей учётной записи в 'Cool Bible Library'</p>\r\n" +
+                                        "<p style=\"color: #529ef4; font-size: 40; padding-top: 15; padding-left: 50px; font-weight:bold;\">Код для сброса пароля: " + RandomCodeString + "</p>\r\n" +
+                                        "<p style=\"color: #e1e3e6; font-size: 15; padding-top: 15; padding-left: 10px; padding-right: 10px;\">Если вы этого не делали, обратитесь в службу поддержки 8 (916)-178-23-43. С уважением Cool Bible Library</p>\r\n" +
+                                    "</div>\r\n" +
+                                "</div>"; // HTML code для сообщения
 
                             SmtpClient mySmtpClient = new SmtpClient(smtpMail);
 
@@ -105,6 +119,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                             MailAddress replyTo = new MailAddress(LoginMail);
                             myMail.ReplyToList.Add(replyTo);
 
+                            myMail.IsBodyHtml = true;
                             myMail.Subject = TopicLetters;
                             myMail.Body = ToSend;
 
@@ -211,18 +226,37 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     if (PasswordText == "") { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); SavePasswordButton.IsEnabled = false; }
                     else
                     {
+                        ReplayPasswordPasswordBox.IsEnabled = true;
                         if (PasswordPasword != PasswordText) { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); SavePasswordButton.IsEnabled = false; }
                         if (PasswordPasword == PasswordText) { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); SavePasswordButton.IsEnabled = true; }
                     }
                 }
             }
-            else { ReplayPasswordPasswordBox.IsEnabled = false; HintNewPasswordTextBlock.Visibility = Visibility.Visible; }
+            else { ReplayPasswordPasswordBox.IsEnabled = false; HintReplayPasswordTextBlock.Visibility = Visibility.Visible; }
         }
 
         private void NewPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (NewPasswordTextBox.Text.Length > 0) { ReplayPasswordPasswordBox.IsEnabled = true; HintNewPasswordTextBlock.Visibility = Visibility.Collapsed; }
-            else { ReplayPasswordPasswordBox.IsEnabled = false; HintNewPasswordTextBlock.Visibility = Visibility.Visible; }
+            if (NewPasswordTextBox.Text.Length > 0)
+            {
+                HintNewPasswordTextBlock.Visibility = Visibility.Collapsed;
+
+                string PasswordText, PasswordPasword;
+                PasswordText = Convert.ToString(NewPasswordTextBox.Text); PasswordPasword = Convert.ToString(ReplayPasswordPasswordBox.Password);
+
+                if (PasswordPasword != "" && PasswordText == "") { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); SavePasswordButton.IsEnabled = false; }
+                else
+                {
+                    if (PasswordText == "") { NewPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); ReplayPasswordPasswordBox.IsEnabled = false; SavePasswordButton.IsEnabled = false; }
+                    else
+                    {
+                        ReplayPasswordPasswordBox.IsEnabled = true;
+                        if (PasswordText != PasswordPasword) { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); SavePasswordButton.IsEnabled = false; }
+                        if (PasswordText == PasswordPasword) { ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); SavePasswordButton.IsEnabled = true; }
+                    }
+                }
+            }
+            else { ReplayPasswordPasswordBox.IsEnabled = false; HintReplayPasswordTextBlock.Visibility = Visibility.Visible; }
         }
 
         private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
