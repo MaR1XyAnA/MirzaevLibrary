@@ -69,8 +69,8 @@
                 </Grid>
                 <Grid Visibility="Collapsed" x:Name="ReplayPasswordGrid" Margin="0 0 0 5">
                     <PasswordBox
+                        LayoutUpdated="ReplayPasswordPasswordBox_LayoutUpdated"
                         KeyDown="ReplayPasswordPasswordBox_KeyDown"
-                        IsEnabled="False"
                         PasswordChanged="ReplayPasswordPasswordBox_PasswordChanged"
                         Width="460"
                         x:Name="ReplayPasswordPasswordBox"/>

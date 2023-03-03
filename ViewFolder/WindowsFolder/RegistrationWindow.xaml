@@ -40,7 +40,7 @@
                                 <TextBlock
                                     x:Name="HintSurnameTextBlock"
                                     Margin="10 0 0 0"
-                                    Text="Фамилия"
+                                    Text="Фамилия*"
                                     Style="{StaticResource HintTextBlock}"/>
                             </Grid>
                             <Grid Margin="0 5 0 5">
@@ -53,7 +53,7 @@
                                 <TextBlock
                                     x:Name="HintNameTextBlock"
                                     Margin="10 0 0 0"
-                                    Text="Имя"
+                                    Text="Имя*"
                                     Style="{StaticResource HintTextBlock}"/>
                             </Grid>
                             <Grid Margin="0 5 0 5">
@@ -79,7 +79,7 @@
                                 <TextBlock
                                     x:Name="HintEmailTextBlock"
                                     Margin="10 0 0 0"
-                                    Text="Электронная почта"
+                                    Text="Электронная почта*"
                                     Style="{StaticResource HintTextBlock}"/>
                             </Grid>
                             <Grid Margin="0 5 0 5">
@@ -93,7 +93,7 @@
                                 <TextBlock
                                     x:Name="HintPhoneTextBlock"
                                     Margin="10 0 0 0"
-                                    Text="Номер телефона"
+                                    Text="Номер телефона*"
                                     Style="{DynamicResource HintTextBlock}"/>    
                             </Grid>
                             <Grid Margin="0 5 0 5">
@@ -106,7 +106,7 @@
                                 <TextBlock
                                     x:Name="HintNewPasswordTextBlock"
                                     Margin="10 0 0 0"
-                                    Text="Пароль"
+                                    Text="Пароль*"
                                     Style="{StaticResource HintTextBlock}"/>
                             </Grid>
                             <Grid Margin="0 5 0 5">
@@ -120,7 +120,7 @@
                                 <TextBlock
                                     x:Name="HintPasswordTextBlock"
                                     Margin="10 0 0 0"
-                                    Text="Повторите пароль"
+                                    Text="Повторите пароль*"
                                     Style="{StaticResource HintTextBlock}"/>
                             </Grid>
                         </StackPanel>

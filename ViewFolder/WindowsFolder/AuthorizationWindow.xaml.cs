@@ -18,6 +18,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AU001 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); } 
         }
 
+        #region Действие
         public void EnterUser() // Метод для входа пользователя
         {
             try
@@ -30,20 +31,29 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 }
                 else { MessageBox.Show("Не правильный логин или пароль", "Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
-            catch (Exception ex) {  MessageBox.Show(ex.Message.ToString(), "AU002 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AU002 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
+        #endregion
+
+        #region Click
         private void NextButton_Click(object sender, RoutedEventArgs e) { EnterUser(); }
 
         private void IgnoreAutborizationButton_Click(object sender, RoutedEventArgs e) { MainWindow mainWindow = new MainWindow(); mainWindow.Show(); this.Close(); }
 
-        private void PasswordPasswordBox_KeyDown(object sender, KeyEventArgs e) { if (e.Key == Key.Enter) { EnterUser(); } }
+        private void ForgetPasswordHyperlink_Click(object sender, RoutedEventArgs e) { ForgetWindow forgetWindow = new ForgetWindow(); forgetWindow.Show(); this.Close(); }
 
         private void RegistrationButton_Click(object sender, RoutedEventArgs e) { RegistrationWindow registrationWindow = new RegistrationWindow(); registrationWindow.Show(); this.Close(); }
+        #endregion
 
+        #region KeyDown
+        private void PasswordPasswordBox_KeyDown(object sender, KeyEventArgs e) { if (e.Key == Key.Enter) { EnterUser(); } }
+        #endregion
+
+        #region PreviewMouseDown_PreviewMouseUp
         private void VisiblePasswordUserButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            CollapsedPasswordGrid.Visibility = Visibility.Collapsed;  VisiblePasswordGrid.Visibility = Visibility.Visible;
+            CollapsedPasswordGrid.Visibility = Visibility.Collapsed; VisiblePasswordGrid.Visibility = Visibility.Visible;
             string PasswordString = Convert.ToString(PasswordPasswordBox.Password);
             PasswordTextBox.Text = PasswordString;
         }
@@ -54,7 +64,9 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             string PasswordString = Convert.ToString(PasswordTextBox.Text);
             PasswordPasswordBox.Password = PasswordString;
         }
+        #endregion
 
+        #region TextChanged_PasswordChanged
         private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (LoginTextBox.Text.Length > 0) { HintLoginTextBlock.Visibility = Visibility.Collapsed; }
@@ -72,6 +84,17 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             if (PasswordTextBox.Text.Length > 0) { HintPasswordCollapsedTextBlock.Visibility = Visibility.Collapsed; }
             else { HintPasswordCollapsedTextBlock.Visibility = Visibility.Visible; }
         }
+        #endregion
+
+        #region LayoutUpdated
+        private void NextButton_LayoutUpdated(object sender, EventArgs e)
+        {
+            string LoginString, PassworPasswordString;
+            LoginString = Convert.ToString(LoginTextBox.Text); PassworPasswordString = Convert.ToString(PasswordPasswordBox.Password);
+            if (PassworPasswordString == "" || LoginString == "") { NextButton.IsEnabled = false; }
+            else { NextButton.IsEnabled = true; }
+        }
+        #endregion
 
         #region Управление окном
         private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать 
@@ -92,16 +115,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AUBU003 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
         #endregion
-
-        private void NextButton_LayoutUpdated(object sender, EventArgs e)
-        {
-            string LoginString, PassworPasswordString;
-            LoginString = Convert.ToString(LoginTextBox.Text); PassworPasswordString = Convert.ToString(PasswordPasswordBox.Password);
-            if (PassworPasswordString == "" || LoginString == "") { NextButton.IsEnabled = false; }
-            else { NextButton.IsEnabled = true; }
-        }
-
-        private void ForgetPasswordHyperlink_Click(object sender, RoutedEventArgs e) { ForgetWindow forgetWindow = new ForgetWindow(); forgetWindow.Show(); this.Close(); }
     }
 }
 
