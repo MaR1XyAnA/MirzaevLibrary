@@ -183,10 +183,12 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         }
 
         private void RegistrationEmail() // Метод для отправки сообщение - подтверждение для регистрации (на указанную почту приходит код)
-        { 
+        {
             try
             {
                 CodeString = RandomTextSender().ToString("D6"); // в переменную засунули случайное число для подтверждения регистрации
+
+                string SNUser = SurnameTextBox.Text + " " + NameTextBox.Text;
 
                 string EmailUser = Convert.ToString(EmailTextBox.Text); // почта жертвы
                 string LoginMail = "orangeblood@rambler.ru"; // электронная почта приложения
@@ -194,7 +196,15 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 string smtpMail = "smtp.rambler.ru"; // smtp адресс почты приложения
                 string FromWhom = "Автоматизированная информационная система 'Cool Bible Library'";
                 string TopicLetters = "Подтверждение регистрации";
-                string ToSend = CodeString;
+                string ToSend =
+                    "<div style=\"position: relative; width:1120; height: 630; border:1px solid #fff; background-color: #fff;\">\r\n" +
+                        "<div style=\"border-radius: 10px; position: relative; width: 780; left: 50%; right: 50%; top: 50%; bottom: 50%; height: 340; transform: translate(-50%, -50%); background-color: #232324;\">\r\n" +
+                            "<p style=\"color: #e1e3e6; font-size: 40; text-align: center; font-weight:bold; padding-top: 20;\">РЕГИСТРАЦИЯ</p>\r\n" +
+                            "<p style=\"color: #e1e3e6; font-size: 20; padding-top: 10; padding-left: 10px; padding-right: 10px;\">Здравствуйте " + SNUser + "! Вы запросили код для регистрации своей учётной записи в 'Cool Bible Library'</p>\r\n" +
+                            "<p style=\"color: #529ef4; font-size: 40; padding-top: 15; padding-left: 50px; font-weight:bold;\">Код для завершения регистрации: " + CodeString + "</p>\r\n" +
+                            "<p style=\"color: #e1e3e6; font-size: 15; padding-top: 15; padding-left: 10px; padding-right: 10px;\">Если вы этого не делали, обратитесь в службу поддержки 8 (916)-178-23-43. С уважением Cool Bible Library</p>\r\n" +
+                        "</div>\r\n" +
+                    "</div>"; // HTML code для сообщения
 
                 SmtpClient mySmtpClient = new SmtpClient(smtpMail);
 
@@ -208,7 +218,8 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
                 MailAddress replyTo = new MailAddress(LoginMail);
                 myMail.ReplyToList.Add(replyTo);
-
+               
+                myMail.IsBodyHtml = true;
                 myMail.Subject = TopicLetters;
                 myMail.Body = ToSend;
 
