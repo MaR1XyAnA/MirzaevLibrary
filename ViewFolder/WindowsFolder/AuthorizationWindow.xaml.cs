@@ -1,7 +1,10 @@
 ﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
 using MirzaevLibrary.AppDataFolder.ModelFolder;
 using System;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,21 +18,28 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
         public AuthorizationWindow()
         {
-            try { InitializeComponent(); AppConnectClass.DataBase = new LibraryMirzayevaEntities(); }
+            try
+            {
+                InitializeComponent();
+                AppConnectClass.DataBase = new LibraryMirzayevaEntities();
+            }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AU001 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         #region Действие
-        public void EnterUser() // Метод для входа пользователя
+        private void AnimLoadingStart() { LoadingApplicationProgressBar.Visibility = Visibility.Visible; LoadingApplicationProgressBar.IsIndeterminate = true; } // Загрузка true
+        private void AnimLoadingEnd() { LoadingApplicationProgressBar.Visibility = Visibility.Collapsed; LoadingApplicationProgressBar.IsIndeterminate = false; } // Загрузка false
+        private async void EnterUser() // Метод для входа пользователя
         {
             try
             {
-                var GetUser = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.LoginUser == LoginTextBox.Text); // Переменная которая ищет пользователя по Login
-
+                AnimLoadingStart();
+                var GetUser = await AppConnectClass.DataBase.UserTable.FirstOrDefaultAsync(data => data.LoginUser == LoginTextBox.Text); // Переменная которая ищет пользователя по Login (LINQ - запрос)
+                
                 if (GetUser != null) // Если пользователь существует
                 {
                     if (PasswordPasswordBox.Password != GetUser.PasswordUser) // Если пароль не правильный
-                    { 
+                    {
                         NumberIncorrectAttempts++; // +1 к переменной
                         MessageBox.Show("Не правильный логин или пароль", "AU002 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error);
                         if (NumberIncorrectAttempts >= 5) { ResetPasswordTextBlock.Visibility = Visibility.Visible; } // Если переменная = или > 5
@@ -40,9 +50,10 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                         mainWindow.Show(); this.Close();
                     }
                 }
-                else { MessageBox.Show("Данного пользователя не существует", "Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); } // Если пользователя не существует
+                else { MessageBox.Show("Данного пользователя не существует", "Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }  // Если пользователя не существует 
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AU003 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
+            finally { AnimLoadingEnd(); }
         }
         #endregion
 
