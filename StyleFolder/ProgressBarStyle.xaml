@@ -9,7 +9,6 @@
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Minimum" Value="0"/>
         <Setter Property="Maximum" Value="100"/>
-        <Setter Property="IsIndeterminate" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ProgressBar">
@@ -23,46 +22,31 @@
                         BorderThickness="0">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Determinate"/>
                                 <VisualState x:Name="Indeterminate">
                                     <Storyboard RepeatBehavior="Forever">
-                                        <DoubleAnimation    
-                                            Duration="00:00:03"  
-                                            RepeatBehavior="Forever"  
-                                            To="50"  
-                                            Storyboard.TargetName="IndeterminateBorder"  
-                                            Storyboard.TargetProperty="(Canvas.Left)"/>
-                                        <DoubleAnimation    
-                                            Duration="00:00:03"  
-                                            RepeatBehavior="Forever"  
-                                            To="50"  
+                                        <DoubleAnimation  
+                                            AutoReverse="True"
+                                            Duration="0:0:1"  
+                                            To="540" 
+                                            From="0"
                                             Storyboard.TargetName="Indicator"  
-                                            Storyboard.TargetProperty="(Canvas.Left)"/>
+                                            Storyboard.TargetProperty="(Canvas.Left)">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuadraticEase EasingMode="EaseInOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid x:Name="Foreground">
+                        <Canvas>
                             <Border  
                                 CornerRadius="4" 
                                 Height="8" 
-                                Width="10" 
+                                Width="50" 
                                 x:Name="Indicator"  
-                                Background="{TemplateBinding Foreground}"  
-                                HorizontalAlignment="Left"  
-                                Margin="-1,0,0,0"  
-                                VerticalAlignment="Center"/>
-                            <Border 
-                                CornerRadius="4" 
-                                Height="8" 
-                                Width="100" 
-                                x:Name="IndeterminateBorder"  
-                                Background="{TemplateBinding Foreground}"  
-                                HorizontalAlignment="Left"  
-                                Margin="-1,0,0,0"  
-                                Opacity="0"  
-                                VerticalAlignment="Center"/>
-                        </Grid>
+                                Background="{TemplateBinding Foreground}"/>
+                        </Canvas>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
