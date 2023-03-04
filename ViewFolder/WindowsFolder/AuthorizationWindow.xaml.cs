@@ -17,8 +17,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         {
             try { InitializeComponent(); AppConnectClass.DataBase = new LibraryMirzayevaEntities(); }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AU001 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
-
-            LoadingApplicationProgressBar.IsIndeterminate = true;
         }
 
         #region Действие
