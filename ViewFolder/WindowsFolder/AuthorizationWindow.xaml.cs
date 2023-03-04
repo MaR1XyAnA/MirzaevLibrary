@@ -18,23 +18,20 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
         public AuthorizationWindow()
         {
-            try
-            {
-                InitializeComponent();
-                AppConnectClass.DataBase = new LibraryMirzayevaEntities();
-            }
+            try { InitializeComponent(); AppConnectClass.DataBase = new LibraryMirzayevaEntities(); }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AU001 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
         #region Действие
-        private void AnimLoadingStart() { LoadingApplicationProgressBar.Visibility = Visibility.Visible; LoadingApplicationProgressBar.IsIndeterminate = true; } // Загрузка true
-        private void AnimLoadingEnd() { LoadingApplicationProgressBar.Visibility = Visibility.Collapsed; LoadingApplicationProgressBar.IsIndeterminate = false; } // Загрузка false
-        private async void EnterUser() // Метод для входа пользователя
+        private void AnimLoadingStart() { LoadingApplicationProgressBar.Visibility = Visibility.Visible; LoadingApplicationProgressBar.IsIndeterminate = true; } // Запуск анимации загрузки
+        private void AnimLoadingEnd() { LoadingApplicationProgressBar.Visibility = Visibility.Collapsed; LoadingApplicationProgressBar.IsIndeterminate = false; } // Остановка анимации загрузки
+        private async void EnterUser() // АсинхронныйМ метод для входа пользователя
         {
             try
             {
                 AnimLoadingStart();
-                var GetUser = await AppConnectClass.DataBase.UserTable.FirstOrDefaultAsync(data => data.LoginUser == LoginTextBox.Text); // Переменная которая ищет пользователя по Login (LINQ - запрос)
+                string GrtLogin = LoginTextBox.Text; // Создаём переменную типа string и вставляем туда данные из LoginTextBox потому что блять эта хуйня по другому не хочеит работать блять!!!!!!!!!!!!!!!!!!!!!
+                var GetUser = await AppConnectClass.DataBase.UserTable.FirstOrDefaultAsync(data => data.LoginUser == GrtLogin); // Переменная которая ищет пользователя по Login (LINQ - запрос)
                 
                 if (GetUser != null) // Если пользователь существует
                 {
@@ -53,7 +50,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 else { MessageBox.Show("Данного пользователя не существует", "Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }  // Если пользователя не существует 
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "AU003 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
-            finally { AnimLoadingEnd(); }
+            finally  { AnimLoadingEnd(); }
         }
         #endregion
 
