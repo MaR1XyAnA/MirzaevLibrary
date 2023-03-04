@@ -2,9 +2,6 @@
 using MirzaevLibrary.AppDataFolder.ModelFolder;
 using System;
 using System.Data.Entity;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -13,7 +10,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
     public partial class AuthorizationWindow : Window
     {
-        int NumberIncorrectAttempts = 0;
+        int NumberIncorrectAttempts = 0; // Переменная для подсчёта количества неправильно введённого пароля.
         MainWindow mainWindow = new MainWindow();
 
         public AuthorizationWindow()

@@ -2,6 +2,7 @@
 using MirzaevLibrary.AppDataFolder.ModelFolder;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,11 +31,11 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 {
                     DataContext = categoryTable;
                     TypeId = categoryTable.PersonalNumberCategory;
-                    BookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.Where(data => data.pnCategory == TypeId).ToList();
+                    BigDate();
                 }
                 else
                 {
-                    BookListBox.ItemsSource = AppConnectClass.DataBase.BookTable.ToList();
+                    BigDate2();
                 }
             }
             catch (Exception ex)
@@ -47,5 +48,23 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         {
 
         }
+
+        private async void BigDate()
+        {
+            AnimLoadingStart();
+            var GetCategory = await AppConnectClass.DataBase.BookTable.Where(data => data.pnCategory == TypeId).ToListAsync();
+            BookListBox.ItemsSource = GetCategory;
+            AnimLoadingEnd();
+        }
+        private async void BigDate2()
+        {
+            AnimLoadingStart();
+            var GetCategory = await AppConnectClass.DataBase.BookTable.ToListAsync();
+            BookListBox.ItemsSource = GetCategory;
+            AnimLoadingEnd();
+        }
+
+        private void AnimLoadingStart() { LoadingApplicationProgressBar.Visibility = Visibility.Visible; LoadingApplicationProgressBar.IsIndeterminate = true; } // Запуск анимации загрузки
+        private void AnimLoadingEnd() { LoadingApplicationProgressBar.Visibility = Visibility.Collapsed; LoadingApplicationProgressBar.IsIndeterminate = false; } // Остановка анимации загрузки
     }
 }

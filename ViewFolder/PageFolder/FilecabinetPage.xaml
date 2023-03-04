@@ -8,12 +8,7 @@
     mc:Ignorable="d" 
     Style="{StaticResource BodyPageStyle}">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
         <ListBox
-            Grid.Row="1"
             MouseDoubleClick="BookListBox_MouseDoubleClick"
             x:Name="BookListBox"
             Margin="5"
@@ -29,5 +24,13 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <ProgressBar
+            Visibility="Visible"
+            x:Name="LoadingApplicationProgressBar"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Center"
+            Width="600"
+            Height="20"
+            Margin="0 0 0 10"/>
     </Grid>
 </Page>
