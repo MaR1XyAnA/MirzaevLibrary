@@ -38,7 +38,10 @@
             BorderThickness="2 0 2 2" 
             BorderBrush="#424242">
             <Grid>
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                <StackPanel 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center" 
+                    Orientation="Horizontal">
                     <ToggleButton
                         x:Name="FilecabinetToggleButton"
                         Click="FilecabinetToggleButton_Click"

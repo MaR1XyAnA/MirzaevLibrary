@@ -1,20 +1,11 @@
 ﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
 using MirzaevLibrary.AppDataFolder.ModelFolder;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MirzaevLibrary.ViewFolder.PageFolder
 {
@@ -26,6 +17,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             try
             {
                 InitializeComponent();
+
                 AppConnectClass.DataBase = new LibraryMirzayevaEntities();
                 if (categoryTable != null)
                 {
@@ -40,7 +32,11 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(), "Ошибка входа", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "Ошибка входа",
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
             }
         }
 
@@ -64,7 +60,15 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             AnimLoadingEnd();
         }
 
-        private void AnimLoadingStart() { LoadingApplicationProgressBar.Visibility = Visibility.Visible; LoadingApplicationProgressBar.IsIndeterminate = true; } // Запуск анимации загрузки
-        private void AnimLoadingEnd() { LoadingApplicationProgressBar.Visibility = Visibility.Collapsed; LoadingApplicationProgressBar.IsIndeterminate = false; } // Остановка анимации загрузки
+        private void AnimLoadingStart() // Запуск анимации загрузки
+        { 
+            LoadingApplicationProgressBar.Visibility = Visibility.Visible; 
+            LoadingApplicationProgressBar.IsIndeterminate = true; 
+        } 
+        private void AnimLoadingEnd() // Остановка анимации загрузки
+        { 
+            LoadingApplicationProgressBar.Visibility = Visibility.Collapsed; 
+            LoadingApplicationProgressBar.IsIndeterminate = false;
+        } 
     }
 }

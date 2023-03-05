@@ -8,7 +8,11 @@
     Height="180"
     Width="320">
     <Grid>
-        <Border CornerRadius="7" Background="#222222" BorderBrush="#222222" BorderThickness="2">
+        <Border
+            CornerRadius="7"
+            Background="#222222"
+            BorderBrush="#222222" 
+            BorderThickness="2">
             <Border.Effect>
                 <DropShadowEffect 
                     Direction="315"

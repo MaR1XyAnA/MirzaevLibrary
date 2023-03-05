@@ -13,7 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
-        </Grid.RowDefinitions> <!--kfldkfld-->
+        </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <Border Style="{StaticResource BackgroundBorder}"/>
             <Grid>
@@ -22,14 +22,25 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock
-            VerticalAlignment="Bottom"
-            FontSize="70"
-            HorizontalAlignment="Center"
-            Text="Cool Bible Library"
-            Style="{StaticResource TextBlockStyle}"/>
-                <Grid Grid.Row="1" VerticalAlignment="Top" Margin="0 15 0 0">
-                    <StackPanel x:Name="InformationUserStackPanel" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <StackPanel Margin="0 0 0 20" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    VerticalAlignment="Bottom"
+                    FontSize="70"
+                    HorizontalAlignment="Center"
+                    Text="Cool Bible Library"
+                    Style="{StaticResource TextBlockStyle}"/>
+                <Grid 
+                    Grid.Row="1"
+                    VerticalAlignment="Top" 
+                    Margin="0 15 0 0">
+                    <StackPanel
+                        x:Name="InformationUserStackPanel"
+                        Orientation="Vertical"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center">
+                        <StackPanel 
+                            Margin="0 0 0 20" 
+                            Orientation="Vertical"
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Center">
                             <Grid Margin="0 0 0 5">
                                 <TextBox
                                     MaxLength="50"
@@ -124,7 +135,11 @@
                                     Style="{StaticResource HintTextBlock}"/>
                             </Grid>
                         </StackPanel>
-                        <StackPanel Margin="0 15 0 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel 
+                            Margin="0 15 0 0"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
                             <Button
                                 Margin="0 0 26.5 0"
                                 Style="{StaticResource MainButton}"
@@ -141,7 +156,12 @@
                                 Content="АВТОРИЗОВАТЬСЯ"/>
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel Visibility="Collapsed" x:Name="ConfirmEmailUserStackPanel" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel 
+                        Visibility="Collapsed" 
+                        x:Name="ConfirmEmailUserStackPanel" 
+                        Orientation="Vertical"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center">
                         <TextBlock
                             Style="{StaticResource TextBlockStyle}"
                             Text="На введённую вами почту придёт код для подтверждения регистрации. Введите код в поле ниже"
@@ -162,7 +182,11 @@
                 </Grid>
             </Grid>
         </Grid>
-        <Grid x:Name="SpaseBarGrid" MouseDown="SpaseBarGrid_MouseDown" Background="#242630" Grid.Row="0">
+        <Grid
+            x:Name="SpaseBarGrid"
+            MouseDown="SpaseBarGrid_MouseDown" 
+            Background="#242630" 
+            Grid.Row="0">
             <Grid.Effect>
                 <DropShadowEffect 
                     Direction="-90"
@@ -172,7 +196,10 @@
                     Opacity="0.8"
                     RenderingBias="Performance"/>
             </Grid.Effect>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <StackPanel 
+                Orientation="Horizontal" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Right">
                 <Button
                     x:Name="RollUpButton"
                     Click="RollUpButton_Click"

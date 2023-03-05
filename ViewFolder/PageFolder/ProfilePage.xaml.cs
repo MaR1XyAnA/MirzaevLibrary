@@ -19,9 +19,11 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             try
             {
                 InitializeComponent();
+
                 if (GetUserTable != null) // Если передоваемое значение не пустое
                 {
                     AppConnectClass.DataBase = new LibraryMirzayevaEntities(); DataContext = GetUserTable;
+
                     if (UserClass.GetUserTable.pnTicketUser == 1) // Если у пользователя стандартный номер читательского билета
                     {
                         InfoTicketThoTextBlock.Text = "У вас нет читательского билета, но вы можете его преобрести";
@@ -52,7 +54,14 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     RegistrationButton.Visibility = Visibility.Visible;
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR001 - Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "PR001 - Ошибка авторизации", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
+            }
         }
 
         private void EditProfilButton_Click(object sender, RoutedEventArgs e)
@@ -91,7 +100,11 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             {
                 if (UserClass.GetUserTable == null)
                 {
-                    MessageBox.Show("Вам нужно сначала авторизоваться", "PR002 - Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(
+                        "Вам нужно сначала авторизоваться", 
+                        "PR002 - Ошибка сохранения", 
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
                 }
                 else
                 {
@@ -135,10 +148,15 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     SavePasswordButton.Visibility = Visibility.Collapsed;
                     EditProfilButton.Visibility = Visibility.Visible;
                 }
-
-
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR003 - Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(
+                    ex.Message.ToString(),
+                    "PR003 - Ошибка сохранения", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error); 
+            }
         }
 
         private void SaveProfilButton_Click(object sender, RoutedEventArgs e)
@@ -147,13 +165,21 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             {
                 if (UserClass.GetUserTable == null)
                 {
-                    MessageBox.Show("Вам нужно сначала авторизоваться", "PR004 - Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(
+                        "Вам нужно сначала авторизоваться", 
+                        "PR004 - Ошибка сохранения",
+                        MessageBoxButton.OK, 
+                        MessageBoxImage.Information);
                 }
                 else
                 {
                     if (NewPasswordTextBox.Text == UserClass.GetUserTable.PasswordUser || PasswordPasswordBox.Password == UserClass.GetUserTable.PasswordUser)
                     {
-                        MessageBox.Show("Вы уже используете данный пароль", "PR005 - ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(
+                            "Вы уже используете данный пароль",
+                            "PR005 - ошибка сохранения",
+                            MessageBoxButton.OK, 
+                            MessageBoxImage.Information);
                     }
                     else
                     {
@@ -172,7 +198,9 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                             pnImageUser = UserClass.GetUserTable.pnImageUser
                         };
 
-                        AppConnectClass.DataBase.UserTable.AddOrUpdate(EditUser); AppConnectClass.DataBase.SaveChanges();
+                        AppConnectClass.DataBase.UserTable.AddOrUpdate(EditUser);
+                        AppConnectClass.DataBase.SaveChanges();
+
                         MessageBox.Show("Данные сохранены успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
 
                         SurnameTextBox.IsEnabled = false;
@@ -188,63 +216,146 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 }
 
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR006 - Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "PR006 - Ошибка сохранения",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
         }
 
-        private void AuthorizationButton_Click(object sender, RoutedEventArgs e) { AuthorizationWindow authorizationWindow = new AuthorizationWindow(); authorizationWindow.Show(); }
-        private void RegistrationButton_Click(object sender, RoutedEventArgs e) { RegistrationWindow registrationWindow = new RegistrationWindow(); registrationWindow.Show(); }
+        private void AuthorizationButton_Click(object sender, RoutedEventArgs e) 
+        { 
+            AuthorizationWindow authorizationWindow = new AuthorizationWindow(); 
+            authorizationWindow.Show(); 
+        }
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e) 
+        { 
+            RegistrationWindow registrationWindow = new RegistrationWindow(); 
+            registrationWindow.Show();
+        }
 
         private void OldPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
-                if (OldPasswordTextBox.Text == "") { OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); NewPasswordTextBox.IsEnabled = false; PasswordPasswordBox.IsEnabled = false; }
+                if (OldPasswordTextBox.Text == "") 
+                { 
+                    OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); 
+                    NewPasswordTextBox.IsEnabled = false; 
+                    PasswordPasswordBox.IsEnabled = false; 
+                }
                 else
                 {
-                    if (OldPasswordTextBox.Text != UserClass.GetUserTable.PasswordUser) { OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); NewPasswordTextBox.IsEnabled = false; PasswordPasswordBox.IsEnabled = false; }
+                    if (OldPasswordTextBox.Text != UserClass.GetUserTable.PasswordUser) 
+                    { 
+                        OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); 
+                        NewPasswordTextBox.IsEnabled = false; 
+                        PasswordPasswordBox.IsEnabled = false; 
+                    }
                     else
                     {
-                        if (OldPasswordTextBox.Text == UserClass.GetUserTable.PasswordUser) { OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); NewPasswordTextBox.IsEnabled = true; PasswordPasswordBox.IsEnabled = true; }
+                        if (OldPasswordTextBox.Text == UserClass.GetUserTable.PasswordUser)
+                        { 
+                            OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); 
+                            NewPasswordTextBox.IsEnabled = true; 
+                            PasswordPasswordBox.IsEnabled = true; 
+                        }
                     }
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR007 - Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "PR007 - Ошибка сохранения", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error); 
+            }
         }
 
         private void PasswordPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (NewPasswordTextBox.Text != "" && PasswordPasswordBox.Password == "") { PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); SavePasswordButton.IsEnabled = false; }
+                if (NewPasswordTextBox.Text != "" && PasswordPasswordBox.Password == "") 
+                { 
+                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); 
+                    SavePasswordButton.IsEnabled = false; 
+                }
                 else
                 {
-                    if (NewPasswordTextBox.Text == "") { PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); SavePasswordButton.IsEnabled = false; }
+                    if (NewPasswordTextBox.Text == "") 
+                    { 
+                        PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                        SavePasswordButton.IsEnabled = false; 
+                    }
                     else
                     {
-                        if (PasswordPasswordBox.Password != NewPasswordTextBox.Text) { PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); SavePasswordButton.IsEnabled = false; }
-                        if (PasswordPasswordBox.Password == NewPasswordTextBox.Text) { PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); SavePasswordButton.IsEnabled = true; }
+                        if (PasswordPasswordBox.Password != NewPasswordTextBox.Text)
+                        { 
+                            PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+                            SavePasswordButton.IsEnabled = false; 
+                        }
+                        if (PasswordPasswordBox.Password == NewPasswordTextBox.Text) 
+                        { 
+                            PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); 
+                            SavePasswordButton.IsEnabled = true; 
+                        }
                     }
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR008 - Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "PR008 - Ошибка регистрации",
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error); 
+            }
         }
 
         private void NewPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
-                if (NewPasswordTextBox.Text != "" && PasswordPasswordBox.Password == "") { PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); SavePasswordButton.IsEnabled = false; }
+                if (NewPasswordTextBox.Text != "" && PasswordPasswordBox.Password == "")
+                { 
+                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); 
+                    SavePasswordButton.IsEnabled = false; 
+                }
                 else
                 {
-                    if (NewPasswordTextBox.Text == "") { PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); SavePasswordButton.IsEnabled = false; }
+                    if (NewPasswordTextBox.Text == "") 
+                    { 
+                        PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                        SavePasswordButton.IsEnabled = false; 
+                    }
                     else
                     {
-                        if (PasswordPasswordBox.Password != NewPasswordTextBox.Text) { PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); SavePasswordButton.IsEnabled = false; }
-                        if (PasswordPasswordBox.Password == NewPasswordTextBox.Text) { PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); SavePasswordButton.IsEnabled = true; }
+                        if (PasswordPasswordBox.Password != NewPasswordTextBox.Text)
+                        { 
+                            PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+                            SavePasswordButton.IsEnabled = false; 
+                        }
+                        if (PasswordPasswordBox.Password == NewPasswordTextBox.Text)
+                        { 
+                            PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); 
+                            SavePasswordButton.IsEnabled = true; 
+                        }
                     }
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "PR009 - Ошибка регистрации", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "PR009 - Ошибка регистрации", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error); 
+            }
         }
     }
 }

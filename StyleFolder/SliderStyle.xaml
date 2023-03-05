@@ -7,7 +7,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
-                    <Border CornerRadius="8" Background="Transparent" BorderBrush="#e1e3e6" BorderThickness="2"/>
+                    <Border 
+                        CornerRadius="8" 
+                        Background="Transparent"
+                        BorderBrush="#e1e3e6"
+                        BorderThickness="2"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -36,7 +40,13 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Border x:Name="tgkadf" Background="#232324" CornerRadius="1.5" Height="3" Grid.Row="0" Grid.RowSpan="3"/>
+                        <Border 
+                            x:Name="tgkadf" 
+                            Background="#232324" 
+                            CornerRadius="1.5" 
+                            Height="3" 
+                            Grid.Row="0"
+                            Grid.RowSpan="3"/>
                         <Track x:Name="PART_Track" Grid.Row="1">
                             <Track.Thumb>
                                 <Thumb Style="{StaticResource SliderThumbStyle}"/>

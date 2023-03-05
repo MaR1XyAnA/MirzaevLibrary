@@ -27,8 +27,16 @@
                     HorizontalAlignment="Center"
                     Text="Cool Bible Library"
                     Style="{StaticResource TextBlockStyle}"/>
-                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0 20 0 0" VerticalAlignment="Top" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel 
+                    Grid.Row="1" 
+                    Orientation="Vertical"
+                    Margin="0 20 0 0" 
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Center">
+                    <StackPanel 
+                        Orientation="Vertical" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center">
                         <Grid Margin="0 0 0 5">
                             <TextBox
                                 TextChanged="LoginTextBox_TextChanged"
@@ -47,7 +55,9 @@
                                 Text="&#xf207;"/>
                         </Grid>
                         <Grid>
-                            <Grid x:Name="CollapsedPasswordGrid" Margin="0 5 0 0">
+                            <Grid 
+                                x:Name="CollapsedPasswordGrid" 
+                                Margin="0 5 0 0">
                                 <PasswordBox
                                     KeyDown="PasswordPasswordBox_KeyDown"
                                     PasswordChanged="PasswordPasswordBox_PasswordChanged"
@@ -65,7 +75,10 @@
                                     Style="{StaticResource IconFont}"
                                     Text="&#xf191;"/>
                             </Grid>
-                            <Grid Margin="0 5 0 0" Visibility="Collapsed" x:Name="VisiblePasswordGrid">
+                            <Grid 
+                                Margin="0 5 0 0" 
+                                Visibility="Collapsed" 
+                                x:Name="VisiblePasswordGrid">
                                 <TextBox
                                     TextChanged="PasswordTextBox_TextChanged"
                                     Padding="33 0 40 0"
@@ -91,7 +104,11 @@
                                 Style="{StaticResource PasswordButton}"/>
                         </Grid>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 5 0 0">
+                    <StackPanel 
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center" 
+                        Margin="0 5 0 0">
                         <TextBlock
                             VerticalAlignment="Top"
                             Text="запомнить меня"
@@ -111,7 +128,9 @@
                                 Style="{StaticResource TextBlockStyle}"/>
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <StackPanel
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
                         <TextBlock 
                             Visibility="Collapsed" 
                             x:Name="ResetPasswordTextBlock" 
@@ -120,8 +139,14 @@
                             <Hyperlink x:Name="ForgetPasswordHyperlink" Click="ForgetPasswordHyperlink_Click">СБРОСИТЬ ПАРОЛЬ</Hyperlink>
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="0 17.5 0 0" HorizontalAlignment="Center">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel 
+                        Orientation="Vertical"
+                        Margin="0 17.5 0 0"
+                        HorizontalAlignment="Center">
+                        <StackPanel 
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
                             <Button
                                 LayoutUpdated ="NextButton_LayoutUpdated"
                                 Margin="0 0 22.5 0"
@@ -158,7 +183,11 @@
                     Margin="0 0 0 10"/>
             </Grid>
         </Grid>
-        <Grid x:Name="SpaseBarGrid" MouseDown="SpaseBarGrid_MouseDown" Background="#242630" Grid.Row="0">
+        <Grid 
+            x:Name="SpaseBarGrid"
+            MouseDown="SpaseBarGrid_MouseDown" 
+            Background="#242630" 
+            Grid.Row="0">
             <Grid.Effect>
                 <DropShadowEffect 
                     Direction="-90"
@@ -168,7 +197,10 @@
                     Opacity="0.8"
                     RenderingBias="Performance"/>
             </Grid.Effect>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <StackPanel 
+                Orientation="Horizontal"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right">
                 <Button
                     x:Name="RollUpButton"
                     Click="RollUpButton_Click"

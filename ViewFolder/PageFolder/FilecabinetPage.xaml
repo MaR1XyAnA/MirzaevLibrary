@@ -15,7 +15,11 @@
             ItemContainerStyle="{StaticResource ListBoxItemSelected}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Transparent"/>
+                    <WrapPanel 
+                        IsItemsHost="True" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center" 
+                        Background="Transparent"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>

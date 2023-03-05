@@ -10,7 +10,14 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         public MenuPage()
         {
             try{ InitializeComponent(); }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME001 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "ME001 - Ошибка",
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error); 
+            }
         }
 
         private void FilecabinetToggleButton_Click(object sender, RoutedEventArgs e)
@@ -29,7 +36,14 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 BuyTicketButton.IsEnabled = true;
                 MyProfilToggleButton.IsEnabled = true;
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME002 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "ME002 - Ошибка",
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error); 
+            }
         }
 
         private void CategoryToggleButton_Click(object sender, RoutedEventArgs e)
@@ -48,7 +62,14 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 BuyTicketButton.IsEnabled = true;
                 MyProfilToggleButton.IsEnabled = true;
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME003 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "ME003 - Ошибка", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
+            }
         }
 
         private void BuyTicketButton_Click(object sender, RoutedEventArgs e)
@@ -67,7 +88,14 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 BuyTicketButton.IsEnabled = false;
                 MyProfilToggleButton.IsEnabled = true;
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME004 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "ME004 - Ошибка", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
+            }
         }
 
         private void MyProfilToggleButton_Click(object sender, RoutedEventArgs e)
@@ -86,7 +114,14 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 BuyTicketButton.IsEnabled = true;
                 MyProfilToggleButton.IsEnabled = false;
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME005 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "ME005 - Ошибка", 
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error); 
+            }
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -107,7 +142,14 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     BuyTicketButton.IsEnabled = true;
                     MyProfilToggleButton.IsEnabled = true;
                 }
-                catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "ME006 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+                catch (Exception ex) 
+                { 
+                    MessageBox.Show(
+                        ex.Message.ToString(), 
+                        "ME006 - Ошибка", 
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error); 
+                }
             }
         }
     }

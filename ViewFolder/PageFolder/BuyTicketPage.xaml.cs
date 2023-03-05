@@ -16,12 +16,15 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             try
             {
                 InitializeComponent();
+
                 AppConnectClass.DataBase = new LibraryMirzayevaEntities();
                 PriseTicketListBox.ItemsSource = AppConnectClass.DataBase.BuyTicketTable.ToList();
+
                 if (userTable != null)
                 {
                     DataContext = userTable;
                     var TicketUser = AppConnectClass.DataBase.TicketTable.Find(UserClass.GetUserTable.pnTicketUser);
+
                     if (TicketUser != null || UserClass.GetUserTable.pnTicketUser != 1) 
                     {
                         
@@ -44,21 +47,25 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                         }
 
                     }
-                    else
-                    {
-                        TicketTextBlock.Text = "NULL";
-                        DataStartTicketTextBlock.Text = "NULL";
-                        DataEndTicketTextBlock.Text = "NULL";
-                    }
+                    else { TextNull(); }
                 }
-                else
-                {
-                    TicketTextBlock.Text = "NULL";
-                    DataStartTicketTextBlock.Text = "NULL";
-                    DataEndTicketTextBlock.Text = "NULL";
-                }
+                else { TextNull(); }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "TI001 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "TI001 - Ошибка",
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error);
+            }
+        }
+
+        private void TextNull()
+        {
+            TicketTextBlock.Text = "NULL";
+            DataStartTicketTextBlock.Text = "NULL";
+            DataEndTicketTextBlock.Text = "NULL";
         }
 
         private void PriseTicketListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -102,9 +109,21 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                             AppConnectClass.DataBase.TicketTable.Add(GetTicketAdd); // Добавляем читательскй билет
                             AppConnectClass.DataBase.UserTable.AddOrUpdate(GetUserUpdate); // Обновляем пользователя
                             AppConnectClass.DataBase.SaveChanges();
-                            MessageBox.Show("Читательский билет успешно приобретён", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                            MessageBox.Show(
+                                "Читательский билет успешно приобретён", 
+                                "Уведомление", 
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
                         }
-                        catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "TI003 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+                        catch (Exception ex) 
+                        { 
+                            MessageBox.Show(
+                                ex.Message.ToString(), 
+                                "TI003 - Ошибка", 
+                                MessageBoxButton.OK, 
+                                MessageBoxImage.Error); 
+                        }
                     }
                     else
                     {
@@ -116,7 +135,11 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
                             if (Letter > Smile) // Если дата конца больше сегодняшней даты
                             {
-                                MessageBox.Show("Вы пока что не можите приобрести читательский билет, так как у предыдущего читательского билета ещё не истёк срок", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show(
+                                    "Вы пока что не можите приобрести читательский билет, так как у предыдущего читательского билета ещё не истёк срок", 
+                                    "Уведомление", 
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Information);
                             }
                             else
                             {
@@ -135,22 +158,44 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                                 {
                                     AppConnectClass.DataBase.TicketTable.AddOrUpdate(GetTicket); // Обновляем читательский билет
                                     AppConnectClass.DataBase.SaveChanges();
-                                    MessageBox.Show("Читательский билет успешно приобретён", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                                    
+
+                                    MessageBox.Show(
+                                        "Читательский билет успешно приобретён",
+                                        "Уведомление",
+                                        MessageBoxButton.OK, 
+                                        MessageBoxImage.Information);
 
                                     /// TODO: Нужно как то обновлять данные на странице (перезагрузка страницы не работает, нужно как то перезагружать массиф данных UserClass)
                                 }
-                                catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "TI004 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+                                catch (Exception ex) 
+                                { 
+                                    MessageBox.Show(
+                                        ex.Message.ToString(), 
+                                        "TI004 - Ошибка",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Error); 
+                                }
                             }
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Для преобритения читательского билета, вам нужно авторизоваться", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(
+                        "Для преобритения читательского билета, вам нужно авторизоваться", 
+                        "Уведомление", 
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString(), "TI002 - Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(
+                    ex.Message.ToString(), 
+                    "TI002 - Ошибка",
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Error); 
+            }
         }
     }
 }

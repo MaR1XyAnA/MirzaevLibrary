@@ -9,7 +9,7 @@
     Style="{StaticResource WindowsStyle}"
     WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.RowDefinitions> <!--sdasdasdasdasdasd-->
+        <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -31,7 +31,11 @@
                 x:Name="MenuFrame"
                 NavigationUIVisibility="Hidden"/>
         </Grid>
-        <Grid x:Name="SpaseBarGrid" MouseDown="SpaseBarGrid_MouseDown" Background="#242630" Grid.Row="0">
+        <Grid 
+            x:Name="SpaseBarGrid"
+            MouseDown="SpaseBarGrid_MouseDown" 
+            Background="#242630" 
+            Grid.Row="0">
             <Grid.Effect>
                 <DropShadowEffect 
                     Direction="-90"
@@ -41,7 +45,10 @@
                     Opacity="0.8"
                     RenderingBias="Performance"/>
             </Grid.Effect>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <StackPanel 
+                Orientation="Horizontal" 
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right">
                 <Button
                     x:Name="ExitButton"
                     Click="ExitButton_Click"
