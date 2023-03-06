@@ -234,29 +234,23 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         {
             try
             {
-                if (OldPasswordTextBox.Text == "") 
-                { 
-                    OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); 
-                    NewPasswordTextBox.IsEnabled = false; 
-                    PasswordPasswordBox.IsEnabled = false; 
+                if (OldPasswordTextBox.Text == UserClass.GetUserTable.Password_User)
+                {
+                    OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+                    NewPasswordTextBox.IsEnabled = true;
+                    PasswordPasswordBox.IsEnabled = true;
                 }
                 else
                 {
-                    if (OldPasswordTextBox.Text != UserClass.GetUserTable.Password_User) 
-                    { 
-                        OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); 
-                        NewPasswordTextBox.IsEnabled = false; 
-                        PasswordPasswordBox.IsEnabled = false; 
-                    }
-                    else
-                    {
-                        if (OldPasswordTextBox.Text == UserClass.GetUserTable.Password_User)
-                        { 
-                            OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); 
-                            NewPasswordTextBox.IsEnabled = true; 
-                            PasswordPasswordBox.IsEnabled = true; 
-                        }
-                    }
+                    OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+                    NewPasswordTextBox.IsEnabled = false;
+                    PasswordPasswordBox.IsEnabled = false;
+                }
+                if (OldPasswordTextBox.Text == "")
+                {
+                    OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                    NewPasswordTextBox.IsEnabled = false;
+                    PasswordPasswordBox.IsEnabled = false;
                 }
             }
             catch (Exception ex) 
@@ -273,31 +267,15 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         {
             try
             {
-                if (NewPasswordTextBox.Text != "" && PasswordPasswordBox.Password == "") 
-                { 
-                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); 
-                    SavePasswordButton.IsEnabled = false; 
+                if (NewPasswordTextBox.Text == "" || PasswordPasswordBox.Password != NewPasswordTextBox.Text)
+                {
+                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+                    SavePasswordButton.IsEnabled = false;
                 }
                 else
                 {
-                    if (NewPasswordTextBox.Text == "") 
-                    { 
-                        PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
-                        SavePasswordButton.IsEnabled = false; 
-                    }
-                    else
-                    {
-                        if (PasswordPasswordBox.Password != NewPasswordTextBox.Text)
-                        { 
-                            PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
-                            SavePasswordButton.IsEnabled = false; 
-                        }
-                        if (PasswordPasswordBox.Password == NewPasswordTextBox.Text) 
-                        { 
-                            PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); 
-                            SavePasswordButton.IsEnabled = true; 
-                        }
-                    }
+                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+                    SavePasswordButton.IsEnabled = true;
                 }
             }
             catch (Exception ex) 
