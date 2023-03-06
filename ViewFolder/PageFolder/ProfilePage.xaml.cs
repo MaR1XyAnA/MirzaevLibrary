@@ -60,7 +60,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             {
                 MessageBox.Show(
                     ex.Message.ToString(), 
-                    "PR001 - Ошибка авторизации", 
+                    "PR001 - Ошибка", 
                     MessageBoxButton.OK, 
                     MessageBoxImage.Error);
             }

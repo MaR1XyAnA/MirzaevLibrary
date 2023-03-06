@@ -78,7 +78,7 @@
           <Property Name="Personalnumber_Image" Type="int" Nullable="false" />
           <Property Name="Image_Image" Type="image" />
         </EntityType>
-        <EntityType Name="MTM_TiketBook_Table">
+        <EntityType Name="MTM_TicketTable_BookTable">
           <Key>
             <PropertyRef Name="pn_Ticket" />
             <PropertyRef Name="pn_Book" />
@@ -221,24 +221,24 @@
         </Association>
         <Association Name="FK_TiketBookTable_BookTable">
           <End Role="BookTable" Type="Self.BookTable" Multiplicity="1" />
-          <End Role="MTM_TiketBook_Table" Type="Self.MTM_TiketBook_Table" Multiplicity="*" />
+          <End Role="MTM_TicketTable_BookTable" Type="Self.MTM_TicketTable_BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BookTable">
               <PropertyRef Name="PersonalNumber_Book" />
             </Principal>
-            <Dependent Role="MTM_TiketBook_Table">
+            <Dependent Role="MTM_TicketTable_BookTable">
               <PropertyRef Name="pn_Book" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TiketBookTable_TicketTable">
           <End Role="TicketTable" Type="Self.TicketTable" Multiplicity="1" />
-          <End Role="MTM_TiketBook_Table" Type="Self.MTM_TiketBook_Table" Multiplicity="*" />
+          <End Role="MTM_TicketTable_BookTable" Type="Self.MTM_TicketTable_BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TicketTable">
               <PropertyRef Name="PersonalNumber_Ticket" />
             </Principal>
-            <Dependent Role="MTM_TiketBook_Table">
+            <Dependent Role="MTM_TicketTable_BookTable">
               <PropertyRef Name="pn_Ticket" />
             </Dependent>
           </ReferentialConstraint>
@@ -288,7 +288,7 @@
           <EntitySet Name="GoTable" EntityType="Self.GoTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImagebookTable" EntityType="Self.ImagebookTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImageUserTable" EntityType="Self.ImageUserTable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MTM_TiketBook_Table" EntityType="Self.MTM_TiketBook_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MTM_TicketTable_BookTable" EntityType="Self.MTM_TicketTable_BookTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PublishingHouseTable" EntityType="Self.PublishingHouseTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleTable" EntityType="Self.RoleTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -324,11 +324,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_TiketBookTable_BookTable" Association="Self.FK_TiketBookTable_BookTable">
             <End Role="BookTable" EntitySet="BookTable" />
-            <End Role="MTM_TiketBook_Table" EntitySet="MTM_TiketBook_Table" />
+            <End Role="MTM_TicketTable_BookTable" EntitySet="MTM_TicketTable_BookTable" />
           </AssociationSet>
           <AssociationSet Name="FK_TiketBookTable_TicketTable" Association="Self.FK_TiketBookTable_TicketTable">
             <End Role="TicketTable" EntitySet="TicketTable" />
-            <End Role="MTM_TiketBook_Table" EntitySet="MTM_TiketBook_Table" />
+            <End Role="MTM_TicketTable_BookTable" EntitySet="MTM_TicketTable_BookTable" />
           </AssociationSet>
           <AssociationSet Name="FK_UserTable_ImageUserTable" Association="Self.FK_UserTable_ImageUserTable">
             <End Role="ImageUserTable" EntitySet="ImageUserTable" />
@@ -401,7 +401,7 @@
             <End Role="TicketTable" EntitySet="TicketTable" />
             <End Role="UserTable" EntitySet="UserTable" />
           </AssociationSet>
-          <AssociationSet Name="MTM_TiketBook_Table" Association="LibraryMirzayevaModel.MTM_TiketBook_Table">
+          <AssociationSet Name="MTM_TicketTable_BookTable" Association="LibraryMirzayevaModel.MTM_TicketTable_BookTable">
             <End Role="BookTable" EntitySet="BookTable" />
             <End Role="TicketTable" EntitySet="TicketTable" />
           </AssociationSet>
@@ -441,7 +441,7 @@
           <NavigationProperty Name="GoTable" Relationship="LibraryMirzayevaModel.FK_BookTable_GoTable" FromRole="BookTable" ToRole="GoTable" />
           <NavigationProperty Name="ImagebookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_ImagebookTable" FromRole="BookTable" ToRole="ImagebookTable" />
           <NavigationProperty Name="PublishingHouseTable" Relationship="LibraryMirzayevaModel.FK_BookTable_PublishingHouseTable" FromRole="BookTable" ToRole="PublishingHouseTable" />
-          <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.MTM_TiketBook_Table" FromRole="BookTable" ToRole="TicketTable" />
+          <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.MTM_TicketTable_BookTable" FromRole="BookTable" ToRole="TicketTable" />
         </EntityType>
         <EntityType Name="BuyTicketTable">
           <Key>
@@ -529,7 +529,7 @@
           <Property Name="pnBuy_Ticket" Type="Int32" />
           <NavigationProperty Name="BuyTicketTable" Relationship="LibraryMirzayevaModel.FK_TicketTable_BuyTicketTable" FromRole="TicketTable" ToRole="BuyTicketTable" />
           <NavigationProperty Name="UserTable" Relationship="LibraryMirzayevaModel.FK_UserTable_TicketTable" FromRole="TicketTable" ToRole="UserTable" />
-          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.MTM_TiketBook_Table" FromRole="TicketTable" ToRole="BookTable" />
+          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.MTM_TicketTable_BookTable" FromRole="TicketTable" ToRole="BookTable" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -670,7 +670,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="MTM_TiketBook_Table">
+        <Association Name="MTM_TicketTable_BookTable">
           <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
           <End Type="LibraryMirzayevaModel.TicketTable" Role="TicketTable" Multiplicity="*" />
         </Association>
@@ -815,7 +815,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="MTM_TiketBook_Table" TypeName="LibraryMirzayevaModel.MTM_TiketBook_Table" StoreEntitySet="MTM_TiketBook_Table">
+          <AssociationSetMapping Name="MTM_TicketTable_BookTable" TypeName="LibraryMirzayevaModel.MTM_TicketTable_BookTable" StoreEntitySet="MTM_TicketTable_BookTable">
             <EndProperty Name="TicketTable">
               <ScalarProperty Name="PersonalNumber_Ticket" ColumnName="pn_Ticket" />
             </EndProperty>

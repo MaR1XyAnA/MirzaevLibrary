@@ -350,7 +350,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
             else 
             {
-                HintReplayPasswordTextBlock.Visibility = Visibility.Visible; 
+                HintNewPasswordTextBlock.Visibility = Visibility.Visible; 
             }
         }
 
