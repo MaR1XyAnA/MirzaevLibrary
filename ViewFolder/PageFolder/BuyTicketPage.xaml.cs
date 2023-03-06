@@ -107,6 +107,9 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 int QuantityDays = buyTicketTable.QwentyYear_Buy; // Получаем количество дней
                 DateTime DateDays = TodayDate.AddDays(QuantityDays); // Прибавляем полученное количество дней к полученной дате
 
+                InformationTicketStavkPanel.Visibility = Visibility.Collapsed;
+                NullTicketUsetTextBlock.Visibility = Visibility.Visible;
+
                 var NewTicketAdd = new TicketTable() // Создаём "коробку" в которой будем хранить информацию о билете
                 {
                     DateStart_Ticket = TodayDate,

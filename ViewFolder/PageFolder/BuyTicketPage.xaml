@@ -12,12 +12,21 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <TextBlock 
+            x:Name="NullTicketUsetTextBlock"
+            Visibility="Collapsed"
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center"
+            Margin="0 0 0 0"
+            Text="У вас ещё нет читательского билета. Приобретите ео для просмотра информации о нём"
+            Style="{StaticResource TextBlockStyle}"/>
         <StackPanel 
             Orientation="Vertical"
             VerticalAlignment="Center"
             HorizontalAlignment="Left"
             Margin="5 0 5 0">
             <StackPanel 
+                x:Name="InformationTicketStavkPanel"
                 Orientation="Horizontal" 
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center">
