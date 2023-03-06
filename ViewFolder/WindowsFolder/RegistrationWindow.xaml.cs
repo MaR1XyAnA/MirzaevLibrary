@@ -15,17 +15,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
     public partial class RegistrationWindow : Window
     {
         string CodeString = null; // Создаём переменную для дальнейшей записи в неё и для получения из неё рандомного кода для регистрации пользователя
-        private int RandomTextSender() // Метод, который генерирует рандомное число для подтверждения регистрации
-        {
-            Random random = new Random(); 
-            return random.Next(1000000);
-        } 
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) // метод который позволит вводить только цифры от 0 до 9
-        {
-            Regex regex = new Regex("[^0-9]");
-            e.Handled = regex.IsMatch(e.Text);
-        } 
-
+        
         public RegistrationWindow()
         {
             try 
@@ -41,6 +31,18 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     MessageBoxButton.OK,
                     MessageBoxImage.Error); 
             }
+        }
+
+        private int RandomTextSender() // Метод, который генерирует рандомное число для подтверждения регистрации
+        {
+            Random random = new Random();
+            return random.Next(1000000);
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) // метод который позволит вводить только цифры от 0 до 9
+        {
+            Regex regex = new Regex("[^0-9]");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         #region TextChanged_PasswordChanged
@@ -122,7 +124,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
         }
         #endregion
-
         #region LayoutUpdated
         private void PasswordPaswordBox_LayoutUpdated(object sender, EventArgs e) // Постоянная проверка PasswordBox на соответствии контента
         {
@@ -132,32 +133,21 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 PasswordText = Convert.ToString(NewPasswordTextBox.Text); 
                 PasswordPasword = Convert.ToString(PasswordPaswordBox.Password);
 
-                if (PasswordPasword == "" && PasswordText != "") 
-                { 
+                if (PasswordText == "")
+                {
                     PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
-                    RegistrationButton.IsEnabled = false;
+                }
+                else if (PasswordPasword != PasswordText)
+                {
+                    PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
                 }
                 else
                 {
-                    if (PasswordText == "") 
-                    { 
-                        PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); 
-                        RegistrationButton.IsEnabled = false; 
-                    }
-                    else
-                    {
-                        if (PasswordPasword != PasswordText) 
-                        {
-                            PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
-                            RegistrationButton.IsEnabled = false; 
-                        }
-                        if (PasswordPasword == PasswordText) 
-                        { 
-                            PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
-                            RegistrationButton.IsEnabled = true; 
-                        }
-                    }
+                    PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+                    RegistrationButton.IsEnabled = true;
                 }
+
+                RegistrationButton.IsEnabled = !(PasswordText == "" || PasswordPasword != PasswordText);
             }
             catch (Exception ex) 
             { 
@@ -169,7 +159,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
         }
         #endregion
-
         #region Click
         private void ConfirmButton_Click(object sender, RoutedEventArgs e) // Метод для проверки кода и конец регистрации пользователя
         {
@@ -278,7 +267,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
         }
         #endregion
-
         #region Действие
         private void RegistrationEmail() // Метод для отправки сообщение - подтверждение для регистрации (на указанную почту приходит код)
         {
@@ -381,7 +369,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         }
 
         #endregion
-
         #region Управление окном
         private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать 
         {

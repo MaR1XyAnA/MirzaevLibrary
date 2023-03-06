@@ -14,18 +14,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
     public partial class ForgetWindow : Window
     {
-        #region CommonVariables
-        string RandomCodeString = null; // Создаём переменную для дальнейшей записи в неё и для получения из неё рандомного кода для регистрации пользователя
-        int ErrorInt = 0; // Создаём переменную для подсчёта ошибок
-        string LoginUserString = null; // Создаём переменную для записи Email пользователя
-        #endregion
-
-        private int RandomTextSender() // Метод, который генерирует рандомное число для подтверждения регистрации
-        { 
-            Random random = new Random();
-            return random.Next(1000000); 
-        } 
-
         public ForgetWindow()
         {
             try 
@@ -43,6 +31,16 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
         }
 
+        private int RandomTextSender() // Метод, который генерирует рандомное число для подтверждения регистрации
+        {
+            Random random = new Random();
+            return random.Next(1000000);
+        }
+        #region CommonVariables
+        string RandomCodeString = null; // Создаём переменную для дальнейшей записи в неё и для получения из неё рандомного кода для регистрации пользователя
+        int ErrorInt = 0; // Создаём переменную для подсчёта ошибок
+        string LoginUserString = null; // Создаём переменную для записи Email пользователя
+        #endregion
         #region Click
         private void BackHyperlink_Click(object sender, RoutedEventArgs e) // Переход по нажатию на ссылку
         { 
@@ -66,7 +64,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             CheckЕheСode();
         }
         #endregion
-
         #region KeyDown
         private void LoginTextBox_KeyDown(object sender, KeyEventArgs e) 
         { 
@@ -92,7 +89,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             } 
         }
         #endregion
-
         #region Действие
         private void SendTheCode() // Отправка кода
         {
@@ -214,14 +210,14 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 {
                     if (NewPasswordTextBox.Text != "" && ReplayPasswordPasswordBox.Password != "")
                     {
-                        var UserVar = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.Login_User == LoginUserString);
+                        var UpdatePasswordUser = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.Login_User == LoginUserString);
 
-                        if (UserVar != null)
+                        if (UpdatePasswordUser != null)
                         {
                             try
                             {
-                                UserVar.Password_User = NewPasswordTextBox.Text;
-                                AppConnectClass.DataBase.UserTable.AddOrUpdate(UserVar);
+                                    UpdatePasswordUser.Password_User = NewPasswordTextBox.Text;
+                                AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdatePasswordUser);
                                 AppConnectClass.DataBase.SaveChanges();
 
                                 MessageBox.Show(
@@ -297,7 +293,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
         }
         #endregion
-
         #region LayoutUpdated
         private void ReplayPasswordPasswordBox_LayoutUpdated(object sender, EventArgs e)
         {
@@ -307,32 +302,21 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 PasswordText = Convert.ToString(NewPasswordTextBox.Text);
                 PasswordPasword = Convert.ToString(ReplayPasswordPasswordBox.Password);
 
-                if (PasswordPasword == "" && PasswordText != "") 
+                if (PasswordText == "")
                 {
-                    ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); 
-                    SavePasswordButton.IsEnabled = false; 
+                    ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                }
+                else if (PasswordPasword != PasswordText)
+                {
+                    ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
                 }
                 else
                 {
-                    if (PasswordText == "") 
-                    { 
-                        ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
-                        SavePasswordButton.IsEnabled = false; 
-                    }
-                    else
-                    {
-                        if (PasswordPasword != PasswordText) 
-                        { 
-                            ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
-                            SavePasswordButton.IsEnabled = false;
-                        }
-                        if (PasswordPasword == PasswordText) 
-                        { 
-                            ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
-                            SavePasswordButton.IsEnabled = true; 
-                        }
-                    }
+                    ReplayPasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+                    SavePasswordButton.IsEnabled = true;
                 }
+
+                SavePasswordButton.IsEnabled = !(PasswordText == "" || PasswordPasword != PasswordText);
             }
             catch (Exception ex) 
             { 
@@ -344,7 +328,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
         }
         #endregion
-
         #region TextChanged_PasswordChanged
         private void ReplayPasswordPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
@@ -399,7 +382,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
         }
         #endregion
-
         #region Управление окном
         private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать 
         {
