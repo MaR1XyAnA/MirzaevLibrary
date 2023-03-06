@@ -253,7 +253,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     }
                     else
                     {
-                        if (AppConnectClass.DataBase.UserTable.Count(DataUser => DataUser.LoginUser == EmailTextBox.Text || DataUser.PhoneUser == PhoneTextBox.Text) > 0)
+                        if (AppConnectClass.DataBase.UserTable.Count(DataUser => DataUser.Login_User == EmailTextBox.Text || DataUser.Phone_User == PhoneTextBox.Text) > 0)
                         {
                             MessageBox.Show(
                                 "Данный номер телефона или login уже используется",
@@ -348,18 +348,19 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             {
                 var AddUser = new UserTable()
                 {
-                    SurnameUser = SurnameTextBox.Text,
-                    NameUser = NameTextBox.Text,
-                    MiddlenameUser = MiddlenameTextBox.Text,
-                    PhoneUser = PhoneTextBox.Text,
-                    LoginUser = EmailTextBox.Text,
-                    PasswordUser = NewPasswordTextBox.Text,
-                    pnRoleUser = 1,
-                    pnImageUser = 1,
-                    pnTicketUser = 1
+                    Surname_User = SurnameTextBox.Text,
+                    Name_User = NameTextBox.Text,
+                    Middlename_User = MiddlenameTextBox.Text,
+                    Phone_User = PhoneTextBox.Text,
+                    Login_User = EmailTextBox.Text,
+                    Password_User = NewPasswordTextBox.Text,
+                    pnRole_User = 1,
+                    pnImage_User = 1,
+                    pnTicket_User = 1
                 };
 
-                AppConnectClass.DataBase.UserTable.Add(AddUser); AppConnectClass.DataBase.SaveChanges();
+                AppConnectClass.DataBase.UserTable.Add(AddUser); 
+                AppConnectClass.DataBase.SaveChanges();
 
                 MessageBox.Show(
                     "Регистрация пройдена успешно. Авторизируйтесь в приложении для работы в нём", 

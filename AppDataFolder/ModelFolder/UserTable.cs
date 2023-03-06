@@ -14,17 +14,17 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
     
     public partial class UserTable
     {
-        public int PersonalNumberUser { get; set; }
-        public string SurnameUser { get; set; }
-        public string NameUser { get; set; }
-        public string MiddlenameUser { get; set; }
-        public int pnTicketUser { get; set; }
-        public string AddressUser { get; set; }
-        public string PhoneUser { get; set; }
-        public string LoginUser { get; set; }
-        public string PasswordUser { get; set; }
-        public int pnRoleUser { get; set; }
-        public int pnImageUser { get; set; }
+        public int PersonalNumber_User { get; set; }
+        public string Surname_User { get; set; }
+        public string Name_User { get; set; }
+        public string Middlename_User { get; set; }
+        public int pnTicket_User { get; set; }
+        public string Address_User { get; set; }
+        public string Phone_User { get; set; }
+        public string Login_User { get; set; }
+        public string Password_User { get; set; }
+        public int pnRole_User { get; set; }
+        public int pnImage_User { get; set; }
     
         public virtual ImageUserTable ImageUserTable { get; set; }
         public virtual RoleTable RoleTable { get; set; }

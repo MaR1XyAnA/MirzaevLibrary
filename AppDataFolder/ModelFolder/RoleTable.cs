@@ -20,8 +20,8 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
             this.UserTable = new HashSet<UserTable>();
         }
     
-        public int PersonalnumberRole { get; set; }
-        public string NameRole { get; set; }
+        public int Personalnumber_Role { get; set; }
+        public string Name_Role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserTable> UserTable { get; set; }

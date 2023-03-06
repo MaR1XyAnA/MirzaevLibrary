@@ -47,11 +47,11 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             {
                 AnimLoadingStart();
                 string GrtLogin = LoginTextBox.Text; // Создаём переменную типа string и вставляем туда данные из LoginTextBox потому что блять эта хуйня по другому не хочеит работать блять!!!!!!!!!!!!!!!!!!!!!
-                var GetUser = await AppConnectClass.DataBase.UserTable.FirstOrDefaultAsync(data => data.LoginUser == GrtLogin); // Переменная которая ищет пользователя по Login (LINQ - запрос)
+                var GetUser = await AppConnectClass.DataBase.UserTable.FirstOrDefaultAsync(data => data.Login_User == GrtLogin); // Переменная которая ищет пользователя по Login (LINQ - запрос)
                 
                 if (GetUser != null) // Если пользователь существует
                 {
-                    if (PasswordPasswordBox.Password != GetUser.PasswordUser) // Если пароль не правильный
+                    if (PasswordPasswordBox.Password != GetUser.Password_User) // Если пароль не правильный
                     {
                         NumberIncorrectAttempts++; // +1 к переменной
                         MessageBox.Show("Не правильный логин или пароль", "AU002 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error);

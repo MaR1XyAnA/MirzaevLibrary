@@ -20,12 +20,12 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
             this.BookTable = new HashSet<BookTable>();
         }
     
-        public int PersonalNumberAuthor { get; set; }
-        public string SurnameAuthor { get; set; }
-        public string NameAuthor { get; set; }
-        public string MiddlenameAuthor { get; set; }
-        public System.DateTime DateofbrichAuthor { get; set; }
-        public Nullable<System.DateTime> DateofendAuthor { get; set; }
+        public int PersonalNumber_Author { get; set; }
+        public string Surname_Author { get; set; }
+        public string Name_Author { get; set; }
+        public string Middlename_Author { get; set; }
+        public System.DateTime Dateofbrich_Author { get; set; }
+        public Nullable<System.DateTime> Dateofend_Author { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookTable> BookTable { get; set; }

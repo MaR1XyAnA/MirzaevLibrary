@@ -20,10 +20,10 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
             this.TicketTable = new HashSet<TicketTable>();
         }
     
-        public int PersonalnumberBuy { get; set; }
-        public string NameBuy { get; set; }
-        public decimal PriseBuy { get; set; }
-        public int QwentyYearBuy { get; set; }
+        public int Personalnumber_Buy { get; set; }
+        public string Name_Buy { get; set; }
+        public decimal Prise_Buy { get; set; }
+        public int QwentyYear_Buy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TicketTable> TicketTable { get; set; }

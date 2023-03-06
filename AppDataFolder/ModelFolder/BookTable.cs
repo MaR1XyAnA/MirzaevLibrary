@@ -20,19 +20,19 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
             this.TicketTable = new HashSet<TicketTable>();
         }
     
-        public int PersonalNumberBook { get; set; }
-        public string NameBook { get; set; }
-        public int InstanceBook { get; set; }
-        public int pnPublishingHouse { get; set; }
-        public System.DateTime DatePublishingBook { get; set; }
-        public int QuantityPublishingBook { get; set; }
-        public int pnCategory { get; set; }
-        public int pnGo { get; set; }
-        public int pnCash { get; set; }
-        public int LikeBook { get; set; }
-        public int DislikeBook { get; set; }
-        public int pnAuthor { get; set; }
-        public Nullable<int> pnImage { get; set; }
+        public int PersonalNumber_Book { get; set; }
+        public string Name_Book { get; set; }
+        public int Instance_Book { get; set; }
+        public int pnPublishing_House { get; set; }
+        public System.DateTime DatePublishing_Book { get; set; }
+        public int QuantityPublishing_Book { get; set; }
+        public int pnCategory_Book { get; set; }
+        public int pnGo_Book { get; set; }
+        public int pnCash_Book { get; set; }
+        public int Like_Book { get; set; }
+        public int Dislike_Book { get; set; }
+        public int pnAuthor_Book { get; set; }
+        public Nullable<int> pnImage_Book { get; set; }
     
         public virtual AuthorsTable AuthorsTable { get; set; }
         public virtual CashTable CashTable { get; set; }

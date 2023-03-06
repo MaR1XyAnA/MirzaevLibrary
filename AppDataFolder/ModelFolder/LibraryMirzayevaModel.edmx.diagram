@@ -8,13 +8,13 @@
         <EntityTypeShape EntityType="LibraryMirzayevaModel.AuthorsTable" Width="1.5" PointX="0.75" PointY="9.375" />
         <EntityTypeShape EntityType="LibraryMirzayevaModel.BookTable" Width="1.5" PointX="3" PointY="2.25" />
         <EntityTypeShape EntityType="LibraryMirzayevaModel.BuyTicketTable" Width="1.5" PointX="3" PointY="8.75" />
-        <EntityTypeShape EntityType="LibraryMirzayevaModel.CashTable" Width="1.5" PointX="0.75" PointY="17.25" />
-        <EntityTypeShape EntityType="LibraryMirzayevaModel.CategoryTable" Width="1.5" PointX="0.75" PointY="14.875" />
-        <EntityTypeShape EntityType="LibraryMirzayevaModel.GoTable" Width="1.5" PointX="0.75" PointY="3.875" />
-        <EntityTypeShape EntityType="LibraryMirzayevaModel.ImagebookTable" Width="1.5" PointX="0.75" PointY="7.125" />
-        <EntityTypeShape EntityType="LibraryMirzayevaModel.ImageUserTable" Width="1.5" PointX="5.25" PointY="7.125" />
-        <EntityTypeShape EntityType="LibraryMirzayevaModel.PublishingHouseTable" Width="1.5" PointX="0.75" PointY="12.5" />
-        <EntityTypeShape EntityType="LibraryMirzayevaModel.RoleTable" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="LibraryMirzayevaModel.CashTable" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="LibraryMirzayevaModel.CategoryTable" Width="1.5" PointX="0.75" PointY="17.25" />
+        <EntityTypeShape EntityType="LibraryMirzayevaModel.GoTable" Width="1.5" PointX="0.75" PointY="14.875" />
+        <EntityTypeShape EntityType="LibraryMirzayevaModel.ImagebookTable" Width="1.5" PointX="0.75" PointY="12.5" />
+        <EntityTypeShape EntityType="LibraryMirzayevaModel.ImageUserTable" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="LibraryMirzayevaModel.PublishingHouseTable" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="LibraryMirzayevaModel.RoleTable" Width="1.5" PointX="5.25" PointY="7.125" />
         <EntityTypeShape EntityType="LibraryMirzayevaModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="8" />
         <EntityTypeShape EntityType="LibraryMirzayevaModel.TicketTable" Width="1.5" PointX="5.25" PointY="3.5" />
         <EntityTypeShape EntityType="LibraryMirzayevaModel.UserTable" Width="1.5" PointX="7.5" PointY="2.875" />
@@ -28,7 +28,7 @@
         <AssociationConnector Association="LibraryMirzayevaModel.FK_UserTable_ImageUserTable" />
         <AssociationConnector Association="LibraryMirzayevaModel.FK_UserTable_RoleTable" />
         <AssociationConnector Association="LibraryMirzayevaModel.FK_UserTable_TicketTable" />
-        <AssociationConnector Association="LibraryMirzayevaModel.TiketBookTable" />
+        <AssociationConnector Association="LibraryMirzayevaModel.MTM_TiketBook_Table" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

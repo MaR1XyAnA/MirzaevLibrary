@@ -7,90 +7,98 @@
     <Schema Namespace="Хранилище LibraryMirzayevaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AuthorsTable">
           <Key>
-            <PropertyRef Name="PersonalNumberAuthor" />
+            <PropertyRef Name="PersonalNumber_Author" />
           </Key>
-          <Property Name="PersonalNumberAuthor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SurnameAuthor" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="NameAuthor" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="MiddlenameAuthor" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="DateofbrichAuthor" Type="date" Nullable="false" />
-          <Property Name="DateofendAuthor" Type="date" />
+          <Property Name="PersonalNumber_Author" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname_Author" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name_Author" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Middlename_Author" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Dateofbrich_Author" Type="date" Nullable="false" />
+          <Property Name="Dateofend_Author" Type="date" />
         </EntityType>
         <EntityType Name="BookTable">
           <Key>
-            <PropertyRef Name="PersonalNumberBook" />
+            <PropertyRef Name="PersonalNumber_Book" />
           </Key>
-          <Property Name="PersonalNumberBook" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NameBook" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="InstanceBook" Type="int" Nullable="false" />
-          <Property Name="pnPublishingHouse" Type="int" Nullable="false" />
-          <Property Name="DatePublishingBook" Type="date" Nullable="false" />
-          <Property Name="QuantityPublishingBook" Type="int" Nullable="false" />
-          <Property Name="pnCategory" Type="int" Nullable="false" />
-          <Property Name="pnGo" Type="int" Nullable="false" />
-          <Property Name="pnCash" Type="int" Nullable="false" />
-          <Property Name="LikeBook" Type="int" Nullable="false" />
-          <Property Name="DislikeBook" Type="int" Nullable="false" />
-          <Property Name="pnAuthor" Type="int" Nullable="false" />
-          <Property Name="pnImage" Type="int" />
+          <Property Name="PersonalNumber_Book" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Book" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Instance_Book" Type="int" Nullable="false" />
+          <Property Name="pnPublishing_House" Type="int" Nullable="false" />
+          <Property Name="DatePublishing_Book" Type="date" Nullable="false" />
+          <Property Name="QuantityPublishing_Book" Type="int" Nullable="false" />
+          <Property Name="pnCategory_Book" Type="int" Nullable="false" />
+          <Property Name="pnGo_Book" Type="int" Nullable="false" />
+          <Property Name="pnCash_Book" Type="int" Nullable="false" />
+          <Property Name="Like_Book" Type="int" Nullable="false" />
+          <Property Name="Dislike_Book" Type="int" Nullable="false" />
+          <Property Name="pnAuthor_Book" Type="int" Nullable="false" />
+          <Property Name="pnImage_Book" Type="int" />
         </EntityType>
         <EntityType Name="BuyTicketTable">
           <Key>
-            <PropertyRef Name="PersonalnumberBuy" />
+            <PropertyRef Name="Personalnumber_Buy" />
           </Key>
-          <Property Name="PersonalnumberBuy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NameBuy" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="PriseBuy" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="QwentyYearBuy" Type="int" Nullable="false" />
+          <Property Name="Personalnumber_Buy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Buy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Prise_Buy" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="QwentyYear_Buy" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CashTable">
           <Key>
-            <PropertyRef Name="PersonalNumberCash" />
+            <PropertyRef Name="PersonalNumber_Cash" />
           </Key>
-          <Property Name="PersonalNumberCash" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TitleCash" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersonalNumber_Cash" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title_Cash" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="CategoryTable">
           <Key>
-            <PropertyRef Name="PersonalNumberCategory" />
+            <PropertyRef Name="PersonalNumber_Category" />
           </Key>
-          <Property Name="PersonalNumberCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TitleCategory" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersonalNumber_Category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title_Category" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="GoTable">
           <Key>
-            <PropertyRef Name="PersonalNumberGo" />
+            <PropertyRef Name="PersonalNumber_Go" />
           </Key>
-          <Property Name="PersonalNumberGo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TitleGo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersonalNumber_Go" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title_Go" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="ImagebookTable">
           <Key>
-            <PropertyRef Name="PersonalnumberImage" />
+            <PropertyRef Name="Personalnumber_Image" />
           </Key>
-          <Property Name="PersonalnumberImage" Type="int" Nullable="false" />
-          <Property Name="ImageImage" Type="image" Nullable="false" />
+          <Property Name="Personalnumber_Image" Type="int" Nullable="false" />
+          <Property Name="Image_Image" Type="image" Nullable="false" />
         </EntityType>
         <EntityType Name="ImageUserTable">
           <Key>
-            <PropertyRef Name="PersonalnumberImage" />
+            <PropertyRef Name="Personalnumber_Image" />
           </Key>
-          <Property Name="PersonalnumberImage" Type="int" Nullable="false" />
-          <Property Name="ImageImage" Type="image" />
+          <Property Name="Personalnumber_Image" Type="int" Nullable="false" />
+          <Property Name="Image_Image" Type="image" />
+        </EntityType>
+        <EntityType Name="MTM_TiketBook_Table">
+          <Key>
+            <PropertyRef Name="pn_Ticket" />
+            <PropertyRef Name="pn_Book" />
+          </Key>
+          <Property Name="pn_Ticket" Type="int" Nullable="false" />
+          <Property Name="pn_Book" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PublishingHouseTable">
           <Key>
-            <PropertyRef Name="PersonalNumberPublishingHouse" />
+            <PropertyRef Name="PersonalNumberPublishing_House" />
           </Key>
-          <Property Name="PersonalNumberPublishingHouse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TitlePublishingHouse" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PersonalNumberPublishing_House" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TitlePublishing_House" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="RoleTable">
           <Key>
-            <PropertyRef Name="PersonalnumberRole" />
+            <PropertyRef Name="Personalnumber_Role" />
           </Key>
-          <Property Name="PersonalnumberRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NameRole" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Personalnumber_Role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Role" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -104,46 +112,38 @@
         </EntityType>
         <EntityType Name="TicketTable">
           <Key>
-            <PropertyRef Name="PersonalNumberTicket" />
+            <PropertyRef Name="PersonalNumber_Ticket" />
           </Key>
-          <Property Name="PersonalNumberTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DateStartTicket" Type="date" Nullable="false" />
-          <Property Name="DateEndTicket" Type="date" Nullable="false" />
-          <Property Name="pnBuy" Type="int" />
-        </EntityType>
-        <EntityType Name="TiketBookTable">
-          <Key>
-            <PropertyRef Name="pnTicket" />
-            <PropertyRef Name="pnBook" />
-          </Key>
-          <Property Name="pnTicket" Type="int" Nullable="false" />
-          <Property Name="pnBook" Type="int" Nullable="false" />
+          <Property Name="PersonalNumber_Ticket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateStart_Ticket" Type="date" Nullable="false" />
+          <Property Name="DateEnd_Ticket" Type="date" Nullable="false" />
+          <Property Name="pnBuy_Ticket" Type="int" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
-            <PropertyRef Name="PersonalNumberUser" />
+            <PropertyRef Name="PersonalNumber_User" />
           </Key>
-          <Property Name="PersonalNumberUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SurnameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="NameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="MiddlenameUser" Type="nvarchar" MaxLength="50" />
-          <Property Name="pnTicketUser" Type="int" Nullable="false" />
-          <Property Name="AddressUser" Type="nvarchar" MaxLength="300" />
-          <Property Name="PhoneUser" Type="nvarchar" MaxLength="11" Nullable="false" />
-          <Property Name="LoginUser" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="PasswordUser" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="pnRoleUser" Type="int" Nullable="false" />
-          <Property Name="pnImageUser" Type="int" Nullable="false" />
+          <Property Name="PersonalNumber_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname_User" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name_User" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Middlename_User" Type="nvarchar" MaxLength="50" />
+          <Property Name="pnTicket_User" Type="int" Nullable="false" />
+          <Property Name="Address_User" Type="nvarchar" MaxLength="300" />
+          <Property Name="Phone_User" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Login_User" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Password_User" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pnRole_User" Type="int" Nullable="false" />
+          <Property Name="pnImage_User" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_BookTable_AuthorsTable">
           <End Role="AuthorsTable" Type="Self.AuthorsTable" Multiplicity="1" />
           <End Role="BookTable" Type="Self.BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AuthorsTable">
-              <PropertyRef Name="PersonalNumberAuthor" />
+              <PropertyRef Name="PersonalNumber_Author" />
             </Principal>
             <Dependent Role="BookTable">
-              <PropertyRef Name="pnAuthor" />
+              <PropertyRef Name="pnAuthor_Book" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -152,10 +152,10 @@
           <End Role="BookTable" Type="Self.BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CashTable">
-              <PropertyRef Name="PersonalNumberCash" />
+              <PropertyRef Name="PersonalNumber_Cash" />
             </Principal>
             <Dependent Role="BookTable">
-              <PropertyRef Name="pnCash" />
+              <PropertyRef Name="pnCash_Book" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -164,10 +164,10 @@
           <End Role="BookTable" Type="Self.BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategoryTable">
-              <PropertyRef Name="PersonalNumberCategory" />
+              <PropertyRef Name="PersonalNumber_Category" />
             </Principal>
             <Dependent Role="BookTable">
-              <PropertyRef Name="pnCategory" />
+              <PropertyRef Name="pnCategory_Book" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -176,10 +176,10 @@
           <End Role="BookTable" Type="Self.BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GoTable">
-              <PropertyRef Name="PersonalNumberGo" />
+              <PropertyRef Name="PersonalNumber_Go" />
             </Principal>
             <Dependent Role="BookTable">
-              <PropertyRef Name="pnGo" />
+              <PropertyRef Name="pnGo_Book" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -188,10 +188,10 @@
           <End Role="BookTable" Type="Self.BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ImagebookTable">
-              <PropertyRef Name="PersonalnumberImage" />
+              <PropertyRef Name="Personalnumber_Image" />
             </Principal>
             <Dependent Role="BookTable">
-              <PropertyRef Name="pnImage" />
+              <PropertyRef Name="pnImage_Book" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -200,10 +200,10 @@
           <End Role="BookTable" Type="Self.BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PublishingHouseTable">
-              <PropertyRef Name="PersonalNumberPublishingHouse" />
+              <PropertyRef Name="PersonalNumberPublishing_House" />
             </Principal>
             <Dependent Role="BookTable">
-              <PropertyRef Name="pnPublishingHouse" />
+              <PropertyRef Name="pnPublishing_House" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -212,34 +212,34 @@
           <End Role="TicketTable" Type="Self.TicketTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BuyTicketTable">
-              <PropertyRef Name="PersonalnumberBuy" />
+              <PropertyRef Name="Personalnumber_Buy" />
             </Principal>
             <Dependent Role="TicketTable">
-              <PropertyRef Name="pnBuy" />
+              <PropertyRef Name="pnBuy_Ticket" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TiketBookTable_BookTable">
           <End Role="BookTable" Type="Self.BookTable" Multiplicity="1" />
-          <End Role="TiketBookTable" Type="Self.TiketBookTable" Multiplicity="*" />
+          <End Role="MTM_TiketBook_Table" Type="Self.MTM_TiketBook_Table" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BookTable">
-              <PropertyRef Name="PersonalNumberBook" />
+              <PropertyRef Name="PersonalNumber_Book" />
             </Principal>
-            <Dependent Role="TiketBookTable">
-              <PropertyRef Name="pnBook" />
+            <Dependent Role="MTM_TiketBook_Table">
+              <PropertyRef Name="pn_Book" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TiketBookTable_TicketTable">
           <End Role="TicketTable" Type="Self.TicketTable" Multiplicity="1" />
-          <End Role="TiketBookTable" Type="Self.TiketBookTable" Multiplicity="*" />
+          <End Role="MTM_TiketBook_Table" Type="Self.MTM_TiketBook_Table" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TicketTable">
-              <PropertyRef Name="PersonalNumberTicket" />
+              <PropertyRef Name="PersonalNumber_Ticket" />
             </Principal>
-            <Dependent Role="TiketBookTable">
-              <PropertyRef Name="pnTicket" />
+            <Dependent Role="MTM_TiketBook_Table">
+              <PropertyRef Name="pn_Ticket" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -248,10 +248,10 @@
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ImageUserTable">
-              <PropertyRef Name="PersonalnumberImage" />
+              <PropertyRef Name="Personalnumber_Image" />
             </Principal>
             <Dependent Role="UserTable">
-              <PropertyRef Name="pnImageUser" />
+              <PropertyRef Name="pnImage_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -260,10 +260,10 @@
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RoleTable">
-              <PropertyRef Name="PersonalnumberRole" />
+              <PropertyRef Name="Personalnumber_Role" />
             </Principal>
             <Dependent Role="UserTable">
-              <PropertyRef Name="pnRoleUser" />
+              <PropertyRef Name="pnRole_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -272,10 +272,10 @@
           <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TicketTable">
-              <PropertyRef Name="PersonalNumberTicket" />
+              <PropertyRef Name="PersonalNumber_Ticket" />
             </Principal>
             <Dependent Role="UserTable">
-              <PropertyRef Name="pnTicketUser" />
+              <PropertyRef Name="pnTicket_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -288,11 +288,11 @@
           <EntitySet Name="GoTable" EntityType="Self.GoTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImagebookTable" EntityType="Self.ImagebookTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImageUserTable" EntityType="Self.ImageUserTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MTM_TiketBook_Table" EntityType="Self.MTM_TiketBook_Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PublishingHouseTable" EntityType="Self.PublishingHouseTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleTable" EntityType="Self.RoleTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TicketTable" EntityType="Self.TicketTable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TiketBookTable" EntityType="Self.TiketBookTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BookTable_AuthorsTable" Association="Self.FK_BookTable_AuthorsTable">
             <End Role="AuthorsTable" EntitySet="AuthorsTable" />
@@ -324,11 +324,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_TiketBookTable_BookTable" Association="Self.FK_TiketBookTable_BookTable">
             <End Role="BookTable" EntitySet="BookTable" />
-            <End Role="TiketBookTable" EntitySet="TiketBookTable" />
+            <End Role="MTM_TiketBook_Table" EntitySet="MTM_TiketBook_Table" />
           </AssociationSet>
           <AssociationSet Name="FK_TiketBookTable_TicketTable" Association="Self.FK_TiketBookTable_TicketTable">
             <End Role="TicketTable" EntitySet="TicketTable" />
-            <End Role="TiketBookTable" EntitySet="TiketBookTable" />
+            <End Role="MTM_TiketBook_Table" EntitySet="MTM_TiketBook_Table" />
           </AssociationSet>
           <AssociationSet Name="FK_UserTable_ImageUserTable" Association="Self.FK_UserTable_ImageUserTable">
             <End Role="ImageUserTable" EntitySet="ImageUserTable" />
@@ -401,112 +401,112 @@
             <End Role="TicketTable" EntitySet="TicketTable" />
             <End Role="UserTable" EntitySet="UserTable" />
           </AssociationSet>
-          <AssociationSet Name="TiketBookTable" Association="LibraryMirzayevaModel.TiketBookTable">
+          <AssociationSet Name="MTM_TiketBook_Table" Association="LibraryMirzayevaModel.MTM_TiketBook_Table">
             <End Role="BookTable" EntitySet="BookTable" />
             <End Role="TicketTable" EntitySet="TicketTable" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AuthorsTable">
           <Key>
-            <PropertyRef Name="PersonalNumberAuthor" />
+            <PropertyRef Name="PersonalNumber_Author" />
           </Key>
-          <Property Name="PersonalNumberAuthor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SurnameAuthor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NameAuthor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MiddlenameAuthor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DateofbrichAuthor" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DateofendAuthor" Type="DateTime" Precision="0" />
+          <Property Name="PersonalNumber_Author" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname_Author" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Author" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Middlename_Author" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dateofbrich_Author" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Dateofend_Author" Type="DateTime" Precision="0" />
           <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_AuthorsTable" FromRole="AuthorsTable" ToRole="BookTable" />
         </EntityType>
         <EntityType Name="BookTable">
           <Key>
-            <PropertyRef Name="PersonalNumberBook" />
+            <PropertyRef Name="PersonalNumber_Book" />
           </Key>
-          <Property Name="PersonalNumberBook" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameBook" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="InstanceBook" Type="Int32" Nullable="false" />
-          <Property Name="pnPublishingHouse" Type="Int32" Nullable="false" />
-          <Property Name="DatePublishingBook" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="QuantityPublishingBook" Type="Int32" Nullable="false" />
-          <Property Name="pnCategory" Type="Int32" Nullable="false" />
-          <Property Name="pnGo" Type="Int32" Nullable="false" />
-          <Property Name="pnCash" Type="Int32" Nullable="false" />
-          <Property Name="LikeBook" Type="Int32" Nullable="false" />
-          <Property Name="DislikeBook" Type="Int32" Nullable="false" />
-          <Property Name="pnAuthor" Type="Int32" Nullable="false" />
-          <Property Name="pnImage" Type="Int32" />
+          <Property Name="PersonalNumber_Book" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Book" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Instance_Book" Type="Int32" Nullable="false" />
+          <Property Name="pnPublishing_House" Type="Int32" Nullable="false" />
+          <Property Name="DatePublishing_Book" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="QuantityPublishing_Book" Type="Int32" Nullable="false" />
+          <Property Name="pnCategory_Book" Type="Int32" Nullable="false" />
+          <Property Name="pnGo_Book" Type="Int32" Nullable="false" />
+          <Property Name="pnCash_Book" Type="Int32" Nullable="false" />
+          <Property Name="Like_Book" Type="Int32" Nullable="false" />
+          <Property Name="Dislike_Book" Type="Int32" Nullable="false" />
+          <Property Name="pnAuthor_Book" Type="Int32" Nullable="false" />
+          <Property Name="pnImage_Book" Type="Int32" />
           <NavigationProperty Name="AuthorsTable" Relationship="LibraryMirzayevaModel.FK_BookTable_AuthorsTable" FromRole="BookTable" ToRole="AuthorsTable" />
           <NavigationProperty Name="CashTable" Relationship="LibraryMirzayevaModel.FK_BookTable_CashTable" FromRole="BookTable" ToRole="CashTable" />
           <NavigationProperty Name="CategoryTable" Relationship="LibraryMirzayevaModel.FK_BookTable_CategoryTable" FromRole="BookTable" ToRole="CategoryTable" />
           <NavigationProperty Name="GoTable" Relationship="LibraryMirzayevaModel.FK_BookTable_GoTable" FromRole="BookTable" ToRole="GoTable" />
           <NavigationProperty Name="ImagebookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_ImagebookTable" FromRole="BookTable" ToRole="ImagebookTable" />
           <NavigationProperty Name="PublishingHouseTable" Relationship="LibraryMirzayevaModel.FK_BookTable_PublishingHouseTable" FromRole="BookTable" ToRole="PublishingHouseTable" />
-          <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.TiketBookTable" FromRole="BookTable" ToRole="TicketTable" />
+          <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.MTM_TiketBook_Table" FromRole="BookTable" ToRole="TicketTable" />
         </EntityType>
         <EntityType Name="BuyTicketTable">
           <Key>
-            <PropertyRef Name="PersonalnumberBuy" />
+            <PropertyRef Name="Personalnumber_Buy" />
           </Key>
-          <Property Name="PersonalnumberBuy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameBuy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PriseBuy" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="QwentyYearBuy" Type="Int32" Nullable="false" />
+          <Property Name="Personalnumber_Buy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Buy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Prise_Buy" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="QwentyYear_Buy" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.FK_TicketTable_BuyTicketTable" FromRole="BuyTicketTable" ToRole="TicketTable" />
         </EntityType>
         <EntityType Name="CashTable">
           <Key>
-            <PropertyRef Name="PersonalNumberCash" />
+            <PropertyRef Name="PersonalNumber_Cash" />
           </Key>
-          <Property Name="PersonalNumberCash" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TitleCash" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalNumber_Cash" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title_Cash" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_CashTable" FromRole="CashTable" ToRole="BookTable" />
         </EntityType>
         <EntityType Name="CategoryTable">
           <Key>
-            <PropertyRef Name="PersonalNumberCategory" />
+            <PropertyRef Name="PersonalNumber_Category" />
           </Key>
-          <Property Name="PersonalNumberCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TitleCategory" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalNumber_Category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title_Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_CategoryTable" FromRole="CategoryTable" ToRole="BookTable" />
         </EntityType>
         <EntityType Name="GoTable">
           <Key>
-            <PropertyRef Name="PersonalNumberGo" />
+            <PropertyRef Name="PersonalNumber_Go" />
           </Key>
-          <Property Name="PersonalNumberGo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TitleGo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalNumber_Go" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title_Go" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_GoTable" FromRole="GoTable" ToRole="BookTable" />
         </EntityType>
         <EntityType Name="ImagebookTable">
           <Key>
-            <PropertyRef Name="PersonalnumberImage" />
+            <PropertyRef Name="Personalnumber_Image" />
           </Key>
-          <Property Name="PersonalnumberImage" Type="Int32" Nullable="false" />
-          <Property Name="ImageImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Personalnumber_Image" Type="Int32" Nullable="false" />
+          <Property Name="Image_Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_ImagebookTable" FromRole="ImagebookTable" ToRole="BookTable" />
         </EntityType>
         <EntityType Name="ImageUserTable">
           <Key>
-            <PropertyRef Name="PersonalnumberImage" />
+            <PropertyRef Name="Personalnumber_Image" />
           </Key>
-          <Property Name="PersonalnumberImage" Type="Int32" Nullable="false" />
-          <Property Name="ImageImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Personalnumber_Image" Type="Int32" Nullable="false" />
+          <Property Name="Image_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="UserTable" Relationship="LibraryMirzayevaModel.FK_UserTable_ImageUserTable" FromRole="ImageUserTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="PublishingHouseTable">
           <Key>
-            <PropertyRef Name="PersonalNumberPublishingHouse" />
+            <PropertyRef Name="PersonalNumberPublishing_House" />
           </Key>
-          <Property Name="PersonalNumberPublishingHouse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TitlePublishingHouse" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalNumberPublishing_House" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TitlePublishing_House" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.FK_BookTable_PublishingHouseTable" FromRole="PublishingHouseTable" ToRole="BookTable" />
         </EntityType>
         <EntityType Name="RoleTable">
           <Key>
-            <PropertyRef Name="PersonalnumberRole" />
+            <PropertyRef Name="Personalnumber_Role" />
           </Key>
-          <Property Name="PersonalnumberRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameRole" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Personalnumber_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserTable" Relationship="LibraryMirzayevaModel.FK_UserTable_RoleTable" FromRole="RoleTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -521,31 +521,31 @@
         </EntityType>
         <EntityType Name="TicketTable">
           <Key>
-            <PropertyRef Name="PersonalNumberTicket" />
+            <PropertyRef Name="PersonalNumber_Ticket" />
           </Key>
-          <Property Name="PersonalNumberTicket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DateStartTicket" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DateEndTicket" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="pnBuy" Type="Int32" />
+          <Property Name="PersonalNumber_Ticket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateStart_Ticket" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateEnd_Ticket" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="pnBuy_Ticket" Type="Int32" />
           <NavigationProperty Name="BuyTicketTable" Relationship="LibraryMirzayevaModel.FK_TicketTable_BuyTicketTable" FromRole="TicketTable" ToRole="BuyTicketTable" />
           <NavigationProperty Name="UserTable" Relationship="LibraryMirzayevaModel.FK_UserTable_TicketTable" FromRole="TicketTable" ToRole="UserTable" />
-          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.TiketBookTable" FromRole="TicketTable" ToRole="BookTable" />
+          <NavigationProperty Name="BookTable" Relationship="LibraryMirzayevaModel.MTM_TiketBook_Table" FromRole="TicketTable" ToRole="BookTable" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
-            <PropertyRef Name="PersonalNumberUser" />
+            <PropertyRef Name="PersonalNumber_User" />
           </Key>
-          <Property Name="PersonalNumberUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SurnameUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NameUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MiddlenameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="pnTicketUser" Type="Int32" Nullable="false" />
-          <Property Name="AddressUser" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneUser" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="LoginUser" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="PasswordUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="pnRoleUser" Type="Int32" Nullable="false" />
-          <Property Name="pnImageUser" Type="Int32" Nullable="false" />
+          <Property Name="PersonalNumber_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname_User" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name_User" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Middlename_User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pnTicket_User" Type="Int32" Nullable="false" />
+          <Property Name="Address_User" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Phone_User" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Login_User" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password_User" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pnRole_User" Type="Int32" Nullable="false" />
+          <Property Name="pnImage_User" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ImageUserTable" Relationship="LibraryMirzayevaModel.FK_UserTable_ImageUserTable" FromRole="UserTable" ToRole="ImageUserTable" />
           <NavigationProperty Name="RoleTable" Relationship="LibraryMirzayevaModel.FK_UserTable_RoleTable" FromRole="UserTable" ToRole="RoleTable" />
           <NavigationProperty Name="TicketTable" Relationship="LibraryMirzayevaModel.FK_UserTable_TicketTable" FromRole="UserTable" ToRole="TicketTable" />
@@ -555,10 +555,10 @@
           <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AuthorsTable">
-              <PropertyRef Name="PersonalNumberAuthor" />
+              <PropertyRef Name="PersonalNumber_Author" />
             </Principal>
             <Dependent Role="BookTable">
-              <PropertyRef Name="pnAuthor" />
+              <PropertyRef Name="pnAuthor_Book" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -567,10 +567,10 @@
           <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CashTable">
-              <PropertyRef Name="PersonalNumberCash" />
+              <PropertyRef Name="PersonalNumber_Cash" />
             </Principal>
             <Dependent Role="BookTable">
-              <PropertyRef Name="pnCash" />
+              <PropertyRef Name="pnCash_Book" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -579,10 +579,10 @@
           <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategoryTable">
-              <PropertyRef Name="PersonalNumberCategory" />
+              <PropertyRef Name="PersonalNumber_Category" />
             </Principal>
             <Dependent Role="BookTable">
-              <PropertyRef Name="pnCategory" />
+              <PropertyRef Name="pnCategory_Book" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -591,10 +591,10 @@
           <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GoTable">
-              <PropertyRef Name="PersonalNumberGo" />
+              <PropertyRef Name="PersonalNumber_Go" />
             </Principal>
             <Dependent Role="BookTable">
-              <PropertyRef Name="pnGo" />
+              <PropertyRef Name="pnGo_Book" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -603,10 +603,10 @@
           <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ImagebookTable">
-              <PropertyRef Name="PersonalnumberImage" />
+              <PropertyRef Name="Personalnumber_Image" />
             </Principal>
             <Dependent Role="BookTable">
-              <PropertyRef Name="pnImage" />
+              <PropertyRef Name="pnImage_Book" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -615,10 +615,10 @@
           <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PublishingHouseTable">
-              <PropertyRef Name="PersonalNumberPublishingHouse" />
+              <PropertyRef Name="PersonalNumberPublishing_House" />
             </Principal>
             <Dependent Role="BookTable">
-              <PropertyRef Name="pnPublishingHouse" />
+              <PropertyRef Name="pnPublishing_House" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -627,10 +627,10 @@
           <End Type="LibraryMirzayevaModel.TicketTable" Role="TicketTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BuyTicketTable">
-              <PropertyRef Name="PersonalnumberBuy" />
+              <PropertyRef Name="Personalnumber_Buy" />
             </Principal>
             <Dependent Role="TicketTable">
-              <PropertyRef Name="pnBuy" />
+              <PropertyRef Name="pnBuy_Ticket" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -639,10 +639,10 @@
           <End Type="LibraryMirzayevaModel.UserTable" Role="UserTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ImageUserTable">
-              <PropertyRef Name="PersonalnumberImage" />
+              <PropertyRef Name="Personalnumber_Image" />
             </Principal>
             <Dependent Role="UserTable">
-              <PropertyRef Name="pnImageUser" />
+              <PropertyRef Name="pnImage_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -651,10 +651,10 @@
           <End Type="LibraryMirzayevaModel.UserTable" Role="UserTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RoleTable">
-              <PropertyRef Name="PersonalnumberRole" />
+              <PropertyRef Name="Personalnumber_Role" />
             </Principal>
             <Dependent Role="UserTable">
-              <PropertyRef Name="pnRoleUser" />
+              <PropertyRef Name="pnRole_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -663,14 +663,14 @@
           <End Type="LibraryMirzayevaModel.UserTable" Role="UserTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TicketTable">
-              <PropertyRef Name="PersonalNumberTicket" />
+              <PropertyRef Name="PersonalNumber_Ticket" />
             </Principal>
             <Dependent Role="UserTable">
-              <PropertyRef Name="pnTicketUser" />
+              <PropertyRef Name="pnTicket_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TiketBookTable">
+        <Association Name="MTM_TiketBook_Table">
           <End Type="LibraryMirzayevaModel.BookTable" Role="BookTable" Multiplicity="*" />
           <End Type="LibraryMirzayevaModel.TicketTable" Role="TicketTable" Multiplicity="*" />
         </Association>
@@ -683,97 +683,97 @@
           <EntitySetMapping Name="AuthorsTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.AuthorsTable">
               <MappingFragment StoreEntitySet="AuthorsTable">
-                <ScalarProperty Name="DateofendAuthor" ColumnName="DateofendAuthor" />
-                <ScalarProperty Name="DateofbrichAuthor" ColumnName="DateofbrichAuthor" />
-                <ScalarProperty Name="MiddlenameAuthor" ColumnName="MiddlenameAuthor" />
-                <ScalarProperty Name="NameAuthor" ColumnName="NameAuthor" />
-                <ScalarProperty Name="SurnameAuthor" ColumnName="SurnameAuthor" />
-                <ScalarProperty Name="PersonalNumberAuthor" ColumnName="PersonalNumberAuthor" />
+                <ScalarProperty Name="Dateofend_Author" ColumnName="Dateofend_Author" />
+                <ScalarProperty Name="Dateofbrich_Author" ColumnName="Dateofbrich_Author" />
+                <ScalarProperty Name="Middlename_Author" ColumnName="Middlename_Author" />
+                <ScalarProperty Name="Name_Author" ColumnName="Name_Author" />
+                <ScalarProperty Name="Surname_Author" ColumnName="Surname_Author" />
+                <ScalarProperty Name="PersonalNumber_Author" ColumnName="PersonalNumber_Author" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BookTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.BookTable">
               <MappingFragment StoreEntitySet="BookTable">
-                <ScalarProperty Name="pnImage" ColumnName="pnImage" />
-                <ScalarProperty Name="pnAuthor" ColumnName="pnAuthor" />
-                <ScalarProperty Name="DislikeBook" ColumnName="DislikeBook" />
-                <ScalarProperty Name="LikeBook" ColumnName="LikeBook" />
-                <ScalarProperty Name="pnCash" ColumnName="pnCash" />
-                <ScalarProperty Name="pnGo" ColumnName="pnGo" />
-                <ScalarProperty Name="pnCategory" ColumnName="pnCategory" />
-                <ScalarProperty Name="QuantityPublishingBook" ColumnName="QuantityPublishingBook" />
-                <ScalarProperty Name="DatePublishingBook" ColumnName="DatePublishingBook" />
-                <ScalarProperty Name="pnPublishingHouse" ColumnName="pnPublishingHouse" />
-                <ScalarProperty Name="InstanceBook" ColumnName="InstanceBook" />
-                <ScalarProperty Name="NameBook" ColumnName="NameBook" />
-                <ScalarProperty Name="PersonalNumberBook" ColumnName="PersonalNumberBook" />
+                <ScalarProperty Name="pnImage_Book" ColumnName="pnImage_Book" />
+                <ScalarProperty Name="pnAuthor_Book" ColumnName="pnAuthor_Book" />
+                <ScalarProperty Name="Dislike_Book" ColumnName="Dislike_Book" />
+                <ScalarProperty Name="Like_Book" ColumnName="Like_Book" />
+                <ScalarProperty Name="pnCash_Book" ColumnName="pnCash_Book" />
+                <ScalarProperty Name="pnGo_Book" ColumnName="pnGo_Book" />
+                <ScalarProperty Name="pnCategory_Book" ColumnName="pnCategory_Book" />
+                <ScalarProperty Name="QuantityPublishing_Book" ColumnName="QuantityPublishing_Book" />
+                <ScalarProperty Name="DatePublishing_Book" ColumnName="DatePublishing_Book" />
+                <ScalarProperty Name="pnPublishing_House" ColumnName="pnPublishing_House" />
+                <ScalarProperty Name="Instance_Book" ColumnName="Instance_Book" />
+                <ScalarProperty Name="Name_Book" ColumnName="Name_Book" />
+                <ScalarProperty Name="PersonalNumber_Book" ColumnName="PersonalNumber_Book" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BuyTicketTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.BuyTicketTable">
               <MappingFragment StoreEntitySet="BuyTicketTable">
-                <ScalarProperty Name="QwentyYearBuy" ColumnName="QwentyYearBuy" />
-                <ScalarProperty Name="PriseBuy" ColumnName="PriseBuy" />
-                <ScalarProperty Name="NameBuy" ColumnName="NameBuy" />
-                <ScalarProperty Name="PersonalnumberBuy" ColumnName="PersonalnumberBuy" />
+                <ScalarProperty Name="QwentyYear_Buy" ColumnName="QwentyYear_Buy" />
+                <ScalarProperty Name="Prise_Buy" ColumnName="Prise_Buy" />
+                <ScalarProperty Name="Name_Buy" ColumnName="Name_Buy" />
+                <ScalarProperty Name="Personalnumber_Buy" ColumnName="Personalnumber_Buy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CashTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.CashTable">
               <MappingFragment StoreEntitySet="CashTable">
-                <ScalarProperty Name="TitleCash" ColumnName="TitleCash" />
-                <ScalarProperty Name="PersonalNumberCash" ColumnName="PersonalNumberCash" />
+                <ScalarProperty Name="Title_Cash" ColumnName="Title_Cash" />
+                <ScalarProperty Name="PersonalNumber_Cash" ColumnName="PersonalNumber_Cash" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CategoryTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.CategoryTable">
               <MappingFragment StoreEntitySet="CategoryTable">
-                <ScalarProperty Name="TitleCategory" ColumnName="TitleCategory" />
-                <ScalarProperty Name="PersonalNumberCategory" ColumnName="PersonalNumberCategory" />
+                <ScalarProperty Name="Title_Category" ColumnName="Title_Category" />
+                <ScalarProperty Name="PersonalNumber_Category" ColumnName="PersonalNumber_Category" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GoTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.GoTable">
               <MappingFragment StoreEntitySet="GoTable">
-                <ScalarProperty Name="TitleGo" ColumnName="TitleGo" />
-                <ScalarProperty Name="PersonalNumberGo" ColumnName="PersonalNumberGo" />
+                <ScalarProperty Name="Title_Go" ColumnName="Title_Go" />
+                <ScalarProperty Name="PersonalNumber_Go" ColumnName="PersonalNumber_Go" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ImagebookTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.ImagebookTable">
               <MappingFragment StoreEntitySet="ImagebookTable">
-                <ScalarProperty Name="ImageImage" ColumnName="ImageImage" />
-                <ScalarProperty Name="PersonalnumberImage" ColumnName="PersonalnumberImage" />
+                <ScalarProperty Name="Image_Image" ColumnName="Image_Image" />
+                <ScalarProperty Name="Personalnumber_Image" ColumnName="Personalnumber_Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ImageUserTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.ImageUserTable">
               <MappingFragment StoreEntitySet="ImageUserTable">
-                <ScalarProperty Name="ImageImage" ColumnName="ImageImage" />
-                <ScalarProperty Name="PersonalnumberImage" ColumnName="PersonalnumberImage" />
+                <ScalarProperty Name="Image_Image" ColumnName="Image_Image" />
+                <ScalarProperty Name="Personalnumber_Image" ColumnName="Personalnumber_Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PublishingHouseTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.PublishingHouseTable">
               <MappingFragment StoreEntitySet="PublishingHouseTable">
-                <ScalarProperty Name="TitlePublishingHouse" ColumnName="TitlePublishingHouse" />
-                <ScalarProperty Name="PersonalNumberPublishingHouse" ColumnName="PersonalNumberPublishingHouse" />
+                <ScalarProperty Name="TitlePublishing_House" ColumnName="TitlePublishing_House" />
+                <ScalarProperty Name="PersonalNumberPublishing_House" ColumnName="PersonalNumberPublishing_House" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoleTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.RoleTable">
               <MappingFragment StoreEntitySet="RoleTable">
-                <ScalarProperty Name="NameRole" ColumnName="NameRole" />
-                <ScalarProperty Name="PersonalnumberRole" ColumnName="PersonalnumberRole" />
+                <ScalarProperty Name="Name_Role" ColumnName="Name_Role" />
+                <ScalarProperty Name="Personalnumber_Role" ColumnName="Personalnumber_Role" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -791,36 +791,36 @@
           <EntitySetMapping Name="TicketTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.TicketTable">
               <MappingFragment StoreEntitySet="TicketTable">
-                <ScalarProperty Name="pnBuy" ColumnName="pnBuy" />
-                <ScalarProperty Name="DateEndTicket" ColumnName="DateEndTicket" />
-                <ScalarProperty Name="DateStartTicket" ColumnName="DateStartTicket" />
-                <ScalarProperty Name="PersonalNumberTicket" ColumnName="PersonalNumberTicket" />
+                <ScalarProperty Name="pnBuy_Ticket" ColumnName="pnBuy_Ticket" />
+                <ScalarProperty Name="DateEnd_Ticket" ColumnName="DateEnd_Ticket" />
+                <ScalarProperty Name="DateStart_Ticket" ColumnName="DateStart_Ticket" />
+                <ScalarProperty Name="PersonalNumber_Ticket" ColumnName="PersonalNumber_Ticket" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserTable">
             <EntityTypeMapping TypeName="LibraryMirzayevaModel.UserTable">
               <MappingFragment StoreEntitySet="UserTable">
-                <ScalarProperty Name="pnImageUser" ColumnName="pnImageUser" />
-                <ScalarProperty Name="pnRoleUser" ColumnName="pnRoleUser" />
-                <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
-                <ScalarProperty Name="LoginUser" ColumnName="LoginUser" />
-                <ScalarProperty Name="PhoneUser" ColumnName="PhoneUser" />
-                <ScalarProperty Name="AddressUser" ColumnName="AddressUser" />
-                <ScalarProperty Name="pnTicketUser" ColumnName="pnTicketUser" />
-                <ScalarProperty Name="MiddlenameUser" ColumnName="MiddlenameUser" />
-                <ScalarProperty Name="NameUser" ColumnName="NameUser" />
-                <ScalarProperty Name="SurnameUser" ColumnName="SurnameUser" />
-                <ScalarProperty Name="PersonalNumberUser" ColumnName="PersonalNumberUser" />
+                <ScalarProperty Name="pnImage_User" ColumnName="pnImage_User" />
+                <ScalarProperty Name="pnRole_User" ColumnName="pnRole_User" />
+                <ScalarProperty Name="Password_User" ColumnName="Password_User" />
+                <ScalarProperty Name="Login_User" ColumnName="Login_User" />
+                <ScalarProperty Name="Phone_User" ColumnName="Phone_User" />
+                <ScalarProperty Name="Address_User" ColumnName="Address_User" />
+                <ScalarProperty Name="pnTicket_User" ColumnName="pnTicket_User" />
+                <ScalarProperty Name="Middlename_User" ColumnName="Middlename_User" />
+                <ScalarProperty Name="Name_User" ColumnName="Name_User" />
+                <ScalarProperty Name="Surname_User" ColumnName="Surname_User" />
+                <ScalarProperty Name="PersonalNumber_User" ColumnName="PersonalNumber_User" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="TiketBookTable" TypeName="LibraryMirzayevaModel.TiketBookTable" StoreEntitySet="TiketBookTable">
+          <AssociationSetMapping Name="MTM_TiketBook_Table" TypeName="LibraryMirzayevaModel.MTM_TiketBook_Table" StoreEntitySet="MTM_TiketBook_Table">
             <EndProperty Name="TicketTable">
-              <ScalarProperty Name="PersonalNumberTicket" ColumnName="pnTicket" />
+              <ScalarProperty Name="PersonalNumber_Ticket" ColumnName="pn_Ticket" />
             </EndProperty>
             <EndProperty Name="BookTable">
-              <ScalarProperty Name="PersonalNumberBook" ColumnName="pnBook" />
+              <ScalarProperty Name="PersonalNumber_Book" ColumnName="pn_Book" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

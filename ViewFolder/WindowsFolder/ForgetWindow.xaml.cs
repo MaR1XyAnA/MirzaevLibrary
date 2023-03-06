@@ -100,7 +100,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             {
                 if (LoginTextBox.Text != "")
                 {
-                    var SearthUser = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.LoginUser == LoginTextBox.Text);
+                    var SearthUser = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.Login_User == LoginTextBox.Text);
                     LoginUserString = Convert.ToString(LoginTextBox.Text);
                     if (SearthUser == null)
                     {
@@ -116,9 +116,9 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                         {
                             RandomCodeString = RandomTextSender().ToString("D6"); // в переменную засунули случайное число для подтверждения регистрации
 
-                            string SurnameUserString = SearthUser.SurnameUser;
-                            string NameUserString = SearthUser.NameUser;
-                            string MiddlrnameUserString = SearthUser.MiddlenameUser;
+                            string SurnameUserString = SearthUser.Surname_User;
+                            string NameUserString = SearthUser.Name_User;
+                            string MiddlrnameUserString = SearthUser.Middlename_User;
 
                             string SNMUser = SurnameUserString + " " + NameUserString + " " + MiddlrnameUserString;
 
@@ -214,28 +214,14 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 {
                     if (NewPasswordTextBox.Text != "" && ReplayPasswordPasswordBox.Password != "")
                     {
-                        var UserVar = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.LoginUser == LoginUserString);
+                        var UserVar = AppConnectClass.DataBase.UserTable.FirstOrDefault(data => data.Login_User == LoginUserString);
 
                         if (UserVar != null)
                         {
-                            var userTable = new UserTable()
-                            {
-                                PersonalNumberUser = UserVar.PersonalNumberUser,
-                                SurnameUser = UserVar.SurnameUser,
-                                NameUser = UserVar.NameUser,
-                                MiddlenameUser = UserVar.MiddlenameUser,
-                                pnTicketUser = UserVar.pnTicketUser,
-                                AddressUser = UserVar.AddressUser,
-                                PhoneUser = UserVar.PhoneUser,
-                                LoginUser = UserVar.LoginUser,
-                                PasswordUser = NewPasswordTextBox.Text,
-                                pnRoleUser = UserVar.pnRoleUser,
-                                pnImageUser = UserVar.pnImageUser
-                            };
-
                             try
                             {
-                                AppConnectClass.DataBase.UserTable.AddOrUpdate(userTable);
+                                UserVar.Password_User = NewPasswordTextBox.Text;
+                                AppConnectClass.DataBase.UserTable.AddOrUpdate(UserVar);
                                 AppConnectClass.DataBase.SaveChanges();
 
                                 MessageBox.Show(

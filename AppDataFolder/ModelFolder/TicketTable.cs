@@ -21,10 +21,10 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
             this.BookTable = new HashSet<BookTable>();
         }
     
-        public int PersonalNumberTicket { get; set; }
-        public System.DateTime DateStartTicket { get; set; }
-        public System.DateTime DateEndTicket { get; set; }
-        public Nullable<int> pnBuy { get; set; }
+        public int PersonalNumber_Ticket { get; set; }
+        public System.DateTime DateStart_Ticket { get; set; }
+        public System.DateTime DateEnd_Ticket { get; set; }
+        public Nullable<int> pnBuy_Ticket { get; set; }
     
         public virtual BuyTicketTable BuyTicketTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

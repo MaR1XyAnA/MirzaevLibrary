@@ -24,7 +24,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 {
                     AppConnectClass.DataBase = new LibraryMirzayevaEntities(); DataContext = GetUserTable;
 
-                    if (UserClass.GetUserTable.pnTicketUser == 1) // Если у пользователя стандартный номер читательского билета
+                    if (UserClass.GetUserTable.pnTicket_User == 1) // Если у пользователя стандартный номер читательского билета
                     {
                         InfoTicketThoTextBlock.Text = "У вас нет читательского билета, но вы можете его преобрести";
                         InfoTicketOneTextBlock.Visibility = Visibility.Collapsed;
@@ -34,7 +34,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     }
                     else // Если у пользователя не стандартный читательский билет
                     {
-                        int IdTicket = UserClass.GetUserTable.pnTicketUser; // Получаем номер читательского билета
+                        int IdTicket = UserClass.GetUserTable.pnTicket_User; // Получаем номер читательского билета
                         AppConnectClass.DataBase.TicketTable.Include(Data => Data.BookTable).Load(); //Реализовываем связь многие ко многим между таблицей TicketTable и таблицей BookTable
                         var Ticket = AppConnectClass.DataBase.TicketTable.Find(IdTicket); // Ищем в таблице TicketTable читательский билет по номеру
 
@@ -108,23 +108,24 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 }
                 else
                 {
+                    var UserVar = UserClass.GetUserTable;
+                    UserVar.Password_User = NewPasswordTextBox.Text;
+                    //UserTable PasswordUser = new UserTable()
+                    //{
+                    //    PersonalNumber_User = UserClass.GetUserTable.PersonalNumber_User,
+                    //    Surname_User = UserClass.GetUserTable.Surname_User,
+                    //    Name_User = UserClass.GetUserTable.Name_User,
+                    //    Middlename_User = UserClass.GetUserTable.Middlename_User,
+                    //    Address_User = UserClass.GetUserTable.Address_User,
+                    //    Phone_User = UserClass.GetUserTable.Phone_User,
+                    //    pnTicket_User = UserClass.GetUserTable.pnTicket_User,
+                    //    Login_User = UserClass.GetUserTable.Login_User,
+                    //    Password_User = NewPasswordTextBox.Text,
+                    //    pnRole_User = UserClass.GetUserTable.pnRole_User,
+                    //    pnImage_User = UserClass.GetUserTable.pnImage_User
+                    //};
 
-                    UserTable PasswordUser = new UserTable()
-                    {
-                        PersonalNumberUser = UserClass.GetUserTable.PersonalNumberUser,
-                        SurnameUser = UserClass.GetUserTable.SurnameUser,
-                        NameUser = UserClass.GetUserTable.NameUser,
-                        MiddlenameUser = UserClass.GetUserTable.MiddlenameUser,
-                        AddressUser = UserClass.GetUserTable.AddressUser,
-                        PhoneUser = UserClass.GetUserTable.PhoneUser,
-                        pnTicketUser = UserClass.GetUserTable.pnTicketUser,
-                        LoginUser = UserClass.GetUserTable.LoginUser,
-                        PasswordUser = NewPasswordTextBox.Text,
-                        pnRoleUser = UserClass.GetUserTable.pnRoleUser,
-                        pnImageUser = UserClass.GetUserTable.pnImageUser
-                    };
-
-                    AppConnectClass.DataBase.UserTable.AddOrUpdate(PasswordUser); AppConnectClass.DataBase.SaveChanges();
+                    AppConnectClass.DataBase.UserTable.AddOrUpdate(UserVar); AppConnectClass.DataBase.SaveChanges();
                     MessageBox.Show("Пароль сменён успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     SurnameStackPanel.Visibility = Visibility.Visible;
@@ -173,7 +174,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 }
                 else
                 {
-                    if (NewPasswordTextBox.Text == UserClass.GetUserTable.PasswordUser || PasswordPasswordBox.Password == UserClass.GetUserTable.PasswordUser)
+                    if (NewPasswordTextBox.Text == UserClass.GetUserTable.Password_User || PasswordPasswordBox.Password == UserClass.GetUserTable.Password_User)
                     {
                         MessageBox.Show(
                             "Вы уже используете данный пароль",
@@ -183,22 +184,28 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     }
                     else
                     {
-                        UserTable EditUser = new UserTable()
-                        {
-                            PersonalNumberUser = UserClass.GetUserTable.PersonalNumberUser,
-                            SurnameUser = SurnameTextBox.Text,
-                            NameUser = NameTextBox.Text,
-                            MiddlenameUser = MiddlenameTextBox.Text,
-                            AddressUser = AddresTextBox.Text,
-                            PhoneUser = PhoneTextBox.Text,
-                            pnTicketUser = UserClass.GetUserTable.pnTicketUser,
-                            LoginUser = UserClass.GetUserTable.LoginUser,
-                            PasswordUser = UserClass.GetUserTable.PasswordUser,
-                            pnRoleUser = UserClass.GetUserTable.pnRoleUser,
-                            pnImageUser = UserClass.GetUserTable.pnImageUser
-                        };
+                        var UpDateUser = UserClass.GetUserTable;
+                        UpDateUser.Surname_User = SurnameTextBox.Text;
+                        UpDateUser.Name_User = NameTextBox.Text;
+                        UpDateUser.Surname_User = MiddlenameTextBox.Text;
+                        UpDateUser.Address_User = AddresTextBox.Text;
+                        UpDateUser.Phone_User = PhoneTextBox.Text;
+                        //UserTable EditUser = new UserTable()
+                        //{
+                        //    PersonalNumberUser = UserClass.GetUserTable.PersonalNumberUser,
+                        //    SurnameUser = SurnameTextBox.Text,
+                        //    NameUser = NameTextBox.Text,
+                        //    MiddlenameUser = MiddlenameTextBox.Text,
+                        //    AddressUser = AddresTextBox.Text,
+                        //    PhoneUser = PhoneTextBox.Text,
+                        //    pnTicketUser = UserClass.GetUserTable.pnTicketUser,
+                        //    LoginUser = UserClass.GetUserTable.LoginUser,
+                        //    PasswordUser = UserClass.GetUserTable.PasswordUser,
+                        //    pnRoleUser = UserClass.GetUserTable.pnRoleUser,
+                        //    pnImageUser = UserClass.GetUserTable.pnImageUser
+                        //};
 
-                        AppConnectClass.DataBase.UserTable.AddOrUpdate(EditUser);
+                        AppConnectClass.DataBase.UserTable.AddOrUpdate(UpDateUser);
                         AppConnectClass.DataBase.SaveChanges();
 
                         MessageBox.Show("Данные сохранены успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -249,7 +256,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 }
                 else
                 {
-                    if (OldPasswordTextBox.Text != UserClass.GetUserTable.PasswordUser) 
+                    if (OldPasswordTextBox.Text != UserClass.GetUserTable.Password_User) 
                     { 
                         OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58)); 
                         NewPasswordTextBox.IsEnabled = false; 
@@ -257,7 +264,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     }
                     else
                     {
-                        if (OldPasswordTextBox.Text == UserClass.GetUserTable.PasswordUser)
+                        if (OldPasswordTextBox.Text == UserClass.GetUserTable.Password_User)
                         { 
                             OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); 
                             NewPasswordTextBox.IsEnabled = true; 

@@ -20,8 +20,8 @@ namespace MirzaevLibrary.AppDataFolder.ModelFolder
             this.BookTable = new HashSet<BookTable>();
         }
     
-        public int PersonalNumberPublishingHouse { get; set; }
-        public string TitlePublishingHouse { get; set; }
+        public int PersonalNumberPublishing_House { get; set; }
+        public string TitlePublishing_House { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookTable> BookTable { get; set; }

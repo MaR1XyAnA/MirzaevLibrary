@@ -22,7 +22,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 if (categoryTable != null)
                 {
                     DataContext = categoryTable;
-                    TypeId = categoryTable.PersonalNumberCategory;
+                    TypeId = categoryTable.PersonalNumber_Category;
                     BigDate();
                 }
                 else
@@ -48,7 +48,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         private async void BigDate()
         {
             AnimLoadingStart();
-            var GetCategory = await AppConnectClass.DataBase.BookTable.Where(data => data.pnCategory == TypeId).ToListAsync();
+            var GetCategory = await AppConnectClass.DataBase.BookTable.Where(data => data.pnCategory_Book == TypeId).ToListAsync();
             BookListBox.ItemsSource = GetCategory;
             AnimLoadingEnd();
         }

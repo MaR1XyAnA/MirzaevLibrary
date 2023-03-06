@@ -23,13 +23,13 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 if (userTable != null)
                 {
                     DataContext = userTable;
-                    var TicketUser = AppConnectClass.DataBase.TicketTable.Find(UserClass.GetUserTable.pnTicketUser);
+                    var TicketUser = AppConnectClass.DataBase.TicketTable.Find(UserClass.GetUserTable.pnTicket_User);
 
-                    if (TicketUser != null || UserClass.GetUserTable.pnTicketUser != 1) 
+                    if (TicketUser != null || UserClass.GetUserTable.pnTicket_User != 1) 
                     {
                         
-                        DateTime DateStart = TicketUser.DateStartTicket;
-                        DateTime DateEnd = TicketUser.DateEndTicket;
+                        DateTime DateStart = TicketUser.DateStart_Ticket;
+                        DateTime DateEnd = TicketUser.DateEnd_Ticket;
                         DateTime ToDayDay = DateTime.Today;
 
                         TimeSpan SummaDate = DateEnd.Subtract(DateStart);
@@ -76,32 +76,32 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 {
                     BuyTicketTable buyTicketTable = (BuyTicketTable)PriseTicketListBox.SelectedItem; // Получаем услугу из списка услуг
 
-                    if (UserClass.GetUserTable.pnTicketUser == 1)
+                    if (UserClass.GetUserTable.pnTicket_User == 1)
                     {
                         DateTime MayDay = DateTime.Today; // Получаем сегодняшнюю дату
-                        int GetDay = buyTicketTable.QwentyYearBuy; // Получаем количество дней
+                        int GetDay = buyTicketTable.QwentyYear_Buy; // Получаем количество дней
                         DateTime CityDate = MayDay.AddDays(GetDay); // Прибавляем полученное количество дней к полученной дате
 
                         var GetTicketAdd = new TicketTable() // Создаём "коробку" в которой будем хранить информацию о билете
                         {
-                            DateStartTicket = MayDay,
-                            DateEndTicket = CityDate,
-                            pnBuy = buyTicketTable.PersonalnumberBuy
+                            DateStart_Ticket = MayDay,
+                            DateEnd_Ticket = CityDate,
+                            pnBuy_Ticket = buyTicketTable.Personalnumber_Buy
                         };
 
                         var GetUserUpdate = new UserTable() // Создаём "коробку" в которой будем хранить информацию о пользователе
                         {
-                            PersonalNumberUser = UserClass.GetUserTable.PersonalNumberUser,
-                            SurnameUser = UserClass.GetUserTable.SurnameUser,
-                            NameUser = UserClass.GetUserTable.NameUser,
-                            MiddlenameUser = UserClass.GetUserTable.MiddlenameUser,
-                            AddressUser = UserClass.GetUserTable.AddressUser,
-                            PhoneUser = UserClass.GetUserTable.PhoneUser,
-                            pnTicketUser = GetTicketAdd.PersonalNumberTicket,
-                            LoginUser = UserClass.GetUserTable.LoginUser,
-                            PasswordUser = UserClass.GetUserTable.PasswordUser,
-                            pnRoleUser = UserClass.GetUserTable.pnRoleUser,
-                            pnImageUser = UserClass.GetUserTable.pnImageUser
+                            PersonalNumber_User = UserClass.GetUserTable.PersonalNumber_User,
+                            Surname_User = UserClass.GetUserTable.Surname_User,
+                            Name_User = UserClass.GetUserTable.Name_User,
+                            Middlename_User = UserClass.GetUserTable.Middlename_User,
+                            Address_User = UserClass.GetUserTable.Address_User,
+                            Phone_User = UserClass.GetUserTable.Phone_User,
+                            pnTicket_User = GetTicketAdd.PersonalNumber_Ticket,
+                            Login_User = UserClass.GetUserTable.Login_User,
+                            Password_User = UserClass.GetUserTable.Password_User,
+                            pnRole_User = UserClass.GetUserTable.pnRole_User,
+                            pnImage_User = UserClass.GetUserTable.pnImage_User
                         };
 
                         try
@@ -127,11 +127,11 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     }
                     else
                     {
-                        if (UserClass.GetUserTable.pnTicketUser != 1)
+                        if (UserClass.GetUserTable.pnTicket_User != 1)
                         {
                             DateTime Smile = DateTime.Today;
-                            var Skolkovo = AppConnectClass.DataBase.TicketTable.Find(UserClass.GetUserTable.pnTicketUser);
-                            DateTime Letter = Skolkovo.DateEndTicket;
+                            var Skolkovo = AppConnectClass.DataBase.TicketTable.Find(UserClass.GetUserTable.pnTicket_User);
+                            DateTime Letter = Skolkovo.DateEnd_Ticket;
 
                             if (Letter > Smile) // Если дата конца больше сегодняшней даты
                             {
@@ -144,15 +144,15 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                             else
                             {
                                 DateTime MayBar = DateTime.Today; // Получаем сегодняшнюю дату
-                                int GetDay = buyTicketTable.QwentyYearBuy; // Получаем количество дней
+                                int GetDay = buyTicketTable.QwentyYear_Buy; // Получаем количество дней
                                 DateTime HomeDate = MayBar.AddDays(GetDay); // Прибавляем полученное количество дней к полученной дате
 
                                 var GetTicket = new TicketTable() // Создаём "коробку" в которой будем хранить информацию о билете
                                 {
-                                    PersonalNumberTicket = Skolkovo.PersonalNumberTicket,
-                                    DateStartTicket = MayBar,
-                                    DateEndTicket = HomeDate,
-                                    pnBuy = buyTicketTable.PersonalnumberBuy
+                                    PersonalNumber_Ticket = Skolkovo.PersonalNumber_Ticket,
+                                    DateStart_Ticket = MayBar,
+                                    DateEnd_Ticket = HomeDate,
+                                    pnBuy_Ticket = buyTicketTable.Personalnumber_Buy
                                 };
                                 try
                                 {
