@@ -16,7 +16,6 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             try
             {
                 InitializeComponent();
-
                 AppConnectClass.DataBase = new LibraryMirzayevaEntities();
                 PriseTicketListBox.ItemsSource = AppConnectClass.DataBase.BuyTicketTable.ToList();
 
@@ -25,7 +24,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     DataContext = userTable;
                     var TicketUser = AppConnectClass.DataBase.TicketTable.Find(UserClass.GetUserTable.pnTicket_User);
 
-                    if (TicketUser != null || UserClass.GetUserTable.pnTicket_User != 1) 
+                    if (TicketUser != null || TicketUser.pnTicket_User != 1) 
                     {
                         
                         DateTime DateStart = TicketUser.DateStart_Ticket;

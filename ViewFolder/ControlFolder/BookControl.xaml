@@ -27,7 +27,7 @@
             </Grid.RowDefinitions>
             <Image
                 Margin="10"
-                Source="{Binding ImagebookTable.ImageImage}"
+                Source="{Binding ImagebookTable.Image_Image}"
                 Stretch="Uniform"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
@@ -46,7 +46,7 @@
                         Margin="0 0 0 5"
                         FontSize="20"
                         Style="{StaticResource TextBlockStyle}"
-                        Text="{Binding NameBook}"/>
+                        Text="{Binding Name_Book}"/>
                     <StackPanel 
                         Margin="10 7 0 0" 
                         Orientation="Vertical" 
@@ -61,15 +61,15 @@
                                 Margin="0 0 2 0"/>
                             <TextBlock
                                 Style="{StaticResource CharacteristicBookTextBlock}"
-                                Text="{Binding AuthorsTable.SurnameAuthor}"
+                                Text="{Binding AuthorsTable.Surname_Author}"
                                 Margin="2 0 2 0"/>
                             <TextBlock
                                 Style="{StaticResource CharacteristicBookTextBlock}"
-                                Text="{Binding AuthorsTable.NameAuthor}"
+                                Text="{Binding AuthorsTable.Name_Author}"
                                 Margin="2 0 2 0"/>
                             <TextBlock
                                 Style="{StaticResource CharacteristicBookTextBlock}"
-                                Text="{Binding AuthorsTable.MiddlenameAuthor}"
+                                Text="{Binding AuthorsTable.Middlename_Author}"
                                 Margin="2 0 0 0"/>
                         </StackPanel>
                         <StackPanel 
@@ -82,7 +82,7 @@
                             <TextBlock
                                 Margin="2 0 0 0"
                                 Style="{StaticResource CharacteristicBookTextBlock}"
-                                Text="{Binding PublishingHouseTable.TitlePublishingHouse}"/>
+                                Text="{Binding PublishingHouseTable.TitlePublishing_House}"/>
                         </StackPanel>
                         <StackPanel 
                             Margin="0 3 0 3" 
@@ -94,7 +94,7 @@
                             <TextBlock
                                 Margin="2 0 0 0"
                                 Style="{StaticResource CharacteristicBookTextBlock}"
-                                Text="{Binding DatePublishingBook, StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                                Text="{Binding DatePublishing_Book, StringFormat='{}{0:dd/MM/yyyy}'}"/>
                         </StackPanel>
                         <StackPanel 
                             Margin="0 3 0 3"
@@ -106,7 +106,7 @@
                             <TextBlock
                                 Margin="2 0 0 0"
                                 Style="{StaticResource CharacteristicBookTextBlock}"
-                                Text="{Binding CategoryTable.TitleCategory}"/>
+                                Text="{Binding CategoryTable.Title_Category}"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel> 
@@ -130,7 +130,7 @@
                         Foreground="#39ff14"
                         Margin="3 0 0 0"
                         Style="{StaticResource CharacteristicBookTextBlock}"
-                        Text="{Binding LikeBook}"/>
+                        Text="{Binding Like_Book}"/>
                 </StackPanel>
                 <StackPanel 
                     Orientation="Horizontal" 
@@ -145,7 +145,7 @@
                         Foreground="#ff073a"
                         Margin="3 0 0 0"
                         Style="{StaticResource CharacteristicBookTextBlock}"
-                        Text="{Binding DislikeBook}"/>
+                        Text="{Binding Dislike_Book}"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

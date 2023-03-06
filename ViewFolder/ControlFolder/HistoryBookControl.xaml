@@ -32,7 +32,7 @@
         <Grid Grid.Column="0">
             <Image
                 Margin="10"
-                Source="{Binding ImagebookTable.ImageImage}"
+                Source="{Binding ImagebookTable.Image_Image}"
                 Stretch="Uniform"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"/>
@@ -42,7 +42,7 @@
                 Margin="20 0 0 0"
                 FontSize="20"
                 Style="{StaticResource TextBlockStyle}"
-                Text="{Binding NameBook}"/>
+                Text="{Binding Name_Book}"/>
         </Grid>
     </Grid>
 </UserControl>

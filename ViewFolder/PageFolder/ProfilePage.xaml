@@ -83,7 +83,7 @@
                         x:Name="UserImage"
                         Visibility="Visible"
                         Style="{StaticResource ImageDataBase}"
-                        Source="{Binding ImageUserTable.ImageImage}"/>
+                        Source="{Binding ImageUserTable.Image_Image}"/>
                 </StackPanel>
             </Grid>
             <StackPanel
@@ -110,7 +110,7 @@
                     FontSize="20"
                     x:Name="InfoTicketThoTextBlock"
                     Margin="0 0 0 0"
-                    Text="{Binding pnTicketUser}"
+                    Text="{Binding pnTicket_User}"
                     Style="{StaticResource TextBlockStyle}"/>
             </StackPanel>
             <Grid 
@@ -133,7 +133,7 @@
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
                             IsEnabled="False"
-                            Text="{Binding SurnameUser}"
+                            Text="{Binding Surname_User}"
                             x:Name="SurnameTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>
@@ -149,7 +149,7 @@
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
                             IsEnabled="False"
-                            Text="{Binding NameUser}"
+                            Text="{Binding Name_User}"
                             x:Name="NameTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>
@@ -165,7 +165,7 @@
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
                             IsEnabled="False"
-                            Text="{Binding MiddlenameUser}"
+                            Text="{Binding Middlename_User}"
                             x:Name="MiddlenameTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>
@@ -181,7 +181,7 @@
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
                             IsEnabled="False"
-                            Text="{Binding AddressUser}"
+                            Text="{Binding Address_User}"
                             x:Name="AddresTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>
@@ -197,7 +197,7 @@
                             Style="{StaticResource TextBlockStyle}"/>
                         <TextBox
                             IsEnabled="False"
-                            Text="{Binding PhoneUser}"
+                            Text="{Binding Phone_User}"
                             x:Name="PhoneTextBox"
                             Margin="2 0 0 0"
                             Width="550"/>

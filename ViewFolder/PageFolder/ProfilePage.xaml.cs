@@ -22,7 +22,8 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
                 if (GetUserTable != null) // Если передоваемое значение не пустое
                 {
-                    AppConnectClass.DataBase = new LibraryMirzayevaEntities(); DataContext = GetUserTable;
+                    AppConnectClass.DataBase = new LibraryMirzayevaEntities(); 
+                    DataContext = GetUserTable;
 
                     if (UserClass.GetUserTable.pnTicket_User == 1) // Если у пользователя стандартный номер читательского билета
                     {
@@ -34,11 +35,11 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     }
                     else // Если у пользователя не стандартный читательский билет
                     {
-                        int IdTicket = UserClass.GetUserTable.pnTicket_User; // Получаем номер читательского билета
-                        AppConnectClass.DataBase.TicketTable.Include(Data => Data.BookTable).Load(); //Реализовываем связь многие ко многим между таблицей TicketTable и таблицей BookTable
-                        var Ticket = AppConnectClass.DataBase.TicketTable.Find(IdTicket); // Ищем в таблице TicketTable читательский билет по номеру
+                        int NumberTicket = UserClass.GetUserTable.pnTicket_User; // Получаем номер читательского билета
+                        AppConnectClass.DataBase.TicketTable.Include(Ticket_Book => Ticket_Book.BookTable).Load(); //Реализовываем связь многие ко многим между таблицей TicketTable и таблицей BookTable
+                        var ObjectTicket = AppConnectClass.DataBase.TicketTable.Find(NumberTicket); // Ищем в таблице TicketTable читательский билет по номеру
 
-                        HistoryBookListBox.ItemsSource = Ticket.BookTable.ToList();
+                        HistoryBookListBox.ItemsSource = ObjectTicket.BookTable.ToList();
                         HintHistoryTextBlock.Visibility = Visibility.Collapsed;
                     }
                 }
@@ -46,6 +47,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 {
                     ImageSource userImage = new BitmapImage(new Uri("/ContentFolder/ImageFolder/NoImage.png", UriKind.RelativeOrAbsolute)); // Вывод стандартного фото
                     UserImage.Source = userImage;
+
                     HintInfoTicketTextBlock.Visibility = Visibility.Visible;
                     InfoTicketOneTextBlock.Visibility = Visibility.Collapsed;
                     InfoTicketThoTextBlock.Visibility = Visibility.Collapsed;
@@ -63,7 +65,93 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     MessageBoxImage.Error);
             }
         }
+        #region Действие
+        private void SaveProfilUser()
+        {
+            var UpdateInformationUser = UserClass.GetUserTable;
 
+            UpdateInformationUser.Surname_User = SurnameTextBox.Text;
+            UpdateInformationUser.Name_User = NameTextBox.Text;
+            UpdateInformationUser.Middlename_User = MiddlenameTextBox.Text;
+            UpdateInformationUser.Address_User = AddresTextBox.Text;
+            UpdateInformationUser.Phone_User = PhoneTextBox.Text;
+
+            AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdateInformationUser);
+            AppConnectClass.DataBase.SaveChanges();
+
+            MessageBox.Show("Данные сохранены успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void SavePasswordUser()
+        {
+            var UpdatePasswordUser = UserClass.GetUserTable;
+            UpdatePasswordUser.Password_User = NewPasswordTextBox.Text;
+
+            AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdatePasswordUser);
+            AppConnectClass.DataBase.SaveChanges();
+
+            MessageBox.Show("Пароль сменён успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        #endregion
+        #region Click
+        private void AuthorizationButton_Click(object sender, RoutedEventArgs e) 
+        { 
+            AuthorizationWindow authorizationWindow = new AuthorizationWindow(); 
+            authorizationWindow.Show(); 
+        }
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e) 
+        { 
+            RegistrationWindow registrationWindow = new RegistrationWindow(); 
+            registrationWindow.Show();
+        }
+        private void SaveProfilButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (UserClass.GetUserTable == null)
+                {
+                    MessageBox.Show(
+                        "Вам нужно сначала авторизоваться",
+                        "PR004 - Ошибка сохранения",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
+                else
+                {
+                    if (NewPasswordTextBox.Text == UserClass.GetUserTable.Password_User || PasswordPasswordBox.Password == UserClass.GetUserTable.Password_User)
+                    {
+                        MessageBox.Show(
+                            "Вы уже используете данный пароль",
+                            "PR005 - ошибка сохранения",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        SaveProfilUser();
+
+                        SurnameTextBox.IsEnabled = false;
+                        NameTextBox.IsEnabled = false;
+                        MiddlenameTextBox.IsEnabled = false;
+                        AddresTextBox.IsEnabled = false;
+                        PhoneTextBox.IsEnabled = false;
+
+                        EditPasswordButton.Visibility = Visibility.Collapsed;
+                        SaveProfilButton.Visibility = Visibility.Collapsed;
+                        EditProfilButton.Visibility = Visibility.Visible;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message.ToString(),
+                    "PR006 - Ошибка сохранения",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
         private void EditProfilButton_Click(object sender, RoutedEventArgs e)
         {
             SurnameTextBox.IsEnabled = true;
@@ -93,7 +181,6 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             SaveProfilButton.Visibility = Visibility.Collapsed;
             SavePasswordButton.Visibility = Visibility.Visible;
         }
-
         private void SavePasswordButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -101,33 +188,15 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 if (UserClass.GetUserTable == null)
                 {
                     MessageBox.Show(
-                        "Вам нужно сначала авторизоваться", 
-                        "PR002 - Ошибка сохранения", 
+                        "Вам нужно сначала авторизоваться",
+                        "PR002 - Ошибка сохранения",
                         MessageBoxButton.OK,
                         MessageBoxImage.Information);
                 }
                 else
                 {
-                    var UserVar = UserClass.GetUserTable;
-                    UserVar.Password_User = NewPasswordTextBox.Text;
-                    //UserTable PasswordUser = new UserTable()
-                    //{
-                    //    PersonalNumber_User = UserClass.GetUserTable.PersonalNumber_User,
-                    //    Surname_User = UserClass.GetUserTable.Surname_User,
-                    //    Name_User = UserClass.GetUserTable.Name_User,
-                    //    Middlename_User = UserClass.GetUserTable.Middlename_User,
-                    //    Address_User = UserClass.GetUserTable.Address_User,
-                    //    Phone_User = UserClass.GetUserTable.Phone_User,
-                    //    pnTicket_User = UserClass.GetUserTable.pnTicket_User,
-                    //    Login_User = UserClass.GetUserTable.Login_User,
-                    //    Password_User = NewPasswordTextBox.Text,
-                    //    pnRole_User = UserClass.GetUserTable.pnRole_User,
-                    //    pnImage_User = UserClass.GetUserTable.pnImage_User
-                    //};
 
-                    AppConnectClass.DataBase.UserTable.AddOrUpdate(UserVar); AppConnectClass.DataBase.SaveChanges();
-                    MessageBox.Show("Пароль сменён успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                    SavePasswordUser();
                     SurnameStackPanel.Visibility = Visibility.Visible;
                     NameStackPanel.Visibility = Visibility.Visible;
                     MiddlenameStackPanel.Visibility = Visibility.Visible;
@@ -150,100 +219,17 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     EditProfilButton.Visibility = Visibility.Visible;
                 }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(
                     ex.Message.ToString(),
-                    "PR003 - Ошибка сохранения", 
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Error); 
-            }
-        }
-
-        private void SaveProfilButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (UserClass.GetUserTable == null)
-                {
-                    MessageBox.Show(
-                        "Вам нужно сначала авторизоваться", 
-                        "PR004 - Ошибка сохранения",
-                        MessageBoxButton.OK, 
-                        MessageBoxImage.Information);
-                }
-                else
-                {
-                    if (NewPasswordTextBox.Text == UserClass.GetUserTable.Password_User || PasswordPasswordBox.Password == UserClass.GetUserTable.Password_User)
-                    {
-                        MessageBox.Show(
-                            "Вы уже используете данный пароль",
-                            "PR005 - ошибка сохранения",
-                            MessageBoxButton.OK, 
-                            MessageBoxImage.Information);
-                    }
-                    else
-                    {
-                        var UpDateUser = UserClass.GetUserTable;
-                        UpDateUser.Surname_User = SurnameTextBox.Text;
-                        UpDateUser.Name_User = NameTextBox.Text;
-                        UpDateUser.Surname_User = MiddlenameTextBox.Text;
-                        UpDateUser.Address_User = AddresTextBox.Text;
-                        UpDateUser.Phone_User = PhoneTextBox.Text;
-                        //UserTable EditUser = new UserTable()
-                        //{
-                        //    PersonalNumberUser = UserClass.GetUserTable.PersonalNumberUser,
-                        //    SurnameUser = SurnameTextBox.Text,
-                        //    NameUser = NameTextBox.Text,
-                        //    MiddlenameUser = MiddlenameTextBox.Text,
-                        //    AddressUser = AddresTextBox.Text,
-                        //    PhoneUser = PhoneTextBox.Text,
-                        //    pnTicketUser = UserClass.GetUserTable.pnTicketUser,
-                        //    LoginUser = UserClass.GetUserTable.LoginUser,
-                        //    PasswordUser = UserClass.GetUserTable.PasswordUser,
-                        //    pnRoleUser = UserClass.GetUserTable.pnRoleUser,
-                        //    pnImageUser = UserClass.GetUserTable.pnImageUser
-                        //};
-
-                        AppConnectClass.DataBase.UserTable.AddOrUpdate(UpDateUser);
-                        AppConnectClass.DataBase.SaveChanges();
-
-                        MessageBox.Show("Данные сохранены успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        SurnameTextBox.IsEnabled = false;
-                        NameTextBox.IsEnabled = false;
-                        MiddlenameTextBox.IsEnabled = false;
-                        AddresTextBox.IsEnabled = false;
-                        PhoneTextBox.IsEnabled = false;
-
-                        EditPasswordButton.Visibility = Visibility.Collapsed;
-                        SaveProfilButton.Visibility = Visibility.Collapsed;
-                        EditProfilButton.Visibility = Visibility.Visible;
-                    }
-                }
-
-            }
-            catch (Exception ex) 
-            { 
-                MessageBox.Show(
-                    ex.Message.ToString(), 
-                    "PR006 - Ошибка сохранения",
+                    "PR003 - Ошибка сохранения",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }
-
-        private void AuthorizationButton_Click(object sender, RoutedEventArgs e) 
-        { 
-            AuthorizationWindow authorizationWindow = new AuthorizationWindow(); 
-            authorizationWindow.Show(); 
-        }
-        private void RegistrationButton_Click(object sender, RoutedEventArgs e) 
-        { 
-            RegistrationWindow registrationWindow = new RegistrationWindow(); 
-            registrationWindow.Show();
-        }
-
+        #endregion
+        #region TextChanged_PasswordChanged
         private void OldPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -328,31 +314,25 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         {
             try
             {
-                if (NewPasswordTextBox.Text != "" && PasswordPasswordBox.Password == "")
-                { 
-                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63)); 
-                    SavePasswordButton.IsEnabled = false; 
+                if (NewPasswordTextBox.Text == "")
+                {
+                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                    SavePasswordButton.IsEnabled = false;
+                }
+                else if (PasswordPasswordBox.Password == "")
+                {
+                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                    SavePasswordButton.IsEnabled = false;
+                }
+                else if (PasswordPasswordBox.Password != NewPasswordTextBox.Text)
+                {
+                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+                    SavePasswordButton.IsEnabled = false;
                 }
                 else
                 {
-                    if (NewPasswordTextBox.Text == "") 
-                    { 
-                        PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
-                        SavePasswordButton.IsEnabled = false; 
-                    }
-                    else
-                    {
-                        if (PasswordPasswordBox.Password != NewPasswordTextBox.Text)
-                        { 
-                            PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
-                            SavePasswordButton.IsEnabled = false; 
-                        }
-                        if (PasswordPasswordBox.Password == NewPasswordTextBox.Text)
-                        { 
-                            PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20)); 
-                            SavePasswordButton.IsEnabled = true; 
-                        }
-                    }
+                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+                    SavePasswordButton.IsEnabled = true;
                 }
             }
             catch (Exception ex) 
@@ -364,5 +344,6 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     MessageBoxImage.Error); 
             }
         }
+        #endregion
     }
 }
