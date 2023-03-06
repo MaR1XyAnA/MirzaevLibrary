@@ -95,7 +95,10 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 }
 
             }
-            else { TextNull(); }
+            else if (UserClass.GetUserTable.pnTicket_User == 1)
+            { 
+                TextNull(); 
+            }
         }
 
         private void GiveUserTicket()
@@ -106,9 +109,6 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             {
                 int QuantityDays = buyTicketTable.QwentyYear_Buy; // Получаем количество дней
                 DateTime DateDays = TodayDate.AddDays(QuantityDays); // Прибавляем полученное количество дней к полученной дате
-
-                InformationTicketStavkPanel.Visibility = Visibility.Collapsed;
-                NullTicketUsetTextBlock.Visibility = Visibility.Visible;
 
                 var NewTicketAdd = new TicketTable() // Создаём "коробку" в которой будем хранить информацию о билете
                 {
@@ -193,9 +193,8 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
         private void TextNull()
         {
-            TicketTextBlock.Text = "NULL";
-            DataStartTicketTextBlock.Text = "NULL";
-            DataEndTicketTextBlock.Text = "NULL";
+            InformationTicketStavkPanel.Visibility = Visibility.Collapsed;
+            NullTicketUsetTextBlock.Visibility = Visibility.Visible;
         }
         #endregion
     }
