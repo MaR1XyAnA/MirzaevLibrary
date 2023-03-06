@@ -11,15 +11,15 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         public CategoriesPage()
         {
             InitializeComponent();
-
             AppConnectClass.DataBase = new LibraryMirzayevaEntities();
+
             CategoriesListBox.ItemsSource = AppConnectClass.DataBase.CategoryTable.ToList();
         }
 
         private void CategoriesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            CategoryTable category = (CategoryTable)CategoriesListBox.SelectedItem;
-            FrameNavigationClass.BodyFNC.Navigate(new FilecabinetPage(category));
+            CategoryTable ReceiveCategory = (CategoryTable)CategoriesListBox.SelectedItem;
+            FrameNavigationClass.BodyFNC.Navigate(new FilecabinetPage(ReceiveCategory));
         }
     }
 }

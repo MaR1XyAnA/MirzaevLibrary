@@ -216,7 +216,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             try
             {
                 string MessageNull = "";
-
                 if (string.IsNullOrWhiteSpace(SurnameTextBox.Text)) MessageNull += "Поле с ФАМИЛИЕЙ не должно быть пустым \n";
                 if (string.IsNullOrWhiteSpace(NameTextBox.Text)) MessageNull += "Поле с ИМЯНЕМ не должно быть пустым \n";
                 if (string.IsNullOrWhiteSpace(EmailTextBox.Text)) MessageNull += "Поле с ЭЛЕКТРОННОЙ ПОЧТОЙ не должно быть пустым \n";
@@ -236,7 +235,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 else
                 {
                     string MessageLack = "";
-
                     if (SurnameTextBox.Text.Length <= 5) MessageLack += "Фамилия не может быть меньше 5 символов\n";
                     if (NameTextBox.Text.Length <= 1) MessageLack += "Имя не может быть меньше 1 символов\n";
                     if (PhoneTextBox.Text.Length < 11) MessageLack += "Номер телефона должен быть из 11 символов\n";
