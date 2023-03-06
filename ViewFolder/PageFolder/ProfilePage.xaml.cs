@@ -19,10 +19,10 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             try
             {
                 InitializeComponent();
+                AppConnectClass.DataBase = new LibraryMirzayevaEntities();
 
                 if (GetUserTable != null) // Если передоваемое значение не пустое
                 {
-                    AppConnectClass.DataBase = new LibraryMirzayevaEntities(); 
                     DataContext = GetUserTable;
 
                     if (UserClass.GetUserTable.pnTicket_User == 1) // Если у пользователя стандартный номер читательского билета

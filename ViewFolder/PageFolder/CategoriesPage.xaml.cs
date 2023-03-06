@@ -13,7 +13,8 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             InitializeComponent();
             AppConnectClass.DataBase = new LibraryMirzayevaEntities();
 
-            CategoriesListBox.ItemsSource = AppConnectClass.DataBase.CategoryTable.ToList();
+            var ListCategories = AppConnectClass.DataBase.CategoryTable;
+            CategoriesListBox.ItemsSource = ListCategories.ToList();
         }
 
         private void CategoriesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)

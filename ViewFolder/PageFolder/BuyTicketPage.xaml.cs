@@ -19,39 +19,16 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             {
                 InitializeComponent();
                 AppConnectClass.DataBase = new LibraryMirzayevaEntities();
-                PriseTicketListBox.ItemsSource = AppConnectClass.DataBase.BuyTicketTable.ToList();
 
                 if (userTable != null)
                 {
                     DataContext = userTable;
-                    var WatchTicketUser = AppConnectClass.DataBase.TicketTable.Find(UserClass.GetUserTable.pnTicket_User);
-
-                    if (WatchTicketUser != null || UserClass.GetUserTable.pnTicket_User != 1) 
-                    {
-                        
-                        DateTime WatchDateStart = WatchTicketUser.DateStart_Ticket;
-                        DateTime WatchDateEnd = WatchTicketUser.DateEnd_Ticket;
-                        DateTime WatchToDayDay = DateTime.Today;
-
-                        TimeSpan WatchSummaDate = WatchDateEnd.Subtract(WatchDateStart);
-                        TimeSpan WatchGetDay = WatchDateEnd.Subtract(WatchToDayDay);
-
-                        double WatchDateDouble = WatchSummaDate.TotalDays;
-                        double WatchGetDateDouble = WatchGetDay.TotalDays;
-
-                        SummaDataTicketTextBlock.Text = "(" + WatchDateDouble.ToString() + " дней)";
-                        GetDataTicketTextBlock.Text = "(" + WatchGetDateDouble.ToString() + " дней осталось)";
-
-                        if (WatchDateDouble <= 0)
-                        {
-                            SummaDataTicketTextBlock.Text = "( читательский билет просрочен на:" + WatchDateDouble.ToString() + " дней)";
-                            SummaDataTicketTextBlock.Foreground = new SolidColorBrush(Color.FromRgb(225, 7, 58));
-                        }
-
-                    }
-                    else { TextNull(); }
+                    GetTicketUser();
                 }
                 else { TextNull(); }
+
+                var ListServices = AppConnectClass.DataBase.BuyTicketTable;
+                PriseTicketListBox.ItemsSource = ListServices.ToList();
             }
             catch (Exception ex) 
             {
@@ -91,6 +68,36 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         }
         #endregion
         #region Действие
+        private void GetTicketUser()
+        {
+            var WatchTicketUser = AppConnectClass.DataBase.TicketTable.Find(UserClass.GetUserTable.pnTicket_User);
+
+            if (WatchTicketUser != null || UserClass.GetUserTable.pnTicket_User != 1)
+            {
+
+                DateTime WatchDateStart = WatchTicketUser.DateStart_Ticket;
+                DateTime WatchDateEnd = WatchTicketUser.DateEnd_Ticket;
+                DateTime WatchToDayDay = DateTime.Today;
+
+                TimeSpan WatchSummaDate = WatchDateEnd.Subtract(WatchDateStart);
+                TimeSpan WatchGetDay = WatchDateEnd.Subtract(WatchToDayDay);
+
+                double WatchDateDouble = WatchSummaDate.TotalDays;
+                double WatchGetDateDouble = WatchGetDay.TotalDays;
+
+                SummaDataTicketTextBlock.Text = "(" + WatchDateDouble.ToString() + " дней)";
+                GetDataTicketTextBlock.Text = "(" + WatchGetDateDouble.ToString() + " дней осталось)";
+
+                if (WatchDateDouble <= 0)
+                {
+                    SummaDataTicketTextBlock.Text = "( читательский билет просрочен на:" + WatchDateDouble.ToString() + " дней)";
+                    SummaDataTicketTextBlock.Foreground = new SolidColorBrush(Color.FromRgb(225, 7, 58));
+                }
+
+            }
+            else { TextNull(); }
+        }
+
         private void GiveUserTicket()
         {
             BuyTicketTable buyTicketTable = (BuyTicketTable)PriseTicketListBox.SelectedItem; // Получаем услугу из списка услуг
@@ -180,6 +187,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 }
             }
         }
+
         private void TextNull()
         {
             TicketTextBlock.Text = "NULL";

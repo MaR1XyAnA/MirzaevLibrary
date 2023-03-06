@@ -36,25 +36,33 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             LoadingApplicationProgressBar.Visibility = Visibility.Visible;
             LoadingApplicationProgressBar.IsIndeterminate = true;
         } 
+
         private void AnimLoadingEnd() // Остановка анимации загрузки
         {
             LoadingApplicationProgressBar.Visibility = Visibility.Collapsed;
             LoadingApplicationProgressBar.IsIndeterminate = false; 
         } 
+
         private async void EnterUser() // АсинхронныйМ метод для входа пользователя
         {
             try
             {
                 AnimLoadingStart();
-                string GrtLogin = LoginTextBox.Text; // Создаём переменную типа string и вставляем туда данные из LoginTextBox потому что блять эта хуйня по другому не хочеит работать блять!!!!!!!!!!!!!!!!!!!!!
-                var GetUser = await AppConnectClass.DataBase.UserTable.FirstOrDefaultAsync(data => data.Login_User == GrtLogin); // Переменная которая ищет пользователя по Login (LINQ - запрос)
+                string ReceiveLogin = LoginTextBox.Text; // Создаём переменную типа string и вставляем туда данные из LoginTextBox потому что блять эта хуйня по другому не хочеит работать блять!!!!!!!!!!!!!!!!!!!!!
+                var GetUser = await AppConnectClass.DataBase.UserTable.FirstOrDefaultAsync(data => data.Login_User == ReceiveLogin); // Переменная которая ищет пользователя по Login (LINQ - запрос)
                 
                 if (GetUser != null) // Если пользователь существует
                 {
                     if (PasswordPasswordBox.Password != GetUser.Password_User) // Если пароль не правильный
                     {
                         NumberIncorrectAttempts++; // +1 к переменной
-                        MessageBox.Show("Не правильный логин или пароль", "AU002 - Ошибка акторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        MessageBox.Show(
+                            "Не правильный логин или пароль",
+                            "AU002 - Ошибка акторизации",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+
                         if (NumberIncorrectAttempts >= 5) // Если переменная = или > 5
                         { 
                             ResetPasswordTextBlock.Visibility = Visibility.Visible; 
@@ -87,7 +95,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             finally { AnimLoadingEnd(); }
         }
         #endregion
-
         #region Click
         private void NextButton_Click(object sender, RoutedEventArgs e) 
         { 
@@ -115,7 +122,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             this.Close(); 
         }
         #endregion
-
         #region KeyDown
         private void PasswordPasswordBox_KeyDown(object sender, KeyEventArgs e) 
         { 
@@ -125,25 +131,23 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             } 
         }
         #endregion
-
         #region PreviewMouseDown_PreviewMouseUp
         private void VisiblePasswordUserButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             CollapsedPasswordGrid.Visibility = Visibility.Collapsed;
             VisiblePasswordGrid.Visibility = Visibility.Visible;
-            string PasswordString = Convert.ToString(PasswordPasswordBox.Password);
-            PasswordTextBox.Text = PasswordString;
+            string PasswordShow = Convert.ToString(PasswordPasswordBox.Password);
+            PasswordTextBox.Text = PasswordShow;
         }
 
         private void VisiblePasswordUserButton_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             CollapsedPasswordGrid.Visibility = Visibility.Visible; 
             VisiblePasswordGrid.Visibility = Visibility.Collapsed;
-            string PasswordString = Convert.ToString(PasswordTextBox.Text);
-            PasswordPasswordBox.Password = PasswordString;
+            string PasswordHide = Convert.ToString(PasswordTextBox.Text);
+            PasswordPasswordBox.Password = PasswordHide;
         }
         #endregion
-
         #region TextChanged_PasswordChanged
         private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -181,7 +185,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
         }
         #endregion
-
         #region LayoutUpdated
         private void NextButton_LayoutUpdated(object sender, EventArgs e)
         {
@@ -199,7 +202,6 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             }
         }
         #endregion
-
         #region Управление окном
         private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать 
         {

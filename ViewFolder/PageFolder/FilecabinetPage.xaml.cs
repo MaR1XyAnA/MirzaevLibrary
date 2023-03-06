@@ -23,13 +23,13 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     DataContext = categoryTable;
                     CategoryNumber = categoryTable.PersonalNumber_Category;
 
-                    var SelectedCategory = AppConnectClass.DataBase.BookTable.Where(InformationCategory => InformationCategory.pnCategory_Book == CategoryNumber).ToList();
-                    BookListBox.ItemsSource = SelectedCategory;
+                    var SelectedCategory = AppConnectClass.DataBase.BookTable.Where(InformationCategory => InformationCategory.pnCategory_Book == CategoryNumber);
+                    BookListBox.ItemsSource = SelectedCategory.ToList();
                 }
                 else
                 {
-                    var NullCategory = AppConnectClass.DataBase.BookTable.ToList();
-                    BookListBox.ItemsSource = NullCategory;
+                    var NullCategory = AppConnectClass.DataBase.BookTable;
+                    BookListBox.ItemsSource = NullCategory.ToList();
                 }
             }
             catch (Exception ex)

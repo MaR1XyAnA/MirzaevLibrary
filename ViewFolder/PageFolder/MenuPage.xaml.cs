@@ -57,6 +57,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     MessageBoxImage.Error);
             }
         }
+
         private void CategoryToggleButton_Click(object sender, RoutedEventArgs e)
         {
             try
