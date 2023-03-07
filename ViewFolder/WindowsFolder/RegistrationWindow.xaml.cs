@@ -44,7 +44,11 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             Regex regex = new Regex("[^0-9]");
             e.Handled = regex.IsMatch(e.Text);
         }
-
+        #region Color
+        SolidColorBrush RedColor = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+        SolidColorBrush GreenColor = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+        SolidColorBrush StandardColor = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+        #endregion
         #region TextChanged_PasswordChanged
         private void SurnameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -135,15 +139,15 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
                 if (PasswordText == "")
                 {
-                    PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                    PasswordPaswordBox.BorderBrush = StandardColor;
                 }
                 else if (PasswordPasword != PasswordText)
                 {
-                    PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+                    PasswordPaswordBox.BorderBrush = RedColor;
                 }
                 else
                 {
-                    PasswordPaswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+                    PasswordPaswordBox.BorderBrush = GreenColor;
                     RegistrationButton.IsEnabled = true;
                 }
 

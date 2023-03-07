@@ -65,6 +65,12 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     MessageBoxImage.Error);
             }
         }
+
+        #region Color
+        SolidColorBrush RedColor = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+        SolidColorBrush GreenColor = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+        SolidColorBrush StandardColor = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+        #endregion
         #region Действие
         private void SaveProfilUser()
         {
@@ -236,19 +242,19 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             {
                 if (OldPasswordTextBox.Text == UserClass.GetUserTable.Password_User)
                 {
-                    OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+                    OldPasswordTextBox.BorderBrush = GreenColor;
                     NewPasswordTextBox.IsEnabled = true;
                     PasswordPasswordBox.IsEnabled = true;
                 }
                 else
                 {
-                    OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+                    OldPasswordTextBox.BorderBrush = RedColor;
                     NewPasswordTextBox.IsEnabled = false;
                     PasswordPasswordBox.IsEnabled = false;
                 }
                 if (OldPasswordTextBox.Text == "")
                 {
-                    OldPasswordTextBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                    OldPasswordTextBox.BorderBrush = StandardColor;
                     NewPasswordTextBox.IsEnabled = false;
                     PasswordPasswordBox.IsEnabled = false;
                 }
@@ -269,12 +275,12 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             {
                 if (NewPasswordTextBox.Text == "" || PasswordPasswordBox.Password != NewPasswordTextBox.Text)
                 {
-                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+                    PasswordPasswordBox.BorderBrush = RedColor;
                     SavePasswordButton.IsEnabled = false;
                 }
                 else
                 {
-                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+                    PasswordPasswordBox.BorderBrush = GreenColor;
                     SavePasswordButton.IsEnabled = true;
                 }
             }
@@ -294,22 +300,22 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             {
                 if (NewPasswordTextBox.Text == "")
                 {
-                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                    PasswordPasswordBox.BorderBrush = StandardColor;
                     SavePasswordButton.IsEnabled = false;
                 }
                 else if (PasswordPasswordBox.Password == "")
                 {
-                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(62, 62, 63));
+                    PasswordPasswordBox.BorderBrush = StandardColor;
                     SavePasswordButton.IsEnabled = false;
                 }
                 else if (PasswordPasswordBox.Password != NewPasswordTextBox.Text)
                 {
-                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+                    PasswordPasswordBox.BorderBrush = RedColor;
                     SavePasswordButton.IsEnabled = false;
                 }
                 else
                 {
-                    PasswordPasswordBox.BorderBrush = new SolidColorBrush(Color.FromRgb(57, 255, 20));
+                    PasswordPasswordBox.BorderBrush = GreenColor;
                     SavePasswordButton.IsEnabled = true;
                 }
             }
