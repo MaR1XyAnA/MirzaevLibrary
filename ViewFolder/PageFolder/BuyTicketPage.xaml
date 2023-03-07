@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:uc ="clr-namespace:MirzaevLibrary.ViewFolder.ControlFolder"
     mc:Ignorable="d" 
+    IsVisibleChanged="Page_IsVisibleChanged"
     Style="{StaticResource BodyPageStyle}">
     <Grid>
         <Grid.RowDefinitions>
@@ -18,7 +19,7 @@
             VerticalAlignment="Center" 
             HorizontalAlignment="Center"
             Margin="0 0 0 0"
-            Text="У вас ещё нет читательского билета. Приобретите ео для просмотра информации о нём"
+            Text="У вас ещё нет читательского билета. Приобретите его для просмотра информации о нём"
             Style="{StaticResource TextBlockStyle}"/>
         <StackPanel 
             Orientation="Vertical"
@@ -27,44 +28,64 @@
             Margin="5 0 5 0">
             <StackPanel 
                 x:Name="InformationTicketStavkPanel"
-                Orientation="Horizontal" 
+                Orientation="Vertical" 
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center">
-                <TextBlock 
-                    Margin="0 0 2 0"
-                    Text="Ваш читательский билет №"
-                    Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock 
-                    x:Name="TicketTextBlock"
-                    Margin="2 0 10 0"
-                    Text="{Binding pnTicket_User}"
-                    Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock 
-                    Margin="10 0 2 0"
-                    Text="действует с"
-                    Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock 
-                    x:Name="DataStartTicketTextBlock"
-                    Margin="2 0 2 0"
-                    Text="{Binding TicketTable.DateStart_Ticket, StringFormat='{}{0:dd/MM/yyyy}'}"
-                    Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock 
-                    Margin="2 0 2 0"
-                    Text="по"
-                    Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock 
-                    x:Name="DataEndTicketTextBlock"
-                    Margin="2 0 2 0"
-                    Text="{Binding TicketTable.DateEnd_Ticket, StringFormat='{}{0:dd/MM/yyyy}'}"
-                    Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock 
-                    x:Name="SummaDataTicketTextBlock"
-                    Margin="2 0 2 0"
-                    Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock 
-                    x:Name="GetDataTicketTextBlock"
-                    Margin="2 0 2 0"
-                    Style="{StaticResource TextBlockStyle}"/>
+                <StackPanel
+                    Margin="0 0 0 1"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left">
+                    <TextBlock 
+                        FontSize="18"
+                        Margin="0 0 2 0"
+                        Text="Ваш читательский билет №"
+                        Style="{StaticResource TextBlockStyle}"/>
+                    <TextBlock 
+                        FontSize="18"
+                        x:Name="TicketTextBlock"
+                        Margin="2 0 10 0"
+                        Text="{Binding pnTicket_User}"
+                        Style="{StaticResource TextBlockStyle}"/>
+                    <TextBlock 
+                        FontSize="18"
+                        x:Name="SummaDataTicketTextBlock"
+                        Margin="2 0 2 0"
+                        Style="{StaticResource TextBlockStyle}"/>
+                </StackPanel>
+                <StackPanel
+                    Margin="0 1 0 0"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left">
+                    <TextBlock 
+                        FontSize="18"
+                        Margin="0 0 2 0"
+                        Text="действует с"
+                        Style="{StaticResource TextBlockStyle}"/>
+                    <TextBlock 
+                        FontSize="18"
+                        x:Name="DataStartTicketTextBlock"
+                        Margin="2 0 2 0"
+                        Text="{Binding TicketTable.DateStart_Ticket, StringFormat='{}{0:dd/MM/yyyy}'}"
+                        Style="{StaticResource TextBlockStyle}"/>
+                    <TextBlock 
+                        FontSize="18"
+                        Margin="2 0 2 0"
+                        Text="по"
+                        Style="{StaticResource TextBlockStyle}"/>
+                    <TextBlock 
+                        FontSize="18"
+                        x:Name="DataEndTicketTextBlock"
+                        Margin="2 0 2 0"
+                        Text="{Binding TicketTable.DateEnd_Ticket, StringFormat='{}{0:dd/MM/yyyy}'}"
+                        Style="{StaticResource TextBlockStyle}"/>
+                    <TextBlock 
+                        FontSize="18"
+                        x:Name="GetDataTicketTextBlock"
+                        Margin="2 0 2 0"
+                        Style="{StaticResource TextBlockStyle}"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
         <ListBox

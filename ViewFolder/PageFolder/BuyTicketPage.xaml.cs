@@ -39,6 +39,9 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     MessageBoxImage.Error);
             }
         }
+        #region Color
+        SolidColorBrush RedColor = new SolidColorBrush(Color.FromRgb(255, 7, 58));
+        #endregion
         #region MouseDoubleClick
         private void PriseTicketListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -75,23 +78,22 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             if (WatchTicketUser != null || UserClass.GetUserTable.pnTicket_User != 1)
             {
 
-                DateTime WatchDateStart = WatchTicketUser.DateStart_Ticket;
-                DateTime WatchDateEnd = WatchTicketUser.DateEnd_Ticket;
-                DateTime WatchToDayDay = DateTime.Today;
+                DateTime WatchDateStart = WatchTicketUser.DateStart_Ticket; // Берём дату приобритения билета
+                DateTime WatchDateEnd = WatchTicketUser.DateEnd_Ticket; // Берём посчитанную дату конца "подписки"
 
-                TimeSpan WatchSummaDate = WatchDateEnd.Subtract(WatchDateStart);
-                TimeSpan WatchGetDay = WatchDateEnd.Subtract(WatchToDayDay);
+                TimeSpan WatchSummaDate = WatchDateEnd.Subtract(WatchDateStart); // Вычесляем разницу между Началом и концом "Подписки"
+                TimeSpan WatchGetDay = WatchDateEnd.Subtract(TodayDate); // Получаем количество дней "осталось"
 
-                double WatchDateDouble = WatchSummaDate.TotalDays;
-                double WatchGetDateDouble = WatchGetDay.TotalDays;
+                double WatchDateDouble = WatchSummaDate.TotalDays; // Получаем количество дней в числах
+                double WatchGetDateDouble = WatchGetDay.TotalDays; // получаем количество дней в числах
 
                 SummaDataTicketTextBlock.Text = "(" + WatchDateDouble.ToString() + " дней)";
                 GetDataTicketTextBlock.Text = "(" + WatchGetDateDouble.ToString() + " дней осталось)";
 
-                if (WatchDateDouble <= 0)
+                if (WatchGetDateDouble <= 0)
                 {
-                    SummaDataTicketTextBlock.Text = "( читательский билет просрочен на:" + WatchDateDouble.ToString() + " дней)";
-                    SummaDataTicketTextBlock.Foreground = new SolidColorBrush(Color.FromRgb(225, 7, 58));
+                    SummaDataTicketTextBlock.Text = "( читательский билет просрочен на: " + WatchDateDouble.ToString() + " дней)";
+                    SummaDataTicketTextBlock.Foreground = RedColor;
                 }
 
             }
@@ -197,5 +199,17 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             NullTicketUsetTextBlock.Visibility = Visibility.Visible;
         }
         #endregion
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible) 
+            {
+                if (UserClass.GetUserTable.pnTicket_User == 1)
+                {
+                    InformationTicketStavkPanel.Visibility = Visibility.Collapsed;
+                    NullTicketUsetTextBlock.Visibility = Visibility.Visible;
+                }
+            }
+        }
     }
 }
