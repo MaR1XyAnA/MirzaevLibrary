@@ -38,12 +38,12 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left">
                     <TextBlock 
-                        FontSize="18"
+                        FontSize="20"
                         Margin="0 0 2 0"
                         Text="Ваш читательский билет"
                         Style="{StaticResource TextBlockStyle}"/>
                     <TextBlock 
-                        FontSize="18"
+                        FontSize="20"
                         x:Name="TicketTextBlock"
                         Margin="2 0 10 0"
                         Foreground="#529ef4"

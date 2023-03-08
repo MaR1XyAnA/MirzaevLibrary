@@ -33,14 +33,23 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                         HintHistoryTextBlock.Visibility = Visibility.Visible;
                         HintHistoryTextBlock.Text = "У вас нет читательского билета";
                     }
-                    else // Если у пользователя не стандартный читательский билет
+                    else // Если у пользователя приобритён читательский билет
                     {
                         int NumberTicket = UserClass.GetUserTable.pnTicket_User; // Получаем номер читательского билета
                         AppConnectClass.DataBase.TicketTable.Include(Ticket_Book => Ticket_Book.BookTable).Load(); //Реализовываем связь многие ко многим между таблицей TicketTable и таблицей BookTable
                         var ObjectTicket = AppConnectClass.DataBase.TicketTable.Find(NumberTicket); // Ищем в таблице TicketTable читательский билет по номеру
-
                         HistoryBookListBox.ItemsSource = ObjectTicket.BookTable.ToList();
-                        HintHistoryTextBlock.Visibility = Visibility.Collapsed;
+
+                        if (HistoryBookListBox.Items.Count == 0)
+                        {
+                            HistoryBookListBox.Visibility = Visibility.Collapsed;
+                            HintHistoryTextBlock.Visibility = Visibility.Visible;
+                            HintHistoryTextBlock.Text = "Вы ещё не прочитали не одной книжки";
+                        }
+                        else
+                        {
+                            HintHistoryTextBlock.Visibility = Visibility.Collapsed;
+                        }
                     }
                 }
                 else // Если зашёл не авторизированный пользователь

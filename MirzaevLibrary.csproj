@@ -146,6 +146,9 @@
     <Compile Include="ViewFolder\PageFolder\FilecabinetPage.xaml.cs">
       <DependentUpon>FilecabinetPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewFolder\PageFolder\InformationBookPage.xaml.cs">
+      <DependentUpon>InformationBookPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewFolder\PageFolder\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
@@ -285,6 +288,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewFolder\PageFolder\FilecabinetPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewFolder\PageFolder\InformationBookPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

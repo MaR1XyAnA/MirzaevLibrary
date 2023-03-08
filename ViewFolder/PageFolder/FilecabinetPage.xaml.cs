@@ -44,7 +44,8 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
         private void BookListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            BookTable InformationBook = (BookTable)BookListBox.SelectedItem;
+            FrameNavigationClass.BodyFNC.Navigate(new InformationBookPage(InformationBook));
         }
     }
 }
