@@ -329,6 +329,7 @@
       <LastGenOutput>LibraryMirzayevaModel.cs</LastGenOutput>
     </Content>
     <Content Include="AppDataFolder\SQL\ScriptDataBase.sql" />
+    <SplashScreen Include="ContentFolder\ImageFolder\StartIconCoolBibleLibrary.png" />
     <Resource Include="ContentFolder\ImageFolder\MiIcon.png" />
   </ItemGroup>
   <ItemGroup>

@@ -20,15 +20,18 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 InitializeComponent();
                 AppConnectClass.DataBase = new LibraryMirzayevaEntities();
 
+                var ListServices = AppConnectClass.DataBase.BuyTicketTable;
+                PriseTicketListBox.ItemsSource = ListServices.ToList();
+
                 if (userTable != null)
                 {
                     DataContext = userTable;
-                    GetTicketUser();
                 }
-                else { TextNull(); }
-
-                var ListServices = AppConnectClass.DataBase.BuyTicketTable;
-                PriseTicketListBox.ItemsSource = ListServices.ToList();
+                else 
+                {
+                    InformationTicketStavkPanel.Visibility = Visibility.Collapsed;
+                    NullTicketUsetTextBlock.Visibility = Visibility.Collapsed;
+                }
             }
             catch (Exception ex) 
             {
@@ -84,16 +87,16 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 TimeSpan WatchSummaDate = WatchDateEnd.Subtract(WatchDateStart); // Вычесляем разницу между Началом и концом "Подписки"
                 TimeSpan WatchGetDay = WatchDateEnd.Subtract(TodayDate); // Получаем количество дней "осталось"
 
-                double WatchDateDouble = WatchSummaDate.TotalDays; // Получаем количество дней в числах
+                double WatchDateDouble = WatchSummaDate.TotalDays; // Получаем количество дней между началом и концом в числах
                 double WatchGetDateDouble = WatchGetDay.TotalDays; // получаем количество дней в числах
 
-                SummaDataTicketTextBlock.Text = "(" + WatchDateDouble.ToString() + " дней)";
+                SummaDataTicketTextBlock.Text = "(" + WatchTicketUser.BuyTicketTable.Name_Buy + ", на " + WatchDateDouble.ToString() + " дней)";
                 GetDataTicketTextBlock.Text = "(" + WatchGetDateDouble.ToString() + " дней осталось)";
 
                 if (WatchGetDateDouble <= 0)
                 {
-                    SummaDataTicketTextBlock.Text = "( читательский билет просрочен на: " + WatchDateDouble.ToString() + " дней)";
-                    SummaDataTicketTextBlock.Foreground = RedColor;
+                    GetDataTicketTextBlock.Text = "( читательский билет просрочен на: " + Math.Abs(WatchGetDateDouble).ToString() + " дней)";
+                    GetDataTicketTextBlock.Foreground = RedColor;
                 }
 
             }
@@ -208,6 +211,10 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 {
                     InformationTicketStavkPanel.Visibility = Visibility.Collapsed;
                     NullTicketUsetTextBlock.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    GetTicketUser();
                 }
             }
         }

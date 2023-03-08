@@ -22,6 +22,7 @@
             Text="У вас ещё нет читательского билета. Приобретите его для просмотра информации о нём"
             Style="{StaticResource TextBlockStyle}"/>
         <StackPanel 
+            x:Name="InfoTicketUserStackPanl"
             Orientation="Vertical"
             VerticalAlignment="Center"
             HorizontalAlignment="Left"
