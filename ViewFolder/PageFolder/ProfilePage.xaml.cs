@@ -9,6 +9,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MirzaevLibrary.ViewFolder.WindowsFolder;
 using System.Data.Entity.Migrations;
+using Microsoft.Win32;
+using System.IO;
 
 namespace MirzaevLibrary.ViewFolder.PageFolder
 {
@@ -65,12 +67,12 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     RegistrationButton.Visibility = Visibility.Visible;
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
-                    "PR001 - Ошибка", 
-                    MessageBoxButton.OK, 
+                    ex.Message.ToString(),
+                    "PR001 - Ошибка",
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }
@@ -107,16 +109,72 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
             MessageBox.Show("Пароль сменён успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private void NewPhotoUser()
+        {
+            try
+            {
+                var openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    string imagePath = openFileDialog.FileName; // Получение пути к выбранному файлу
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(imagePath);
+                    bitmap.EndInit();
+                    UserImage.Source = bitmap; // Вставить фото в пользовательский элемент управления
+
+                    // Конвертация изображения в байты
+                    byte[] imageData;
+                    using (FileStream fs = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+                    {
+                        imageData = new byte[fs.Length];
+                        fs.Read(imageData, 0, imageData.Length);
+                    }
+
+                    var newPhoto = new ImageUserTable() // Создаём "коробку" в которой будем хранить информацию о фотографии
+                    {
+                        Image_Image = imageData
+                    };
+
+                    if (UserClass.GetUserTable.pnImage_User == 1) // Если у пользователя нет ФОТО
+                    {
+                        AppConnectClass.DataBase.ImageUserTable.Add(newPhoto);
+                    }
+                    else
+                    {
+                        AppConnectClass.DataBase.ImageUserTable.AddOrUpdate(newPhoto);
+                    }
+
+                    AppConnectClass.DataBase.SaveChanges();
+
+                    UserTable UpdateUser = UserClass.GetUserTable; // Создаём переменную в которой будем хранить информацию о пользователе
+                    UpdateUser.pnImage_User = newPhoto.Personalnumber_Image;
+                    AppConnectClass.DataBase.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message.ToString(),
+                    "PR005 - Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
         #endregion
         #region Click
-        private void AuthorizationButton_Click(object sender, RoutedEventArgs e) 
-        { 
-            AuthorizationWindow authorizationWindow = new AuthorizationWindow(); 
-            authorizationWindow.Show(); 
+        private void AuthorizationButton_Click(object sender, RoutedEventArgs e)
+        {
+            AuthorizationWindow authorizationWindow = new AuthorizationWindow();
+            authorizationWindow.Show();
         }
-        private void RegistrationButton_Click(object sender, RoutedEventArgs e) 
-        { 
-            RegistrationWindow registrationWindow = new RegistrationWindow(); 
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationWindow registrationWindow = new RegistrationWindow();
             registrationWindow.Show();
         }
         private void SaveProfilButton_Click(object sender, RoutedEventArgs e)
@@ -177,7 +235,13 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
             EditPasswordButton.Visibility = Visibility.Visible;
             SaveProfilButton.Visibility = Visibility.Visible;
+            PhotoButton.Visibility = Visibility.Visible;
             EditProfilButton.Visibility = Visibility.Collapsed;
+
+            if (UserClass.GetUserTable.pnImage_User == 1)
+            {
+                PhotoButton.Content = "Добавить фотографию";
+            }
         }
 
         private void EditPasswordButton_Click(object sender, RoutedEventArgs e)
@@ -243,6 +307,10 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     MessageBoxImage.Error);
             }
         }
+        private void PhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            NewPhotoUser();
+        }
         #endregion
         #region TextChanged_PasswordChanged
         private void OldPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -268,13 +336,13 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     PasswordPasswordBox.IsEnabled = false;
                 }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
-                    "PR007 - Ошибка сохранения", 
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Error); 
+                    ex.Message.ToString(),
+                    "PR007 - Ошибка сохранения",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -293,13 +361,13 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     SavePasswordButton.IsEnabled = true;
                 }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
+                    ex.Message.ToString(),
                     "PR008 - Ошибка регистрации",
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Error); 
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -328,13 +396,13 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     SavePasswordButton.IsEnabled = true;
                 }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
-                    "PR009 - Ошибка регистрации", 
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Error); 
+                    ex.Message.ToString(),
+                    "PR009 - Ошибка регистрации",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
         #endregion

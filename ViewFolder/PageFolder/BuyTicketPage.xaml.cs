@@ -27,18 +27,13 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 {
                     DataContext = userTable;
                 }
-                else 
-                {
-                    InformationTicketStavkPanel.Visibility = Visibility.Collapsed;
-                    NullTicketUsetTextBlock.Visibility = Visibility.Collapsed;
-                }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
+                    ex.Message.ToString(),
                     "TI001 - Ошибка",
-                    MessageBoxButton.OK, 
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }
@@ -101,8 +96,8 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
             }
             else if (UserClass.GetUserTable.pnTicket_User == 1)
-            { 
-                TextNull(); 
+            {
+                TextNull();
             }
         }
 
@@ -112,22 +107,24 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
             if (UserClass.GetUserTable.pnTicket_User == 1)
             {
-                int QuantityDays = buyTicketTable.QwentyYear_Buy; // Получаем количество дней
-                DateTime DateDays = TodayDate.AddDays(QuantityDays); // Прибавляем полученное количество дней к полученной дате
-
-                var NewTicketAdd = new TicketTable() // Создаём "коробку" в которой будем хранить информацию о билете
-                {
-                    DateStart_Ticket = TodayDate,
-                    DateEnd_Ticket = DateDays,
-                    pnBuy_Ticket = buyTicketTable.Personalnumber_Buy
-                };
-
-                var UpdateUser = UserClass.GetUserTable; // Создаём переменную в которой будем хранить информацию о пользователе
-                    UpdateUser.pnTicket_User = NewTicketAdd.PersonalNumber_Ticket; // Обновляем данные в переменной
-
                 try
                 {
+                    int QuantityDays = buyTicketTable.QwentyYear_Buy; // Получаем количество дней
+                    DateTime DateDays = TodayDate.AddDays(QuantityDays); // Прибавляем полученное количество дней к полученной дате
+
+                    TicketTable NewTicketAdd = new TicketTable() // Создаём "коробку" в которой будем хранить информацию о билете
+                    {
+                        DateStart_Ticket = TodayDate,
+                        DateEnd_Ticket = DateDays,
+                        pnBuy_Ticket = buyTicketTable.Personalnumber_Buy
+                    };
+
                     AppConnectClass.DataBase.TicketTable.Add(NewTicketAdd); // Добавляем читательскй билет
+                    AppConnectClass.DataBase.SaveChanges();
+
+                    UserTable UpdateUser = UserClass.GetUserTable; // Создаём переменную в которой будем хранить информацию о пользователе
+                    UpdateUser.pnTicket_User = NewTicketAdd.PersonalNumber_Ticket; // Обновляем данные в переменной
+
                     AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdateUser); // Обновляем пользователя
                     AppConnectClass.DataBase.SaveChanges();
 
@@ -168,9 +165,9 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
                         try
                         {
-                                UpdateTicketUser.DateStart_Ticket = TodayDate;
-                                UpdateTicketUser.DateEnd_Ticket = HomeDate;
-                                UpdateTicketUser.pnBuy_Ticket = buyTicketTable.Personalnumber_Buy;
+                            UpdateTicketUser.DateStart_Ticket = TodayDate;
+                            UpdateTicketUser.DateEnd_Ticket = HomeDate;
+                            UpdateTicketUser.pnBuy_Ticket = buyTicketTable.Personalnumber_Buy;
 
                             AppConnectClass.DataBase.TicketTable.AddOrUpdate(UpdateTicketUser); // Обновляем читательский билет
                             AppConnectClass.DataBase.SaveChanges();
@@ -180,8 +177,6 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                                 "Уведомление",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Information);
-
-                            /// TODO: Нужно как то обновлять данные на странице (перезагрузка страницы не работает, нужно как то перезагружать массиф данных UserClass)
                         }
                         catch (Exception ex)
                         {
@@ -205,16 +200,23 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (Visibility == Visibility.Visible) 
+            if (Visibility == Visibility.Visible)
             {
-                if (UserClass.GetUserTable.pnTicket_User == 1)
+                if (UserClass.GetUserTable != null)
                 {
-                    InformationTicketStavkPanel.Visibility = Visibility.Collapsed;
-                    NullTicketUsetTextBlock.Visibility = Visibility.Visible;
+                    if (UserClass.GetUserTable.pnTicket_User == 1)
+                    {
+                        TextNull();
+                    }
+                    else
+                    {
+                        GetTicketUser();
+                    }
                 }
                 else
                 {
-                    GetTicketUser();
+                    TextNull();
+                    NullTicketUsetTextBlock.Text = "Авторизируйтесь или зарегистрируйтесь для покупки читательского билета";
                 }
             }
         }

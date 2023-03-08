@@ -2,7 +2,7 @@
 
 namespace MirzaevLibrary.AppDataFolder.ClassFolder
 {
-    public partial class UserClass
+    internal class UserClass
     {
         public static UserTable GetUserTable; // Класс который держит в себе информацию об авторизированном пользователе
     }
