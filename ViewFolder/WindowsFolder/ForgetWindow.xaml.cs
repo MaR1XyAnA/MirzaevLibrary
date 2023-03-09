@@ -1,14 +1,14 @@
 ﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
 using MirzaevLibrary.AppDataFolder.ModelFolder;
 using System;
+using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Net.Mail;
 using System.Net;
+using System.Net.Mail;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Data.Entity.Migrations;
 
 namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
@@ -16,15 +16,15 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
     {
         public ForgetWindow()
         {
-            try 
-            { 
-                InitializeComponent(); 
-                AppConnectClass.DataBase = new LibraryMirzayevaEntities(); 
+            try
+            {
+                InitializeComponent();
+                AppConnectClass.DataBase = new LibraryMirzayevaEntities();
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
+                    ex.Message.ToString(),
                     "FO001 - Ошибка сброса пароля",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
@@ -43,50 +43,50 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         #endregion
         #region Click
         private void BackHyperlink_Click(object sender, RoutedEventArgs e) // Переход по нажатию на ссылку
-        { 
+        {
             AuthorizationWindow authorizationWindow = new AuthorizationWindow();
-            authorizationWindow.Show(); 
+            authorizationWindow.Show();
             this.Close();
-        } 
+        }
 
         private void SavePasswordButton_Click(object sender, RoutedEventArgs e)
-        { 
-            SaveNewPassword(); 
+        {
+            SaveNewPassword();
         }
 
-        private void NextCodeButton_Click(object sender, RoutedEventArgs e) 
-        { 
-            SendTheCode(); 
+        private void NextCodeButton_Click(object sender, RoutedEventArgs e)
+        {
+            SendTheCode();
         }
 
-        private void CheckCodeButton_Click(object sender, RoutedEventArgs e) 
+        private void CheckCodeButton_Click(object sender, RoutedEventArgs e)
         {
             CheckЕheСode();
         }
         #endregion
         #region KeyDown
-        private void LoginTextBox_KeyDown(object sender, KeyEventArgs e) 
-        { 
+        private void LoginTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
             if (e.Key == Key.Enter)
-            { 
-                SendTheCode(); 
-            } 
+            {
+                SendTheCode();
+            }
         }
 
-        private void CodeTextBox_KeyDown(object sender, KeyEventArgs e) 
-        { 
-            if (e.Key == Key.Enter) 
-            { 
-                CheckЕheСode(); 
-            } 
+        private void CodeTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                CheckЕheСode();
+            }
         }
 
-        private void ReplayPasswordPasswordBox_KeyDown(object sender, KeyEventArgs e) 
-        { 
-            if (e.Key == Key.Enter) 
-            { 
-                SaveNewPassword(); 
-            } 
+        private void ReplayPasswordPasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SaveNewPassword();
+            }
         }
         #endregion
         #region Действие
@@ -101,9 +101,9 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     if (SearthUser == null)
                     {
                         MessageBox.Show(
-                            "Пользователь с логином (" + LoginUserString + ") не найден, попробуйте другой логин", 
-                            "FO002 - Ошибка сброса пароля", 
-                            MessageBoxButton.OK, 
+                            "Пользователь с логином (" + LoginUserString + ") не найден, попробуйте другой логин",
+                            "FO002 - Ошибка сброса пароля",
+                            MessageBoxButton.OK,
                             MessageBoxImage.Information);
                     }
                     else
@@ -156,17 +156,17 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                             mySmtpClient.Send(myMail);
                         }
                         catch (SmtpException ex)
-                        { 
-                            throw new ApplicationException("SmtpException has occured: " + ex.Message); 
+                        {
+                            throw new ApplicationException("SmtpException has occured: " + ex.Message);
                         }
-                        catch (Exception ex) 
+                        catch (Exception ex)
                         {
                             MessageBox.Show
                                 (ex.Message.ToString(),
                                 "FO004 - Ошибка сброса пароля",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
-                            ErrorInt++; 
+                            ErrorInt++;
                         }
 
                         if (ErrorInt == 0) // Если ошибок нет
@@ -179,13 +179,13 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     }
                 }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
+                    ex.Message.ToString(),
                     "FO003 - Ошибка сброса пароля",
                     MessageBoxButton.OK,
-                    MessageBoxImage.Error); 
+                    MessageBoxImage.Error);
             }
         }
 
@@ -197,14 +197,14 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 if (NewPasswordTextBox.Text.Length <= 3)
                     MessageLack += "Пароль не может быть меньше 3 символов, придумайте более длинный пароль";
 
-                if (MessageLack != "") 
+                if (MessageLack != "")
                 {
                     MessageBox.Show(
-                        MessageLack, 
+                        MessageLack,
                         "Ошибка регистрации",
                         MessageBoxButton.OK,
                         MessageBoxImage.Error);
-                    MessageLack = null; 
+                    MessageLack = null;
                 }
                 else
                 {
@@ -216,46 +216,47 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                         {
                             try
                             {
-                                    UpdatePasswordUser.Password_User = NewPasswordTextBox.Text;
+                                UpdatePasswordUser.Password_User = NewPasswordTextBox.Text;
                                 AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdatePasswordUser);
                                 AppConnectClass.DataBase.SaveChanges();
 
                                 MessageBox.Show(
                                     "Пароль был успешно сменён. Авторизируйтесь в приложении для работы в нём.",
-                                    "Уведомление", 
+                                    "Уведомление",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Information);
 
-                                AuthorizationWindow authorizationWindow = new AuthorizationWindow(); 
+                                AuthorizationWindow authorizationWindow = new AuthorizationWindow();
                                 authorizationWindow.Show();
                                 this.Close();
                             }
-                            catch (Exception ex) 
-                            { 
+                            catch (Exception ex)
+                            {
                                 MessageBox.Show(
-                                    ex.Message.ToString(), 
+                                    ex.Message.ToString(),
                                     "FO007 - Ошибка сброса пароля",
-                                    MessageBoxButton.OK, 
-                                    MessageBoxImage.Error); 
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
                             }
                         }
                         else
                         {
                             MessageBox.Show(
-                                "Пользователь не найден", 
-                                "FO008 - Ошибка сброса пароля", 
-                                MessageBoxButton.OK, 
+                                "Пользователь не найден",
+                                "FO008 - Ошибка сброса пароля",
+                                MessageBoxButton.OK,
                                 MessageBoxImage.Error);
                         }
                     }
                 }
             }
-            catch (Exception ex) 
-            { MessageBox.Show(
-                ex.Message.ToString(), 
-                "FO009 - Ошибка сброса пароля", 
-                MessageBoxButton.OK, 
-                MessageBoxImage.Error); 
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                ex.Message.ToString(),
+                "FO009 - Ошибка сброса пароля",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
             }
         }
 
@@ -283,12 +284,12 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     SavePasswordButton.Visibility = Visibility.Visible;
                 }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
+                    ex.Message.ToString(),
                     "FO005 - Ошибка сброса пароля",
-                    MessageBoxButton.OK, 
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }
@@ -318,11 +319,11 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
                 SavePasswordButton.IsEnabled = !(PasswordText == "" || PasswordPasword != PasswordText);
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(
-                ex.Message.ToString(), 
-                "FO006 - Ошибка регистрации", 
+                ex.Message.ToString(),
+                "FO006 - Ошибка регистрации",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
             }
@@ -331,40 +332,40 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         #region TextChanged_PasswordChanged
         private void ReplayPasswordPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (ReplayPasswordPasswordBox.Password.Length > 0) 
-            { 
+            if (ReplayPasswordPasswordBox.Password.Length > 0)
+            {
                 SavePasswordButton.IsEnabled = true;
-                HintReplayPasswordTextBlock.Visibility = Visibility.Collapsed; 
+                HintReplayPasswordTextBlock.Visibility = Visibility.Collapsed;
             }
-            else 
-            { 
-                HintReplayPasswordTextBlock.Visibility = Visibility.Visible; 
+            else
+            {
+                HintReplayPasswordTextBlock.Visibility = Visibility.Visible;
             }
         }
 
         private void NewPasswordTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (NewPasswordTextBox.Text.Length > 0) 
-            { 
+            if (NewPasswordTextBox.Text.Length > 0)
+            {
                 HintNewPasswordTextBlock.Visibility = Visibility.Collapsed;
             }
-            else 
+            else
             {
-                HintNewPasswordTextBlock.Visibility = Visibility.Visible; 
+                HintNewPasswordTextBlock.Visibility = Visibility.Visible;
             }
         }
 
         private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (LoginTextBox.Text.Length > 0) 
+            if (LoginTextBox.Text.Length > 0)
             {
-                NextCodeButton.IsEnabled = true; 
+                NextCodeButton.IsEnabled = true;
                 HintLoginTextBlock.Visibility = Visibility.Collapsed;
             }
-            else 
-            { 
-                NextCodeButton.IsEnabled = false; 
-                HintLoginTextBlock.Visibility = Visibility.Visible; 
+            else
+            {
+                NextCodeButton.IsEnabled = false;
+                HintLoginTextBlock.Visibility = Visibility.Visible;
             }
         }
 
@@ -372,12 +373,12 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         {
             if (CodeTextBox.Text.Length > 0)
             {
-                CheckCodeButton.IsEnabled = true; 
-                HintCodeTextBlock.Visibility = Visibility.Collapsed; 
+                CheckCodeButton.IsEnabled = true;
+                HintCodeTextBlock.Visibility = Visibility.Collapsed;
             }
-            else 
-            { 
-                CheckCodeButton.IsEnabled = false; 
+            else
+            {
+                CheckCodeButton.IsEnabled = false;
                 HintCodeTextBlock.Visibility = Visibility.Visible;
             }
         }
@@ -385,31 +386,31 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         #region Управление окном
         private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать 
         {
-            try 
-            { 
-                if (e.ChangedButton == MouseButton.Left) 
+            try
+            {
+                if (e.ChangedButton == MouseButton.Left)
                 {
                     this.DragMove();
-                } 
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
                     ex.Message.ToString(),
                     "FOBU001 - Ошибка",
-                    MessageBoxButton.OK, 
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            try 
-            { 
-                Application.Current.Shutdown(); 
+            try
+            {
+                Application.Current.Shutdown();
             }
             catch (Exception ex)
-            { 
+            {
                 MessageBox.Show(
                     ex.Message.ToString(),
                     "FOBU002 - Ошибка",
@@ -420,16 +421,16 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
         private void RollUpButton_Click(object sender, RoutedEventArgs e)
         {
-            try 
-            { 
+            try
+            {
                 WindowState = WindowState.Minimized;
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(
                     ex.Message.ToString(),
                     "FOBU003 - Ошибка",
-                    MessageBoxButton.OK, 
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }

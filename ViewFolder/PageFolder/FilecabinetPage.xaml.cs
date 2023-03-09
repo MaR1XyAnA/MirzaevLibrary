@@ -35,9 +35,9 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
+                    ex.Message.ToString(),
                     "Ошибка входа",
-                    MessageBoxButton.OK, 
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }

@@ -1,5 +1,4 @@
 ﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
-using MirzaevLibrary.AppDataFolder.ModelFolder;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,14 +9,14 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
     {
         public MenuPage()
         {
-            try{ InitializeComponent(); }
-            catch (Exception ex) 
-            { 
+            try { InitializeComponent(); }
+            catch (Exception ex)
+            {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
+                    ex.Message.ToString(),
                     "ME001 - Ошибка",
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Error); 
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
         #region Действие

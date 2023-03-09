@@ -15,21 +15,21 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
     public partial class RegistrationWindow : Window
     {
         string CodeString = null; // Создаём переменную для дальнейшей записи в неё и для получения из неё рандомного кода для регистрации пользователя
-        
+
         public RegistrationWindow()
         {
-            try 
-            { 
+            try
+            {
                 InitializeComponent();
                 AppConnectClass.DataBase = new LibraryMirzayevaEntities();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(
                     ex.Message.ToString(),
                     "RE001 - Ошибка регистрации",
                     MessageBoxButton.OK,
-                    MessageBoxImage.Error); 
+                    MessageBoxImage.Error);
             }
         }
 
@@ -53,52 +53,70 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         private void SurnameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (SurnameTextBox.Text.Length > 0)
-            { 
+            {
                 HintSurnameTextBlock.Visibility = Visibility.Collapsed;
             }
-            else 
-            { 
+            else
+            {
                 HintSurnameTextBlock.Visibility = Visibility.Visible;
             }
         }
         private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (NameTextBox.Text.Length > 0) 
+            if (NameTextBox.Text.Length > 0)
             {
                 HintNameTextBlock.Visibility = Visibility.Collapsed;
             }
-            else 
-            { 
-                HintNameTextBlock.Visibility = Visibility.Visible; 
+            else
+            {
+                HintNameTextBlock.Visibility = Visibility.Visible;
             }
         }
         private void MiddlenameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (MiddlenameTextBox.Text.Length > 0) 
-            { 
+            if (MiddlenameTextBox.Text.Length > 0)
+            {
                 HintMiddlenameTextBlock.Visibility = Visibility.Collapsed;
             }
-            else 
-            { 
+            else
+            {
                 HintMiddlenameTextBlock.Visibility = Visibility.Visible;
             }
         }
         private void EmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (EmailTextBox.Text.Length > 0) 
-            { 
+            if (EmailTextBox.Text.Length > 0)
+            {
                 HintEmailTextBlock.Visibility = Visibility.Collapsed;
+
+                string email = EmailTextBox.Text;
+                if (Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                {
+                    EmailTextBox.BorderBrush = GreenColor;
+                }
+                else
+                {
+                    EmailTextBox.BorderBrush = RedColor;
+                }
             }
-            else 
+            else
             {
                 HintEmailTextBlock.Visibility = Visibility.Visible;
             }
         }
         private void PhoneTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (PhoneTextBox.Text.Length > 0) 
-            { 
-                HintPhoneTextBlock.Visibility = Visibility.Collapsed; 
+            if (PhoneTextBox.Text.Length > 0)
+            {
+                HintPhoneTextBlock.Visibility = Visibility.Collapsed;
+                if (PhoneTextBox.Text.Length != 11)
+                {
+                    PhoneTextBox.BorderBrush = RedColor;
+                }
+                else
+                {
+                    PhoneTextBox.BorderBrush = GreenColor;
+                }
             }
             else
             {
@@ -109,22 +127,22 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         {
             if (NewPasswordTextBox.Text.Length > 0)
             {
-                HintNewPasswordTextBlock.Visibility = Visibility.Collapsed; 
+                HintNewPasswordTextBlock.Visibility = Visibility.Collapsed;
             }
-            else 
+            else
             {
                 HintNewPasswordTextBlock.Visibility = Visibility.Visible;
             }
         }
         private void PasswordPaswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (PasswordPaswordBox.Password.Length > 0) 
-            { 
-                HintPasswordTextBlock.Visibility = Visibility.Collapsed; 
+            if (PasswordPaswordBox.Password.Length > 0)
+            {
+                HintPasswordTextBlock.Visibility = Visibility.Collapsed;
             }
-            else 
-            { 
-                HintPasswordTextBlock.Visibility = Visibility.Visible; 
+            else
+            {
+                HintPasswordTextBlock.Visibility = Visibility.Visible;
             }
         }
         #endregion
@@ -134,7 +152,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             try
             {
                 string PasswordText, PasswordPasword;
-                PasswordText = Convert.ToString(NewPasswordTextBox.Text); 
+                PasswordText = Convert.ToString(NewPasswordTextBox.Text);
                 PasswordPasword = Convert.ToString(PasswordPaswordBox.Password);
 
                 if (PasswordText == "")
@@ -153,12 +171,12 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
                 RegistrationButton.IsEnabled = !(PasswordText == "" || PasswordPasword != PasswordText);
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
+                    ex.Message.ToString(),
                     "RE006 - Ошибка регистрации",
-                    MessageBoxButton.OK, 
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }
@@ -169,15 +187,15 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             try
             {
                 if (ConfirmTextBox.Text != CodeString)
-                { 
+                {
                     MessageBox.Show("Не верный код");
                 }
-                else 
+                else
                 {
-                    EnterUser(); 
+                    EnterUser();
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(
                     ex.Message.ToString(),
@@ -189,18 +207,18 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
         private void AuthorizationButton_Click(object sender, RoutedEventArgs e)
         {
-            try 
-            { 
+            try
+            {
                 AuthorizationWindow authorizationWindow = new AuthorizationWindow();
                 authorizationWindow.Show();
-                this.Close(); 
+                this.Close();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(), 
-                    "RE005 - Ошибка регистрации", 
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Error); 
+                MessageBox.Show(ex.Message.ToString(),
+                    "RE005 - Ошибка регистрации",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -216,14 +234,14 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                 if (string.IsNullOrWhiteSpace(NewPasswordTextBox.Text)) MessageNull += "Поле с ПАРОЛЕМ не должно быть пустым \n";
                 if (string.IsNullOrWhiteSpace(PasswordPaswordBox.Password)) MessageNull += "Поле с ПОВТОРНОМ ПАРОЛЕМ не должно быть пустым.";
 
-                if (MessageNull != "") 
+                if (MessageNull != "")
                 {
                     MessageBox.Show(
-                        MessageNull, 
+                        MessageNull,
                         "Ошибка регистрации",
                         MessageBoxButton.OK,
-                        MessageBoxImage.Error); 
-                    MessageNull = null; 
+                        MessageBoxImage.Error);
+                    MessageNull = null;
                 }
                 else
                 {
@@ -233,13 +251,13 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     if (PhoneTextBox.Text.Length < 11) MessageLack += "Номер телефона должен быть из 11 символов\n";
                     if (NewPasswordTextBox.Text.Length <= 3) MessageLack += "Пароль не может быть меньше 3 символов, придумайте более длинный пароль";
 
-                    if (MessageLack != "") 
-                    { 
+                    if (MessageLack != "")
+                    {
                         MessageBox.Show(
-                            MessageLack, 
-                            "Ошибка регистрации", 
+                            MessageLack,
+                            "Ошибка регистрации",
                             MessageBoxButton.OK,
-                            MessageBoxImage.Error); 
+                            MessageBoxImage.Error);
                         MessageLack = null;
                     }
                     else
@@ -308,7 +326,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
                 MailAddress replyTo = new MailAddress(LoginMail);
                 myMail.ReplyToList.Add(replyTo);
-               
+
                 myMail.IsBodyHtml = true;
                 myMail.Subject = TopicLetters;
                 myMail.Body = ToSend;
@@ -318,16 +336,16 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
                 mySmtpClient.Send(myMail);
             }
-            catch (SmtpException ex) 
-            { 
+            catch (SmtpException ex)
+            {
                 throw new ApplicationException("SmtpException has occured: " + ex.Message);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(
                     ex.Message.ToString(),
                     "RE008 - Ошибка регистрации",
-                    MessageBoxButton.OK, 
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }
@@ -349,26 +367,26 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     pnTicket_User = 1
                 };
 
-                AppConnectClass.DataBase.UserTable.Add(AddUser); 
+                AppConnectClass.DataBase.UserTable.Add(AddUser);
                 AppConnectClass.DataBase.SaveChanges();
 
                 MessageBox.Show(
-                    "Регистрация пройдена успешно. Авторизируйтесь в приложении для работы в нём", 
+                    "Регистрация пройдена успешно. Авторизируйтесь в приложении для работы в нём",
                     "Уведомление",
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
 
                 AuthorizationWindow authorizationWindow = new AuthorizationWindow();
-                authorizationWindow.Show(); 
+                authorizationWindow.Show();
                 this.Close();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(
                     ex.Message.ToString(),
                     "RE002 - Ошибка регистрации",
                     MessageBoxButton.OK,
-                    MessageBoxImage.Error); 
+                    MessageBoxImage.Error);
             }
         }
 
@@ -376,52 +394,52 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         #region Управление окном
         private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать 
         {
-            try 
+            try
             {
                 if (e.ChangedButton == MouseButton.Left)
-                { 
-                    this.DragMove(); 
+                {
+                    this.DragMove();
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(
                     ex.Message.ToString(),
                     "REBU001 - Ошибка",
                     MessageBoxButton.OK,
-                    MessageBoxImage.Error); 
+                    MessageBoxImage.Error);
             }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            try 
+            try
             {
                 Application.Current.Shutdown();
             }
             catch (Exception ex)
-            { 
+            {
                 MessageBox.Show(
                     ex.Message.ToString(),
                     "REBU002 - Ошибка",
-                    MessageBoxButton.OK, 
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }
 
         private void RollUpButton_Click(object sender, RoutedEventArgs e)
         {
-            try 
+            try
             {
                 WindowState = WindowState.Minimized;
             }
             catch (Exception ex)
-            { 
+            {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
+                    ex.Message.ToString(),
                     "REBU003 - Ошибка",
                     MessageBoxButton.OK,
-                    MessageBoxImage.Error); 
+                    MessageBoxImage.Error);
             }
         }
         #endregion

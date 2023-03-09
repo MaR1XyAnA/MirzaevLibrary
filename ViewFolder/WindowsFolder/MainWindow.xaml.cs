@@ -13,50 +13,50 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             try
             {
                 InitializeComponent();
-                FrameNavigationClass.MenuFNC = MenuFrame; 
-                FrameNavigationClass.BodyFNC = BodyFrame; 
+                FrameNavigationClass.MenuFNC = MenuFrame;
+                FrameNavigationClass.BodyFNC = BodyFrame;
 
                 FrameNavigationClass.MenuFNC.Navigate(new MenuPage());
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
+                    ex.Message.ToString(),
                     "MA001 - Ошибка",
-                    MessageBoxButton.OK, 
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }
 
         #region Управление окном
-        private void ExitButton_Click(object sender, RoutedEventArgs e) 
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 UserClass.GetUserTable = null;
-                AuthorizationWindow authorizationWindow = new AuthorizationWindow(); 
-                authorizationWindow.Show(); 
+                AuthorizationWindow authorizationWindow = new AuthorizationWindow();
+                authorizationWindow.Show();
                 this.Close();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(
                     ex.Message.ToString(),
                     "MABU004 - Ошибка",
-                    MessageBoxButton.OK, 
+                    MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
         }
         private void SpaseBarGrid_MouseDown(object sender, MouseButtonEventArgs e) // Для того, что бы окно перетаскивать 
         {
-            try 
-            { 
+            try
+            {
                 if (e.ChangedButton == MouseButton.Left)
                 {
                     this.DragMove();
-                } 
+                }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(
                     ex.Message.ToString(),
@@ -69,29 +69,29 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             try
-            { 
-                Application.Current.Shutdown(); 
+            {
+                Application.Current.Shutdown();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(
                     ex.Message.ToString(),
-                    "MABU002 - Ошибка", 
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Error); 
+                    "MABU002 - Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
         private void RollUpButton_Click(object sender, RoutedEventArgs e)
         {
             try
-            { 
-                WindowState = WindowState.Minimized; 
+            {
+                WindowState = WindowState.Minimized;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(
-                    ex.Message.ToString(), 
+                    ex.Message.ToString(),
                     "MABU003 - Ошибка",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);

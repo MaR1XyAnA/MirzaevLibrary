@@ -75,7 +75,7 @@
           <Key>
             <PropertyRef Name="Personalnumber_Image" />
           </Key>
-          <Property Name="Personalnumber_Image" Type="int" Nullable="false" />
+          <Property Name="Personalnumber_Image" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Image_Image" Type="image" />
         </EntityType>
         <EntityType Name="MTM_TicketTable_BookTable">
@@ -489,7 +489,7 @@
           <Key>
             <PropertyRef Name="Personalnumber_Image" />
           </Key>
-          <Property Name="Personalnumber_Image" Type="Int32" Nullable="false" />
+          <Property Name="Personalnumber_Image" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="UserTable" Relationship="LibraryMirzayevaModel.FK_UserTable_ImageUserTable" FromRole="ImageUserTable" ToRole="UserTable" />
         </EntityType>

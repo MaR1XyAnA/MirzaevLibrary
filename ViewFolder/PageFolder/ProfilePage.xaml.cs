@@ -1,16 +1,16 @@
-﻿using MirzaevLibrary.AppDataFolder.ClassFolder;
+﻿using Microsoft.Win32;
+using MirzaevLibrary.AppDataFolder.ClassFolder;
 using MirzaevLibrary.AppDataFolder.ModelFolder;
+using MirzaevLibrary.ViewFolder.WindowsFolder;
 using System;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Data.Entity;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using MirzaevLibrary.ViewFolder.WindowsFolder;
-using System.Data.Entity.Migrations;
-using Microsoft.Win32;
-using System.IO;
 
 namespace MirzaevLibrary.ViewFolder.PageFolder
 {
