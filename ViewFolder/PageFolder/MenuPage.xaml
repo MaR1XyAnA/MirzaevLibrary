@@ -9,6 +9,17 @@
     Width="1600"
     IsVisibleChanged="Page_IsVisibleChanged">
     <Grid>
+        <Button
+            x:Name="BackButton"
+            Click="BackButton_Click"
+            Visibility="Collapsed"
+            FontFamily="\ContentFolder\FontFolder\#Material-Design-Iconic-Font"
+            HorizontalAlignment="Left"
+            Margin="10 0 0 0"
+            Style="{StaticResource OtherButton}"
+            Height="50"
+            Width="50"
+            Content="&#xf2ea;"/>
         <Border 
             Margin="0 0 0 10"
             VerticalAlignment="Bottom"
