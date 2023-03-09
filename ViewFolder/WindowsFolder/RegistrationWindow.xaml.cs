@@ -41,8 +41,8 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) // метод который позволит вводить только цифры от 0 до 9
         {
-            Regex regex = new Regex("[^0-9]");
-            e.Handled = regex.IsMatch(e.Text);
+            Regex regexPhone = new Regex("[^0-9]");
+            e.Handled = regexPhone.IsMatch(e.Text);
         }
         #region Color
         SolidColorBrush RedColor = new SolidColorBrush(Color.FromRgb(255, 7, 58));
@@ -254,9 +254,9 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                         }
                         else
                         {
+                            RegistrationEmail();
                             InformationUserStackPanel.Visibility = Visibility.Collapsed;
                             ConfirmEmailUserStackPanel.Visibility = Visibility.Visible;
-                            RegistrationEmail();
                         }
                     }
                 }
