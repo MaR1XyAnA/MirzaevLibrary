@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Title="АВТОРИЗАЦИЯ"
+    IsVisibleChanged="Window_IsVisibleChanged"
     Height="468"
     Width="700"
     Style="{StaticResource WindowsStyle}">
@@ -116,13 +117,20 @@
                             Margin="0 0 95 0"/>
                         <StackPanel Margin="95 0 0 17.5" Orientation="Horizontal" VerticalAlignment="Center">
                             <TextBlock
+                                Foreground="#529ef4"
+                                x:Name="RememberUserNoTextBlock"
                                 Margin="0 0 2.5 0"
                                 Text="нет"
                                 Style="{StaticResource TextBlockStyle}"/>
                             <Slider
+                                ValueChanged="RememberUserSlider_ValueChanged"
+                                x:Name="RememberUserSlider"
+                                Minimum="0"
+                                Maximum="100"
                                 Margin="2.5 0 2.5 0"
                                 Width="102"/>
                             <TextBlock
+                                x:Name="RememberUserYesTextBlock"
                                 Margin="2.5 0 0 0"
                                 Text="да"
                                 Style="{StaticResource TextBlockStyle}"/>

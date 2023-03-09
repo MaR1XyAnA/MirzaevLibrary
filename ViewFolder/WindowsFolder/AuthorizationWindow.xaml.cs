@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace MirzaevLibrary.ViewFolder.WindowsFolder
 {
@@ -29,7 +30,23 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     MessageBoxImage.Error); 
             }
         }
+        private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                if (Properties.Settings.Default.CheckSlider_Settings == 100)
+                {
+                    LoginTextBox.Text = Properties.Settings.Default.LoginUser_Settings; // Вытягиваем в LoginTextBox логин пользователя
+                    PasswordPasswordBox.Password = Properties.Settings.Default.PasswordUser_Settings; // Вытягиваем в PasswordPasswordBox пароль пользователя
+                    RememberUserSlider.Value = Properties.Settings.Default.CheckSlider_Settings;
+                }
+            }
+        }
 
+        #region Color
+        SolidColorBrush ValueBlue = new SolidColorBrush(Color.FromRgb(82, 158, 244));
+        SolidColorBrush ValueWheat = new SolidColorBrush(Color.FromRgb(225, 227, 230));
+        #endregion
         #region Действие
         private void AnimLoadingStart() // Запуск анимации загрузки
         { 
@@ -42,7 +59,23 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             LoadingApplicationProgressBar.Visibility = Visibility.Collapsed;
             LoadingApplicationProgressBar.IsIndeterminate = false; 
         } 
-
+        public void SaveSettings()
+        {
+            if (RememberUserSlider.Value == 100) // Проверяем, прокручен ли Slider
+            {
+                Properties.Settings.Default.CheckSlider_Settings = 100; // Сохраняем логин в приложении
+                Properties.Settings.Default.LoginUser_Settings = LoginTextBox.Text; // Сохраняем логин в приложении
+                Properties.Settings.Default.PasswordUser_Settings = PasswordPasswordBox.Password; // Сохраняем пароль в приложении
+                Properties.Settings.Default.Save(); // Сохраняем данные в приложении
+            }
+            else
+            {
+                Properties.Settings.Default.CheckSlider_Settings = 0; // Сохраняем логин в приложении
+                Properties.Settings.Default.LoginUser_Settings = null; // Сохраняем логин в приложении
+                Properties.Settings.Default.PasswordUser_Settings = null; // Сохраняем пароль в приложении
+                Properties.Settings.Default.Save(); // Сохраняем данные в приложении
+            }
+        }
         private async void EnterUser() // АсинхронныйМ метод для входа пользователя
         {
             try
@@ -70,6 +103,7 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
                     }
                     else // Если пользователь существует и пароль введён правильно
                     {
+                        SaveSettings();
                         UserClass.GetUserTable = GetUser; // В переменную в классе отпровляем "Ссылку" на пользователя
                         mainWindow.Show(); 
                         this.Close();
@@ -148,7 +182,25 @@ namespace MirzaevLibrary.ViewFolder.WindowsFolder
             PasswordPasswordBox.Password = PasswordHide;
         }
         #endregion
-        #region TextChanged_PasswordChanged
+        #region TextChanged_PasswordChanged_ValueChanged
+        private void RememberUserSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (RememberUserSlider.Value == 100)
+            {
+                RememberUserNoTextBlock.Foreground = ValueWheat;
+                RememberUserYesTextBlock.Foreground = ValueBlue;
+            }
+            else if (RememberUserSlider.Value == 0)
+            {
+                RememberUserNoTextBlock.Foreground = ValueBlue;
+                RememberUserYesTextBlock.Foreground = ValueWheat;
+            }
+            else
+            {
+                RememberUserNoTextBlock.Foreground = ValueWheat;
+                RememberUserYesTextBlock.Foreground = ValueWheat;
+            }
+        }
         private void LoginTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (LoginTextBox.Text.Length > 0) 
