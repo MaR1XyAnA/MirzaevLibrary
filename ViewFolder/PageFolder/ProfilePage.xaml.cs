@@ -121,11 +121,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 {
                     string imagePath = openFileDialog.FileName; // Получение пути к выбранному файлу
 
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(imagePath);
-                    bitmap.EndInit();
-                    UserImage.Source = bitmap; // Вставить фото в пользовательский элемент управления
+                    UserImage.Source = new BitmapImage(new Uri(openFileDialog.FileName)); ; // Вставить фото в пользовательский элемент управления
 
                     // Конвертация изображения в байты
                     byte[] imageData;
