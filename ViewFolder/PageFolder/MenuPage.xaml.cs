@@ -150,10 +150,5 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
             }
         }
         #endregion
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            FrameNavigationClass.BodyFNC.GoBack();
-        }
     }
 }
