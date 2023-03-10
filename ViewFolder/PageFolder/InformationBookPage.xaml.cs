@@ -39,8 +39,6 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         {
             if (Visibility == Visibility.Visible)
             {
-                MenuPage menuPage = new MenuPage();
-                menuPage.BackButton.Visibility = Visibility.Visible;
                 if (UserClass.GetUserTable == null || UserClass.GetUserTable.pnTicket_User == 1)
                 {
                     TakereadButton.IsEnabled = false; // Выключаем кнопку, если зашёл неавторизированный пользователь

@@ -11,11 +11,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace MirzaevLibrary.ViewFolder.PageFolder
 {
     public partial class ProfilePage : Page
     {
+        string PathImage;
         public ProfilePage(UserTable GetUserTable)
         {
             try
@@ -82,50 +84,156 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         SolidColorBrush GreenColor = new SolidColorBrush(Color.FromRgb(57, 255, 20));
         SolidColorBrush StandardColor = new SolidColorBrush(Color.FromRgb(62, 62, 63));
         #endregion
-        #region Действие
-        private void SaveProfilUser()
+        #region Click
+        private void PhotoButton_Click(object sender, RoutedEventArgs e) // ПРи нажатии на кнопку открываем FileDialog и получаем путь к картинке
         {
-            var UpdateInformationUser = UserClass.GetUserTable;
-
-            UpdateInformationUser.Surname_User = SurnameTextBox.Text;
-            UpdateInformationUser.Name_User = NameTextBox.Text;
-            UpdateInformationUser.Middlename_User = MiddlenameTextBox.Text;
-            UpdateInformationUser.Address_User = AddresTextBox.Text;
-            UpdateInformationUser.Phone_User = PhoneTextBox.Text;
-
-            AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdateInformationUser);
-            AppConnectClass.DataBase.SaveChanges();
-
-            MessageBox.Show("Данные сохранены успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+            if (openFileDialog.ShowDialog() == true) // Если пользователь выбрал содержимое
+            {
+                PathImage = openFileDialog.FileName; // Получение пути к выбранному файлу и записываем в переменную
+                UserImage.Source = new BitmapImage(new Uri(openFileDialog.FileName)); ; // Вставить фото в пользовательский элемент управления
+            }
         }
-
-        private void SavePasswordUser()
+        private void AuthorizationButton_Click(object sender, RoutedEventArgs e) // Когда зашел не авторизированный пользователь
         {
-            var UpdatePasswordUser = UserClass.GetUserTable;
-            UpdatePasswordUser.Password_User = NewPasswordTextBox.Text;
-
-            AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdatePasswordUser);
-            AppConnectClass.DataBase.SaveChanges();
-
-            MessageBox.Show("Пароль сменён успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+            AuthorizationWindow authorizationWindow = new AuthorizationWindow();
+            authorizationWindow.Show();
         }
-
-        private void NewPhotoUser()
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e) // Когда зашел не авторизированный пользователь
+        {
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
+        }
+        private void SaveProfilButton_Click(object sender, RoutedEventArgs e) // Сохранение профиля пользователя
         {
             try
             {
-                var openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
-
-                if (openFileDialog.ShowDialog() == true)
+                if (UserClass.GetUserTable == null) // Если пользователь не авторизированный
                 {
-                    string imagePath = openFileDialog.FileName; // Получение пути к выбранному файлу
+                    MessageBox.Show(
+                        "Вам нужно сначала авторизоваться",
+                        "PR004 - Ошибка сохранения",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
+                else
+                {
+                    SaveProfilUser();
+                    NewPhotoUser();
+                    UIIsEnabled();
+                }
 
-                    UserImage.Source = new BitmapImage(new Uri(openFileDialog.FileName)); ; // Вставить фото в пользовательский элемент управления
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message.ToString(),
+                    "PR006 - Ошибка сохранения",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+        private void EditProfilButton_Click(object sender, RoutedEventArgs e) // Просто включает элементы управления и включает\отключает некоторые кнопки
+        {
+            SurnameTextBox.IsEnabled = true;
+            NameTextBox.IsEnabled = true;
+            MiddlenameTextBox.IsEnabled = true;
+            AddresTextBox.IsEnabled = true;
+            PhoneTextBox.IsEnabled = true;
 
+            EditPasswordButton.Visibility = Visibility.Visible;
+            SaveProfilButton.Visibility = Visibility.Visible;
+            PhotoButton.Visibility = Visibility.Visible;
+            EditProfilButton.Visibility = Visibility.Collapsed;
+        }
+        private void EditPasswordButton_Click(object sender, RoutedEventArgs e) // Делает видемым некоторые элементы управления, а некоторые не видемым
+        {
+            SurnameStackPanel.Visibility = Visibility.Collapsed;
+            NameStackPanel.Visibility = Visibility.Collapsed;
+            MiddlenameStackPanel.Visibility = Visibility.Collapsed;
+            AddresStackPanel.Visibility = Visibility.Collapsed;
+            PhoneStackPanel.Visibility = Visibility.Collapsed;
+
+            OldPasswordStackPanel.Visibility = Visibility.Visible;
+            NewPasswordStackPanel.Visibility = Visibility.Visible;
+            PasswordStackPanel.Visibility = Visibility.Visible;
+
+            EditPasswordButton.Visibility = Visibility.Collapsed;
+            SaveProfilButton.Visibility = Visibility.Collapsed;
+            SavePasswordButton.Visibility = Visibility.Visible;
+        }
+        private void SavePasswordButton_Click(object sender, RoutedEventArgs e) // Метод для сохранения пароля
+        {
+            try
+            {
+                if (UserClass.GetUserTable == null)
+                {
+                    MessageBox.Show(
+                        "Вам нужно сначала авторизоваться",
+                        "PR002 - Ошибка сохранения",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
+                else
+                {
+
+                    SavePasswordUser();
+                    UIIsEnabled();
+                    SurnameStackPanel.Visibility = Visibility.Visible;
+                    NameStackPanel.Visibility = Visibility.Visible;
+                    MiddlenameStackPanel.Visibility = Visibility.Visible;
+                    AddresStackPanel.Visibility = Visibility.Visible;
+                    PhoneStackPanel.Visibility = Visibility.Visible;
+
+                    //OldPasswordStackPanel.Visibility = Visibility.Collapsed;
+                    //NewPasswordStackPanel.Visibility = Visibility.Collapsed;
+                    //PasswordStackPanel.Visibility = Visibility.Collapsed;
+
+                    //SurnameTextBox.IsEnabled = false;
+                    //NameTextBox.IsEnabled = false;
+                    //MiddlenameTextBox.IsEnabled = false;
+                    //AddresTextBox.IsEnabled = false;
+                    //PhoneTextBox.IsEnabled = false;
+
+                    //EditPasswordButton.Visibility = Visibility.Collapsed;
+                    //SaveProfilButton.Visibility = Visibility.Collapsed;
+                    //SavePasswordButton.Visibility = Visibility.Collapsed;
+                    //EditProfilButton.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message.ToString(),
+                    "PR003 - Ошибка сохранения",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+        #endregion
+        #region Действие
+        private void UIIsEnabled()
+        {
+            SurnameTextBox.IsEnabled = false;
+            NameTextBox.IsEnabled = false;
+            MiddlenameTextBox.IsEnabled = false;
+            AddresTextBox.IsEnabled = false;
+            PhoneTextBox.IsEnabled = false;
+
+            EditPasswordButton.Visibility = Visibility.Collapsed;
+            SaveProfilButton.Visibility = Visibility.Collapsed;
+            EditProfilButton.Visibility = Visibility.Visible;
+        }
+        private void NewPhotoUser() // Метод, который сохраняет информацию об картинке пользователя
+        {
+            try
+            {
+                if (PathImage != "")
+                {
                     // Конвертация изображения в байты
                     byte[] imageData;
-                    using (FileStream fs = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+                    using (FileStream fs = new FileStream(PathImage, FileMode.Open, FileAccess.Read))
                     {
                         imageData = new byte[fs.Length];
                         fs.Read(imageData, 0, imageData.Length);
@@ -144,11 +252,11 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     {
                         AppConnectClass.DataBase.ImageUserTable.AddOrUpdate(newPhoto);
                     }
-
                     AppConnectClass.DataBase.SaveChanges();
 
-                    UserTable UpdateUser = UserClass.GetUserTable; // Создаём переменную в которой будем хранить информацию о пользователе
-                    UpdateUser.pnImage_User = newPhoto.Personalnumber_Image;
+                    var UpdateImageUser = UserClass.GetUserTable; // Создаём переменную в которой будем хранить информацию о пользователе
+                    UpdateImageUser.pnImage_User = newPhoto.Personalnumber_Image;
+                    AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdateImageUser);
                     AppConnectClass.DataBase.SaveChanges();
                 }
             }
@@ -161,151 +269,74 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                     MessageBoxImage.Error);
             }
         }
-        #endregion
-        #region Click
-        private void AuthorizationButton_Click(object sender, RoutedEventArgs e)
+        private void SaveProfilUser() // Метод для обновления текстовой информации профиля пользователя (Да, в тупую постоянно перезаписываем информацию о пользователе)
         {
-            AuthorizationWindow authorizationWindow = new AuthorizationWindow();
-            authorizationWindow.Show();
-        }
-        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
-        {
-            RegistrationWindow registrationWindow = new RegistrationWindow();
-            registrationWindow.Show();
-        }
-        private void SaveProfilButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
+            string MessageNull = "";
+            if (string.IsNullOrWhiteSpace(SurnameTextBox.Text)) MessageNull += "Поле с ФАМИЛИЕЙ не должно быть пустым \n";
+            if (string.IsNullOrWhiteSpace(NameTextBox.Text)) MessageNull += "Поле с ИМЕНЕМ не должно быть пустым \n";
+            if (string.IsNullOrWhiteSpace(PhoneTextBox.Text)) MessageNull += "Поле с НОМЕРОМ ТЕЛЕФОНА не должно быть пустым";
+
+            if (MessageNull != "")
             {
-                if (UserClass.GetUserTable == null)
+                MessageBox.Show(
+                    MessageNull,
+                    "Ошибка регистрации",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                MessageNull = null;
+            }
+            else
+            {
+                var UpdateInformationUser = UserClass.GetUserTable;
+
+                UpdateInformationUser.Surname_User = SurnameTextBox.Text;
+                UpdateInformationUser.Name_User = NameTextBox.Text;
+                UpdateInformationUser.Middlename_User = MiddlenameTextBox.Text;
+                UpdateInformationUser.Phone_User = PhoneTextBox.Text;
+                UpdateInformationUser.Address_User = AddresTextBox.Text;
+
+                AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdateInformationUser);
+                AppConnectClass.DataBase.SaveChanges();
+
+                MessageBox.Show("Данные сохранены успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        private void SavePasswordUser() // Метод для обновления пароля профиля пользователя (Да, в тупую постоянно проверяем, совподает ли пароль из переменной с тем, что лежит в TextBox или PasswordBox, если нет то перезаписываем)
+        {
+            string MessageNullPasswoerd = "";
+            if (string.IsNullOrWhiteSpace(NewPasswordTextBox.Text)) MessageNullPasswoerd += "Поле с ПАРОЛЕМ не должно быть пустым \n";
+            if (string.IsNullOrWhiteSpace(PasswordPasswordBox.Password)) MessageNullPasswoerd += "Поле с ПОВТОРНЫМ ПАРОЛЕМ не должно быть пустым";
+
+            if (MessageNullPasswoerd != "")
+            {
+                MessageBox.Show(
+                    MessageNullPasswoerd,
+                    "Ошибка регистрации",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                MessageNullPasswoerd = null;
+            }
+            else
+            {
+                if (NewPasswordTextBox.Text == UserClass.GetUserTable.Password_User || PasswordPasswordBox.Password == UserClass.GetUserTable.Password_User)
                 {
                     MessageBox.Show(
-                        "Вам нужно сначала авторизоваться",
-                        "PR004 - Ошибка сохранения",
+                        "Вы уже используете данный пароль",
+                        "PR005 - ошибка сохранения",
                         MessageBoxButton.OK,
                         MessageBoxImage.Information);
                 }
                 else
                 {
-                    if (NewPasswordTextBox.Text == UserClass.GetUserTable.Password_User || PasswordPasswordBox.Password == UserClass.GetUserTable.Password_User)
-                    {
-                        MessageBox.Show(
-                            "Вы уже используете данный пароль",
-                            "PR005 - ошибка сохранения",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
-                    }
-                    else
-                    {
-                        SaveProfilUser();
+                    var UpdatePasswordUser = UserClass.GetUserTable;
+                    UpdatePasswordUser.Password_User = NewPasswordTextBox.Text;
 
-                        SurnameTextBox.IsEnabled = false;
-                        NameTextBox.IsEnabled = false;
-                        MiddlenameTextBox.IsEnabled = false;
-                        AddresTextBox.IsEnabled = false;
-                        PhoneTextBox.IsEnabled = false;
+                    AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdatePasswordUser);
+                    AppConnectClass.DataBase.SaveChanges();
 
-                        EditPasswordButton.Visibility = Visibility.Collapsed;
-                        SaveProfilButton.Visibility = Visibility.Collapsed;
-                        EditProfilButton.Visibility = Visibility.Visible;
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    ex.Message.ToString(),
-                    "PR006 - Ошибка сохранения",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
-        }
-        private void EditProfilButton_Click(object sender, RoutedEventArgs e)
-        {
-            SurnameTextBox.IsEnabled = true;
-            NameTextBox.IsEnabled = true;
-            MiddlenameTextBox.IsEnabled = true;
-            AddresTextBox.IsEnabled = true;
-            PhoneTextBox.IsEnabled = true;
-
-            EditPasswordButton.Visibility = Visibility.Visible;
-            SaveProfilButton.Visibility = Visibility.Visible;
-            PhotoButton.Visibility = Visibility.Visible;
-            EditProfilButton.Visibility = Visibility.Collapsed;
-
-            if (UserClass.GetUserTable.pnImage_User == 1)
-            {
-                PhotoButton.Content = "Добавить фотографию";
-            }
-        }
-
-        private void EditPasswordButton_Click(object sender, RoutedEventArgs e)
-        {
-            SurnameStackPanel.Visibility = Visibility.Collapsed;
-            NameStackPanel.Visibility = Visibility.Collapsed;
-            MiddlenameStackPanel.Visibility = Visibility.Collapsed;
-            AddresStackPanel.Visibility = Visibility.Collapsed;
-            PhoneStackPanel.Visibility = Visibility.Collapsed;
-
-            OldPasswordStackPanel.Visibility = Visibility.Visible;
-            NewPasswordStackPanel.Visibility = Visibility.Visible;
-            PasswordStackPanel.Visibility = Visibility.Visible;
-
-            EditPasswordButton.Visibility = Visibility.Collapsed;
-            SaveProfilButton.Visibility = Visibility.Collapsed;
-            SavePasswordButton.Visibility = Visibility.Visible;
-        }
-        private void SavePasswordButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (UserClass.GetUserTable == null)
-                {
-                    MessageBox.Show(
-                        "Вам нужно сначала авторизоваться",
-                        "PR002 - Ошибка сохранения",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information);
-                }
-                else
-                {
-
-                    SavePasswordUser();
-                    SurnameStackPanel.Visibility = Visibility.Visible;
-                    NameStackPanel.Visibility = Visibility.Visible;
-                    MiddlenameStackPanel.Visibility = Visibility.Visible;
-                    AddresStackPanel.Visibility = Visibility.Visible;
-                    PhoneStackPanel.Visibility = Visibility.Visible;
-
-                    OldPasswordStackPanel.Visibility = Visibility.Collapsed;
-                    NewPasswordStackPanel.Visibility = Visibility.Collapsed;
-                    PasswordStackPanel.Visibility = Visibility.Collapsed;
-
-                    SurnameTextBox.IsEnabled = false;
-                    NameTextBox.IsEnabled = false;
-                    MiddlenameTextBox.IsEnabled = false;
-                    AddresTextBox.IsEnabled = false;
-                    PhoneTextBox.IsEnabled = false;
-
-                    EditPasswordButton.Visibility = Visibility.Collapsed;
-                    SaveProfilButton.Visibility = Visibility.Collapsed;
-                    SavePasswordButton.Visibility = Visibility.Collapsed;
-                    EditProfilButton.Visibility = Visibility.Visible;
+                    MessageBox.Show("Пароль сменён успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    ex.Message.ToString(),
-                    "PR003 - Ошибка сохранения",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
-        }
-        private void PhotoButton_Click(object sender, RoutedEventArgs e)
-        {
-            NewPhotoUser();
         }
         #endregion
         #region TextChanged_PasswordChanged
