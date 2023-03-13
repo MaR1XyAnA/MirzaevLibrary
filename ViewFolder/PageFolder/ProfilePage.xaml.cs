@@ -17,7 +17,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 {
     public partial class ProfilePage : Page
     {
-        string PathImage;
+        string PathImage = null;
         public ProfilePage(UserTable GetUserTable)
         {
             try
@@ -120,7 +120,10 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 else
                 {
                     SaveProfilUser();
-                    NewPhotoUser();
+                    if (PathImage != null)
+                    {
+                        NewPhotoUser();
+                    }
                     UIIsEnabled();
                 }
 
@@ -177,29 +180,7 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
                 }
                 else
                 {
-
                     SavePasswordUser();
-                    UIIsEnabled();
-                    SurnameStackPanel.Visibility = Visibility.Visible;
-                    NameStackPanel.Visibility = Visibility.Visible;
-                    MiddlenameStackPanel.Visibility = Visibility.Visible;
-                    AddresStackPanel.Visibility = Visibility.Visible;
-                    PhoneStackPanel.Visibility = Visibility.Visible;
-
-                    //OldPasswordStackPanel.Visibility = Visibility.Collapsed;
-                    //NewPasswordStackPanel.Visibility = Visibility.Collapsed;
-                    //PasswordStackPanel.Visibility = Visibility.Collapsed;
-
-                    //SurnameTextBox.IsEnabled = false;
-                    //NameTextBox.IsEnabled = false;
-                    //MiddlenameTextBox.IsEnabled = false;
-                    //AddresTextBox.IsEnabled = false;
-                    //PhoneTextBox.IsEnabled = false;
-
-                    //EditPasswordButton.Visibility = Visibility.Collapsed;
-                    //SaveProfilButton.Visibility = Visibility.Collapsed;
-                    //SavePasswordButton.Visibility = Visibility.Collapsed;
-                    //EditProfilButton.Visibility = Visibility.Visible;
                 }
             }
             catch (Exception ex)
@@ -229,36 +210,33 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
         {
             try
             {
-                if (PathImage != "")
+                // Конвертация изображения в байты
+                byte[] imageData;
+                using (FileStream fs = new FileStream(PathImage, FileMode.Open, FileAccess.Read))
                 {
-                    // Конвертация изображения в байты
-                    byte[] imageData;
-                    using (FileStream fs = new FileStream(PathImage, FileMode.Open, FileAccess.Read))
-                    {
-                        imageData = new byte[fs.Length];
-                        fs.Read(imageData, 0, imageData.Length);
-                    }
-
-                    var newPhoto = new ImageUserTable() // Создаём "коробку" в которой будем хранить информацию о фотографии
-                    {
-                        Image_Image = imageData
-                    };
-
-                    if (UserClass.GetUserTable.pnImage_User == 1) // Если у пользователя нет ФОТО
-                    {
-                        AppConnectClass.DataBase.ImageUserTable.Add(newPhoto);
-                    }
-                    else
-                    {
-                        AppConnectClass.DataBase.ImageUserTable.AddOrUpdate(newPhoto);
-                    }
-                    AppConnectClass.DataBase.SaveChanges();
-
-                    var UpdateImageUser = UserClass.GetUserTable; // Создаём переменную в которой будем хранить информацию о пользователе
-                    UpdateImageUser.pnImage_User = newPhoto.Personalnumber_Image;
-                    AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdateImageUser);
-                    AppConnectClass.DataBase.SaveChanges();
+                    imageData = new byte[fs.Length];
+                    fs.Read(imageData, 0, imageData.Length);
                 }
+
+                var newPhoto = new ImageUserTable() // Создаём "коробку" в которой будем хранить информацию о фотографии
+                {
+                    Image_Image = imageData
+                };
+
+                if (UserClass.GetUserTable.pnImage_User == 1) // Если у пользователя нет ФОТО
+                {
+                    AppConnectClass.DataBase.ImageUserTable.Add(newPhoto);
+                }
+                else
+                {
+                    AppConnectClass.DataBase.ImageUserTable.AddOrUpdate(newPhoto);
+                }
+                AppConnectClass.DataBase.SaveChanges();
+
+                var UpdateImageUser = UserClass.GetUserTable; // Создаём переменную в которой будем хранить информацию о пользователе
+                UpdateImageUser.pnImage_User = newPhoto.Personalnumber_Image;
+                AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdateImageUser);
+                AppConnectClass.DataBase.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -333,6 +311,27 @@ namespace MirzaevLibrary.ViewFolder.PageFolder
 
                     AppConnectClass.DataBase.UserTable.AddOrUpdate(UpdatePasswordUser);
                     AppConnectClass.DataBase.SaveChanges();
+
+                    SurnameStackPanel.Visibility = Visibility.Visible;
+                    NameStackPanel.Visibility = Visibility.Visible;
+                    MiddlenameStackPanel.Visibility = Visibility.Visible;
+                    AddresStackPanel.Visibility = Visibility.Visible;
+                    PhoneStackPanel.Visibility = Visibility.Visible;
+
+                    OldPasswordStackPanel.Visibility = Visibility.Collapsed;
+                    NewPasswordStackPanel.Visibility = Visibility.Collapsed;
+                    PasswordStackPanel.Visibility = Visibility.Collapsed;
+
+                    SurnameTextBox.IsEnabled = false;
+                    NameTextBox.IsEnabled = false;
+                    MiddlenameTextBox.IsEnabled = false;
+                    AddresTextBox.IsEnabled = false;
+                    PhoneTextBox.IsEnabled = false;
+
+                    EditPasswordButton.Visibility = Visibility.Collapsed;
+                    SaveProfilButton.Visibility = Visibility.Collapsed;
+                    SavePasswordButton.Visibility = Visibility.Collapsed;
+                    EditProfilButton.Visibility = Visibility.Collapsed;
 
                     MessageBox.Show("Пароль сменён успешно", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
